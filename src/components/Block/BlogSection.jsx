@@ -8,7 +8,7 @@ import {
     CardContent,
     CardFooter,
     CardHeader,
-} from "@/components/ui/card";
+} from "@/components/ui/Card";
 
 const BlogSection = ({
     tagline = "Our Journal",
