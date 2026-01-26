@@ -116,23 +116,10 @@ export const ProductDetailPage = ({ product, seller, breadcrumbs }) => {
                                 minimumFractionDigits: 0,
                             }).format(product.price).replace("GHS", product.currency)}
                         </span>
-                        {product.originalPrice && (
-                            <span className="text-xl text-gray-400 line-through">
-                                {new Intl.NumberFormat("en-GH", {
-                                    style: "currency",
-                                    currency: "GHS",
-                                    minimumFractionDigits: 0,
-                                }).format(product.originalPrice).replace("GHS", product.currency)}
-                            </span>
-                        )}
                     </div>
-                    <div className="mt-1 text-sm text-gray-500">
-                        + {new Intl.NumberFormat("en-GH", {
-                            style: "currency",
-                            currency: "GHS",
-                            minimumFractionDigits: 2,
-                        }).format(product.shippingCost).replace("GHS", product.currency)} Shipping
-                    </div>
+
+
+
 
                     <div className="flex gap-2 my-8">
                         <Button size="lg" className="flex-1 gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white" onClick={handleContactSeller}>
@@ -141,14 +128,7 @@ export const ProductDetailPage = ({ product, seller, breadcrumbs }) => {
                     </div>
 
                     {/* Tags/Badges */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                        {product.tags && product.tags.map((tag, index) => (
-                            <Badge key={index} variant="secondary" className="text-sm font-normal py-1 px-3 gap-2 bg-gray-100 text-gray-700">
-                                {tag.label}
-                            </Badge>
-                        ))}
-                        {product.offerText && <Badge className="text-sm font-normal py-1 px-3 bg-red-100 text-red-600">{product.offerText}</Badge>}
-                    </div>
+
 
                     {/* Description */}
                     <div className="prose prose-stone text-gray-600 leading-relaxed">

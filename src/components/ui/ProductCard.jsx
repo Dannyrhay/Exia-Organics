@@ -58,26 +58,8 @@ const ProductCard = React.forwardRef(
                 </div>
 
                 {/* Pricing and Offers */}
-                <div className="mt-4 flex flex-col items-center gap-2">
-                    <div className="flex flex-col items-center">
-                        <span className="text-2xl font-bold text-gray-900">{formatPrice(price)}</span>
-                        {isCouponPrice && (
-                            <span className="text-xs font-medium text-emerald-600">
-                                Coupon Price
-                            </span>
-                        )}
-                    </div>
-                    <div className="flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-xs text-secondary-foreground">
-                        {originalPrice && (
-                            <span className="text-gray-400 line-through">
-                                {formatPrice(originalPrice)}
-                            </span>
-                        )}
-                        <span className="font-semibold text-orange-700">
-                            {offerText}
-                        </span>
-                    </div>
-                </div>
+                {/* Pricing removed as per request */}
+                <div className="mt-4 flex flex-col items-center gap-2"></div>
                 <div className="mt-4 w-full">
                     <Link to={`/product/${id}`} className="block w-full">
                         <button className="w-full rounded-full bg-[#1e3a5f] py-2 text-sm font-semibold text-white transition-colors hover:bg-[#152a45]">

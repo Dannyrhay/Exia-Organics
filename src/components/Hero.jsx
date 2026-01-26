@@ -128,7 +128,7 @@ const HeroLayout = React.forwardRef(
                     transition={{ duration: 1.2, ease: "circOut", delay: 0.2 }}
                 >
                     {/* Mobile overlay to make text readable if image overlaps (though clip path usually handles it on desktop) */}
-                    <div className="md:hidden absolute inset-0 bg-white/90"></div>
+                    <div className="md:hidden absolute inset-0 bg-white/80"></div>
                 </motion.div>
             </motion.section>
         );

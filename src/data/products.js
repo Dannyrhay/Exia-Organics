@@ -1,198 +1,184 @@
+
+import antiDandruff250 from '../assets/Anti-Dandruff Herbal Shampoo (250ml).png';
+import antiDandruff500 from '../assets/Anti-Dandruff Herbal Shampoo (500ml).png';
+import antiDandruffSet from '../assets/Anti-Dandruff Set.png';
+import deepConditioner from '../assets/Deep Conditioner (250ml).png';
+import hairGrowthButter from '../assets/Hair Growth Butter.png';
+import hairGrowthSet from '../assets/Hair Growth Set.png';
+import hairRepairOil60 from '../assets/Hair Repair Oil (60ml).png';
+import hairRepairOil100 from '../assets/Hair Repair Oil (100ml).png';
+import leaveInConditioner from '../assets/Leave in Conditioner (150ml).png';
+import mildShampoo from '../assets/Mild Shampoo(500ml).png';
+import moisturizingSet from '../assets/Moisturizing Set.png';
+import moisturizingShampoo from '../assets/Moisturizing Shampoo(250ml).png';
+
 export const products = [
     {
         id: 1,
-        imageUrl: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b3JnYW5pYyUyMG9pbHxlbnwwfHwwfHx8MA%3D%3D",
-        name: "Golden Jojoba Oil",
-        tagline: "Pure hydration for skin & hair",
-        price: 1299,
-        originalPrice: 1599,
-        offerText: "Save GHS 300",
+        imageUrl: antiDandruff250,
+        name: "Anti-Dandruff Herbal Shampoo (250ml)",
+        tagline: "Soothes itchy scalp",
+        price: 60,
+        originalPrice: 0,
+        offerText: null,
         isCouponPrice: false,
-        description: "Experience the pure essence of nature with our Golden Jojoba Oil. Cold-pressed and unrefined, this versatile oil mimics the skin's natural sebum, making it an excellent moisturizer for both skin and hair. It balances oil production, soothes dryness, and adds a healthy glow.",
-        shippingCost: 50,
+        description: "Our Anti-Dandruff Herbal Shampoo is specially formulated to soothe itchy scalps and eliminate dandruff flakes using natural herbal extracts.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Organic" },
-            { label: "Cold Pressed" },
-            { label: "Vegan" }
-        ]
+        tags: [{ label: "Anti-Dandruff" }, { label: "Herbal" }]
     },
     {
         id: 2,
-        imageUrl: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8b3JnYW5pYyUyMGNyZWFtfGVufDB8fDB8fHww",
-        name: "Shea Butter Cream",
-        tagline: "Intensive moisturizing therapy",
-        price: 899,
-        originalPrice: 1199,
-        isCouponPrice: true,
-        offerText: "Extra 10% Off",
-        description: "Our ultra-rich Shea Butter Cream provides intensive moisturizing therapy for dry and compromised skin. Enriched with vitamins A and E, it deeply nourishes, restores elasticity, and protects against environmental stressors.",
-        shippingCost: 50,
+        imageUrl: antiDandruff500,
+        name: "Anti-Dandruff Herbal Shampoo (500ml)",
+        tagline: "Large family size",
+        price: 80,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "The same effective anti-dandruff formula in a larger 500ml bottle for long-lasting care.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Moisturizing" },
-            { label: "Rich Texture" }
-        ]
+        tags: [{ label: "Value Size" }, { label: "Herbal" }]
     },
     {
         id: 3,
-        imageUrl: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZXNzZW50aWFsJTIwb2lsc3xlbnwwfHwwfHx8MA%3D%3D",
-        name: "Lavender Essential Oil",
-        tagline: "Calming & relaxing aromatherapy",
-        price: 649,
-        originalPrice: 899,
-        offerText: "Best Seller",
-        description: "Unwind with the soothing scent of our Lavender Essential Oil. Perfect for aromatherapy, this 100% pure oil promotes relaxation, reduces stress, and helps improve sleep quality.",
-        shippingCost: 40,
+        imageUrl: antiDandruffSet,
+        name: "Anti-Dandruff Set",
+        tagline: "Complete scalp care",
+        price: 350,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "A complete set designed to tackle dandruff and restore scalp health effectively.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Aromatherapy" },
-            { label: "Calming" }
-        ]
+        tags: [{ label: "Bundle" }, { label: "Scalp Care" }]
     },
     {
         id: 4,
-        imageUrl: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGhlcmJhbCUyMHNoYW1wb298ZW58MHx8MHx8fDA%3D",
-        name: "Herbal Revitalizing Shampoo",
-        tagline: "Sulfate-free gentle cleansing",
-        price: 799,
-        originalPrice: 999,
-        offerText: "Natural Care",
-        description: "Cleanse your hair gently with our Herbal Revitalizing Shampoo. Free from harsh sulfates, this formula uses botanical extracts to strengthen hair roots and add volume without stripping natural oils.",
-        shippingCost: 60,
+        imageUrl: deepConditioner,
+        name: "Deep Conditioner (250ml)",
+        tagline: "Intensive moisture repair",
+        price: 70,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "Restore hydration and softness to dry, damaged hair with our intensive Deep Conditioner.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Sulfate-Free" },
-            { label: "Herbal" }
-        ]
+        tags: [{ label: "Conditioning" }, { label: "Repair" }]
     },
     {
         id: 5,
-        imageUrl: "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        name: "Rose Facial Mist",
-        tagline: "Hydrating floral toner",
-        price: 499,
-        originalPrice: 699,
-        offerText: "Summer Splash",
-        description: "Refresh and hydrate your skin instantly with our Rose Facial Mist. Distilled from fresh rose petals, this toner balances pH, tightens pores, and leaves a dewy, glowing finish.",
-        shippingCost: 40,
+        imageUrl: hairGrowthButter,
+        name: "Hair Growth Butter",
+        tagline: "Nourishes & stimulates",
+        price: 60,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "A rich butter blend designed to nourish the scalp and stimulate healthy hair growth.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Hydrating" },
-            { label: "Toner" }
-        ]
+        tags: [{ label: "Growth" }, { label: "Nourishing" }]
     },
     {
         id: 6,
-        imageUrl: "https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        name: "Bamboo Charcoal Scrub",
-        tagline: "Detoxify and exfoliate",
-        price: 849,
-        originalPrice: 1099,
-        isCouponPrice: true,
-        offerText: "Deep Clean",
-        description: "Detoxify your skin with our Bamboo Charcoal Scrub. It gently exfoliates dead skin cells and draws out impurities, leaving your skin smooth, clear, and revitalized.",
-        shippingCost: 50,
+        imageUrl: hairGrowthSet,
+        name: "Hair Growth Set",
+        tagline: "Ultimate growth collection",
+        price: 190,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "The ultimate collection of products working together to maximize hair growth and retention.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Exfoliating" },
-            { label: "Detox" }
-        ]
+        tags: [{ label: "Bundle" }, { label: "Growth" }]
     },
     {
         id: 7,
-        imageUrl: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        name: "Aloe Vera Gel",
-        tagline: "Soothing skin relief",
-        price: 399,
-        originalPrice: 499,
-        offerText: "Pure & Healing",
-        description: "Our pure Aloe Vera Gel is a soothing remedy for irritated or sunburnt skin. Lightweight and fast-absorbing, it provides instant relief and deep hydration.",
-        shippingCost: 40,
+        imageUrl: hairRepairOil60,
+        name: "Hair Repair Oil (60ml)",
+        tagline: "Fixes split ends",
+        price: 60,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "A concentrated oil aimed at repairing split ends and adding shine to dull hair.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Soothing" },
-            { label: "Natural" }
-        ]
+        tags: [{ label: "Repair" }, { label: "Oil" }]
     },
     {
         id: 8,
-        imageUrl: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        name: "Argan Hair Serum",
-        tagline: "Frizz control & shine",
-        price: 1199,
-        originalPrice: 1599,
-        offerText: "Frizz Free",
-        description: "Tame frizz and add a brilliant shine with our Argan Hair Serum. Infused with Moroccan Argan oil, this non-greasy formula protects hair from heat damage and split ends.",
-        shippingCost: 30,
+        imageUrl: hairRepairOil100,
+        name: "Hair Repair Oil (100ml)",
+        tagline: "Double the repair",
+        price: 85,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "Our effective Hair Repair Oil in a larger size for continuous treatment.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Hair Care" },
-            { label: "Shine" }
-        ]
+        tags: [{ label: "Value Size" }, { label: "Repair" }]
     },
     {
         id: 9,
-        imageUrl: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        name: "Eucalyptus Essential Oil",
-        tagline: "Respiratory relief & clarity",
-        price: 599,
-        originalPrice: 799,
-        offerText: "Breathe Easy",
-        description: "Clear your mind and respiratory passages with Eucalyptus Essential Oil. Ideal for diffusers, steam inhalation, or massage to relieve congestion and boost mental clarity.",
-        shippingCost: 40,
+        imageUrl: leaveInConditioner,
+        name: "Leave-In Conditioner (150ml)",
+        tagline: "Daily moisture & detangling",
+        price: 40,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "Lightweight leave-in conditioner that detangles, moisturizes, and protects hair throughout the day.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Wellness" },
-            { label: "Essential Oil" }
-        ]
+        tags: [{ label: "Daily Care" }, { label: "Moisture" }]
     },
     {
         id: 10,
-        imageUrl: "https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        name: "Vitamin C Serum",
-        tagline: "Brightening antioxidant boost",
-        price: 1499,
-        originalPrice: 1999,
-        offerText: "Glow Getter",
-        description: "Brighten your complexion and fight signs of aging with our concentrated Vitamin C Serum. Packed with antioxidants, it helps fade dark spots and promotes collagen production.",
-        shippingCost: 30,
+        imageUrl: mildShampoo,
+        name: "Mild Shampoo (500ml)",
+        tagline: "Gentle daily cleanse",
+        price: 70,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "A gentle shampoo perfect for frequent use, cleaning hair without stripping natural oils.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Anti-Aging" },
-            { label: "Brightening" }
-        ]
+        tags: [{ label: "Gentle" }, { label: "Daily Use" }]
     },
     {
         id: 11,
-        imageUrl: "https://images.unsplash.com/photo-1542452255191-c85a98f2c5d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        name: "Organic Coffee Scrub",
-        tagline: "Energizing body exfoliant",
-        price: 699,
-        originalPrice: 899,
-        offerText: "Wake Up",
-        description: "Wake up your skin with our Organic Coffee Scrub. The caffeine boosts circulation while the coarse grounds exfoliate, reducing the appearance of cellulite and leaving skin firm.",
-        shippingCost: 50,
+        imageUrl: moisturizingSet,
+        name: "Moisturizing Set",
+        tagline: "Complete hydration system",
+        price: 350,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "A curated set of moisturizing products to keep your hair hydrated and healthy.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Exfoliating" },
-            { label: "Body Care" }
-        ]
+        tags: [{ label: "Bundle" }, { label: "Hydration" }]
     },
     {
         id: 12,
-        imageUrl: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        name: "Chamomile Tea Bags",
-        tagline: "Soothing natural sleep aid",
-        price: 299,
-        originalPrice: 399,
-        offerText: "Sleep Well",
-        description: "Enjoy a peaceful night's sleep with our Organic Chamomile Tea. Naturally caffeine-free, its calming properties help relax the nervous system and relieve stress.",
-        shippingCost: 20,
+        imageUrl: moisturizingShampoo,
+        name: "Moisturizing Shampoo (250ml)",
+        tagline: "Hydrates while cleaning",
+        price: 45,
+        originalPrice: 0,
+        offerText: null,
+        isCouponPrice: false,
+        description: "Infused with moisturizing ingredients to hydrate dry hair while cleansing.",
+        shippingCost: 0,
         currency: "GHS",
-        tags: [
-            { label: "Tea" },
-            { label: "Relaxation" }
-        ]
+        tags: [{ label: "Moisturizing" }, { label: "Cleanse" }]
     }
 ];

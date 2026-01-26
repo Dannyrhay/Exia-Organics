@@ -2,7 +2,7 @@ import React from 'react';
 import Hero from '../components/Hero';
 import AboutPreview from '../components/ui/AboutPreview';
 import Products from '../components/Products';
-import Promo from '../components/Promo';
+import { BlogSection } from '../components/Block/BlogSection';
 
 const HomePage = () => {
     return (
@@ -10,7 +10,7 @@ const HomePage = () => {
             <Hero />
             <AboutPreview />
             <Products />
-            <Promo />
+            <BlogSection />
         </>
     );
 };
