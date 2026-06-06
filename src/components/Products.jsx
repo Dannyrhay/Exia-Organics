@@ -32,6 +32,72 @@ const AnimatedElement = ({ children, className, delay = 0, direction = 'up' }) =
 };
 
 // Featured product card with premium styling
+function ProductCardImage({ product }) {
+    return (
+        <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden bg-gradient-to-br from-slate-50 to-gray-100">
+            <motion.img
+                src={product.imageUrl}
+                alt={product.name}
+                className="h-full w-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+            />
+
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-[#1e4b78]/90 via-[#1e4b78]/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <span className="flex items-center gap-2 bg-white text-[#1e4b78] py-3 px-6 rounded-full font-semibold text-sm shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    View Details
+                </span>
+            </div>
+
+            {product.tags?.[0] && (
+                <div className="absolute top-4 left-4 z-20">
+                    <span className="inline-block bg-[#9cae66] text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">
+                        {product.tags[0].label}
+                    </span>
+                </div>
+            )}
+        </div>
+    );
+}
+
+function ProductCardDetails({ product, shouldReduceMotion }) {
+    return (
+        <div className="p-5 sm:p-6">
+            <h3 className="font-serif text-lg sm:text-xl text-[#1e4b78] font-semibold mb-2 line-clamp-2 group-hover:text-[#9cae66] transition-colors duration-300">
+                {product.name}
+            </h3>
+
+            <p className="text-gray-500 text-sm mb-4 line-clamp-1">
+                {product.tagline}
+            </p>
+
+            <div className="flex items-center gap-3 mb-4">
+                <div className="flex-1 h-px bg-gradient-to-r from-[#9cae66]/40 to-transparent" />
+                <div className="w-2 h-2 rounded-full bg-[#9cae66]/30" />
+                <div className="flex-1 h-px bg-gradient-to-l from-[#9cae66]/40 to-transparent" />
+            </div>
+
+            <div className="flex items-center justify-between">
+                <span className="text-2xl font-bold text-[#1e4b78]">
+                    {product.currency} {product.price}
+                </span>
+                <motion.span
+                    className="text-[#9cae66] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1"
+                    whileHover={shouldReduceMotion ? {} : { x: 3 }}
+                >
+                    <span className="text-sm font-medium">Shop</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </motion.span>
+            </div>
+        </div>
+    );
+}
+
 const FeaturedProductCard = ({ product, index }) => {
     const shouldReduceMotion = useReducedMotion();
 
@@ -45,77 +111,10 @@ const FeaturedProductCard = ({ product, index }) => {
             className="group relative"
         >
             <Link to={`/product/${product.id}`}>
-                {/* Card Container */}
                 <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 group-hover:shadow-2xl border border-gray-100/50">
-
-                    {/* Decorative gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#9cae66]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
-
-                    {/* Image Container */}
-                    <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden bg-gradient-to-br from-slate-50 to-gray-100">
-                        <motion.img
-                            src={product.imageUrl}
-                            alt={product.name}
-                            className="h-full w-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
-                        />
-
-                        {/* Hover action overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-[#1e4b78]/90 via-[#1e4b78]/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
-                            <span className="flex items-center gap-2 bg-white text-[#1e4b78] py-3 px-6 rounded-full font-semibold text-sm shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                                    <circle cx="12" cy="12" r="3" />
-                                </svg>
-                                View Details
-                            </span>
-                        </div>
-
-                        {/* Tags */}
-                        {product.tags && product.tags.length > 0 && (
-                            <div className="absolute top-4 left-4 z-20">
-                                <span className="inline-block bg-[#9cae66] text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">
-                                    {product.tags[0].label}
-                                </span>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-5 sm:p-6">
-                        {/* Product Name */}
-                        <h3 className="font-serif text-lg sm:text-xl text-[#1e4b78] font-semibold mb-2 line-clamp-2 group-hover:text-[#9cae66] transition-colors duration-300">
-                            {product.name}
-                        </h3>
-
-                        {/* Tagline */}
-                        <p className="text-gray-500 text-sm mb-4 line-clamp-1">
-                            {product.tagline}
-                        </p>
-
-                        {/* Divider with organic accent */}
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="flex-1 h-px bg-gradient-to-r from-[#9cae66]/40 to-transparent" />
-                            <div className="w-2 h-2 rounded-full bg-[#9cae66]/30" />
-                            <div className="flex-1 h-px bg-gradient-to-l from-[#9cae66]/40 to-transparent" />
-                        </div>
-
-                        {/* Price */}
-                        <div className="flex items-center justify-between">
-                            <span className="text-2xl font-bold text-[#1e4b78]">
-                                {product.currency} {product.price}
-                            </span>
-                            <motion.span
-                                className="text-[#9cae66] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1"
-                                whileHover={shouldReduceMotion ? {} : { x: 3 }}
-                            >
-                                <span className="text-sm font-medium">Shop</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M5 12h14" />
-                                    <path d="m12 5 7 7-7 7" />
-                                </svg>
-                            </motion.span>
-                        </div>
-                    </div>
+                    <ProductCardImage product={product} />
+                    <ProductCardDetails product={product} shouldReduceMotion={shouldReduceMotion} />
                 </div>
             </Link>
         </motion.div>

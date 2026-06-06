@@ -27,13 +27,6 @@ const Navbar = () => {
     const [activeDropdown, setActiveDropdown] = useState(null)
 
     const toggleMenu = () => setIsOpen(!isOpen)
-    const toggleDropdown = (name) => {
-        if (activeDropdown === name) {
-            setActiveDropdown(null)
-        } else {
-            setActiveDropdown(name)
-        }
-    }
 
     return (
         <div className="flex justify-center w-full py-6 px-4">

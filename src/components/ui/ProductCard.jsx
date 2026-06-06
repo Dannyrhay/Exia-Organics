@@ -11,26 +11,10 @@ const ProductCard = React.forwardRef(
             imageUrl,
             name,
             tagline,
-            price,
-            currency = "GHS",
-            isCouponPrice = false,
-            originalPrice,
-            offerText,
             ...props
         },
         ref
     ) => {
-        // Price formatter for consistent currency display
-        const formatPrice = (amount) => {
-            return new Intl.NumberFormat("en-GH", {
-                style: "currency",
-                currency: "GHS",
-                minimumFractionDigits: 0,
-            })
-                .format(amount)
-                .replace("GHS", `${currency}`);
-        };
-
         return (
             <motion.div
                 ref={ref}
