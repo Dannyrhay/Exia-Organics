@@ -1,1 +1,97 @@
 @import "tailwindcss";
+
+/*
+ * Exia Organics — "Sunlit Ritual" tokens.
+ * Indigo comes from the product labels, lid gold from the wood-grain jar lids,
+ * wood from the tables the products are shot on. Use these names, not raw hex.
+ */
+@theme {
+    --font-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+    --font-serif: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+    --font-sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "DM Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+    /* brand */
+    --color-shea: #f4ece0;
+    --color-shea-deep: #e8dcc8;
+    --color-paper: #fbf7f0;
+    --color-indigo: #241d6e;
+    --color-indigo-deep: #16123f;
+    --color-ink: #1f1a3d;
+    --color-ink-soft: #5b5470;
+    --color-lid: #d9a85a;
+    --color-wood: #9b4f2d;
+    --color-leaf: #2f6a3e;
+    --color-line: #dccfb9;
+
+    /* semantic aliases used by the shadcn-style primitives */
+    --color-background: var(--color-shea);
+    --color-foreground: var(--color-ink);
+    --color-border: var(--color-line);
+    --color-card: var(--color-paper);
+    --color-card-foreground: var(--color-ink);
+    --color-muted-foreground: var(--color-ink-soft);
+    --color-primary: var(--color-indigo);
+    --color-primary-foreground: var(--color-shea);
+    --color-secondary: var(--color-shea-deep);
+    --color-secondary-foreground: var(--color-ink);
+    --color-accent: var(--color-shea-deep);
+    --color-accent-foreground: var(--color-ink);
+    --color-destructive: #b42318;
+    --color-destructive-foreground: #ffffff;
+    --color-ring: var(--color-indigo);
+    --color-input: var(--color-line);
+
+    --animate-marquee: marquee-horizontal var(--duration, 40s) linear infinite;
+    --animate-marquee-vertical: marquee var(--duration, 40s) linear infinite;
+
+    @keyframes marquee {
+        from { transform: translateY(0); }
+        to { transform: translateY(calc(-100% - var(--gap, 1rem))); }
+    }
+
+    @keyframes marquee-horizontal {
+        from { transform: translateX(0); }
+        to { transform: translateX(calc(-100% - var(--gap, 1rem))); }
+    }
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        background: var(--color-shea);
+        color: var(--color-ink);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+        text-wrap: balance;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-indigo);
+        outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+@utility animate-marquee-vertical-reverse {
+    animation: marquee var(--duration, 40s) linear infinite reverse;
+}
+
+.marquee-root:hover .marquee-track {
+    animation-play-state: paused;
+}

@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.fallow 
+
+# Local tooling output
+.playwright-mcp/
+.firecrawl/
+.fallow/

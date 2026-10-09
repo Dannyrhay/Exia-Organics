@@ -1,61 +1,48 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { cn } from "../../lib/utils";
-import { motion } from "motion/react";
+import { Link } from 'react-router-dom';
+import { cn } from '@/lib/utils';
+import { needs, shortName } from '@/data/products';
+import { formatPrice } from '@/data/site';
+import WhatsAppButton from '@/components/brand/WhatsAppButton';
 
-const ProductCard = React.forwardRef(
-    (
-        {
-            className,
-            id,
-            imageUrl,
-            name,
-            tagline,
-            ...props
-        },
-        ref
-    ) => {
-        return (
-            <motion.div
-                ref={ref}
-                className={cn(
-                    "group relative flex h-full w-full flex-col items-center justify-start overflow-hidden rounded-xl border bg-card p-6 text-center text-card-foreground shadow-sm transition-all duration-300 ease-in-out hover:shadow-md bg-white",
-                    className
-                )}
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                {...props}
+const needLabel = Object.fromEntries(needs.map((n) => [n.id, n.label]));
+const sizeLabel = (p) => p.size ?? (p.need === 'sets' ? 'Set' : '');
+
+export function ProductCard({ product, className, priority = false }) {
+    const href = `/product/${product.id}`;
+    return (
+        <article className={cn('group flex flex-col gap-3', className)}>
+            <Link
+                to={href}
+                className="relative block aspect-[4/5] overflow-hidden rounded-md bg-shea-deep"
+                aria-label={`${product.name}, ${formatPrice(product.price, product.currency)}`}
             >
-                {/* Product Image */}
-                <div className="relative mb-4 flex h-40 w-full items-center justify-center">
-                    <img
-                        src={imageUrl}
-                        alt={name}
-                        className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                    />
-                </div>
+                <img
+                    src={product.imageUrl}
+                    alt=""
+                    loading={priority ? 'eager' : 'lazy'}
+                    decoding="async"
+                    className="size-full object-cover object-[50%_74%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                />
+                <span className="absolute left-2.5 top-2.5 rounded-full bg-paper/90 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-indigo-deep backdrop-blur-sm">
+                    {needLabel[product.need]}
+                </span>
+            </Link>
 
-                {/* Product Details */}
-                <div className="flex flex-grow flex-col items-center gap-2">
-                    <h3 className="font-semibold text-gray-900">{name}</h3>
-                    <p className="text-sm text-gray-500">{tagline}</p>
-                </div>
-
-                {/* Pricing and Offers */}
-                {/* Pricing removed as per request */}
-                <div className="mt-4 flex flex-col items-center gap-2"></div>
-                <div className="mt-4 w-full">
-                    <Link to={`/product/${id}`} className="block w-full">
-                        <button className="w-full rounded-full bg-[#1e3a5f] py-2 text-sm font-semibold text-white transition-colors hover:bg-[#152a45]">
-                            View Details
-                        </button>
+            <div className="flex flex-col gap-1.5">
+                <h3 className="font-display text-lg leading-tight text-indigo-deep md:text-xl">
+                    <Link to={href} className="hover:underline hover:decoration-1 hover:underline-offset-4">
+                        {shortName(product)}
                     </Link>
+                </h3>
+                <div className="flex items-baseline justify-between gap-2 font-mono">
+                    <span className="text-[11px] uppercase tracking-wider text-ink-soft">{sizeLabel(product)}</span>
+                    <span className="whitespace-nowrap text-sm text-indigo">{formatPrice(product.price, product.currency)}</span>
                 </div>
-            </motion.div>
-        );
-    }
-);
+            </div>
 
-ProductCard.displayName = "ProductCard";
-
-export { ProductCard };
+            <WhatsAppButton product={product} variant="outline" className="min-h-10 w-full text-xs">
+                Order
+            </WhatsAppButton>
+        </article>
+    );
+}

@@ -1,124 +1,94 @@
-import React from 'react';
-import { motion, useReducedMotion } from 'motion/react';
-import { Facebook } from 'lucide-react';
-import logo from '../assets/logo.JPG';
 import { Link } from 'react-router-dom';
-import { SnapchatIcon, TikTokIcon, WhatsAppIcon } from './icons/SocialIcons';
+import { SITE, whatsappUrl } from '@/data/site';
+import { needs } from '@/data/products';
+import { SocialIcon, WhatsAppIcon } from '@/components/icons/SocialIcons';
+import { BrandMark } from './Navbar';
 
-const footerLinks = [
+const columns = [
     {
-        label: 'Product',
-        links: [
-            { title: 'Haircare', href: '/products' },
-            { title: 'Bundles', href: '/products' },
-            { title: 'Testimonials', href: '/testimonials' },
-        ],
+        label: 'Shop',
+        links: needs.map((n) => ({ title: n.label, href: `/products?need=${n.id}` })),
     },
     {
-        label: 'Company',
+        label: 'Exia',
         links: [
-            { title: 'About Us', href: '/about' },
-            { title: 'Our Story', href: '/about' },
-            { title: 'Privacy Policy', href: 'https://www.termsfeed.com/live/60c05952-43e8-4527-9671-1873f70a2e78' },
-            { title: 'Terms of Services', href: 'https://www.termsfeed.com/live/2292d25e-373a-4125-95ce-594ce6f112f3' },
-        ],
-    },
-    {
-        label: 'Support',
-        links: [
+            { title: 'Our story', href: '/about' },
+            { title: 'Journal', href: '/blog' },
+            { title: 'Reviews', href: '/testimonials' },
             { title: 'FAQs', href: '/faqs' },
-            { title: 'Contact Us', href: '/contact' },
+            { title: 'Contact', href: '/contact' },
         ],
     },
     {
-        label: 'Social Links',
+        label: 'Legal',
         links: [
-            { title: 'Snapchat', href: 'https://snapchat.com', icon: SnapchatIcon },
-            { title: 'Facebook', href: 'https://facebook.com', icon: Facebook },
-            { title: 'TikTok', href: 'https://tiktok.com', icon: TikTokIcon },
-            { title: 'WhatsApp', href: 'https://whatsapp.com', icon: WhatsAppIcon },
+            { title: 'Privacy policy', href: 'https://www.termsfeed.com/live/60c05952-43e8-4527-9671-1873f70a2e78' },
+            { title: 'Terms of service', href: 'https://www.termsfeed.com/live/2292d25e-373a-4125-95ce-594ce6f112f3' },
         ],
     },
 ];
 
-const Footer = () => {
-    return (
-        <footer className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center border-t border-gray-100 bg-white pt-16 pb-8 px-6 lg:px-8 mt-12 mb-6 rounded-3xl shadow-sm">
-            {/* Soft background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 to-white -z-10 rounded-3xl" />
+const linkClass = 'text-sm text-shea/75 transition-colors hover:text-lid';
 
-            <div className="grid w-full gap-12 xl:grid-cols-3 xl:gap-8">
-                {/* Brand Column */}
-                <AnimatedContainer className="flex flex-col items-start space-y-4">
-                    <div className="flex items-center space-x-3">
-                        <img src={logo} alt="Exia Organics" className="h-10 w-10 rounded-full object-cover" />
-                        <span className="text-xl font-serif font-bold text-[#1e4b78]">Exia Organics</span>
-                    </div>
-                    <p className="text-gray-500 text-sm max-w-xs leading-relaxed">
-                        Pure, sustainable, and ethically sourced. We bring nature's best to your daily routine.
-                    </p>
-                    <p className="text-gray-400 text-xs mt-8">
-                        © {new Date().getFullYear()} Exia Organics. All rights reserved.
-                    </p>
-                </AnimatedContainer>
-
-                {/* Links Grid */}
-                <div className="grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2">
-                    {footerLinks.map((section, index) => (
-                        <AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
-                            <div className="flex flex-col">
-                                <h3 className="text-sm font-semibold text-[#1e4b78] uppercase tracking-wider mb-4">{section.label}</h3>
-                                <ul className="space-y-3">
-                                    {section.links.map((link) => (
-                                        <li key={link.title}>
-                                            {/* Handle internal router links vs external/hash links */}
-                                            {link.href.startsWith('/') ? (
-                                                <Link
-                                                    to={link.href}
-                                                    className="text-gray-500 hover:text-[#9cae66] transition-colors text-sm flex items-center"
-                                                >
-                                                    {link.icon && <link.icon className="mr-2 h-4 w-4" />}
-                                                    {link.title}
-                                                </Link>
-                                            ) : (
-                                                <a
-                                                    href={link.href}
-                                                    className="text-gray-500 hover:text-[#9cae66] transition-colors text-sm flex items-center"
-                                                >
-                                                    {link.icon && <link.icon className="mr-2 h-4 w-4" />}
-                                                    {link.title}
-                                                </a>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </AnimatedContainer>
-                    ))}
+const Footer = () => (
+    <footer className="bg-indigo-deep text-shea">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-[1.2fr_2fr] lg:px-8">
+            <div className="flex flex-col gap-6">
+                <BrandMark tone="light" />
+                <p className="max-w-xs font-display text-2xl leading-snug text-shea/90">
+                    Herbal care for natural crowns, <em className="italic text-lid">made in Ghana.</em>
+                </p>
+                <div className="flex flex-col gap-1 font-mono text-xs text-shea/60">
+                    <a href={`mailto:${SITE.email}`} className="hover:text-lid">{SITE.email}</a>
+                    <a href={`tel:${SITE.phoneHref}`} className="hover:text-lid">{SITE.phoneDisplay}</a>
+                    <span>{SITE.hours}</span>
                 </div>
             </div>
-        </footer>
-    );
-};
 
-function AnimatedContainer({ className, delay = 0.1, children }) {
-    const shouldReduceMotion = useReducedMotion();
+            <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
+                {columns.map((col) => (
+                    <nav key={col.label} aria-label={col.label} className="flex flex-col gap-4">
+                        <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-lid">{col.label}</h2>
+                        <ul className="flex flex-col gap-2.5">
+                            {col.links.map((link) => (
+                                <li key={link.title}>
+                                    {link.href.startsWith('/') ? (
+                                        <Link to={link.href} className={linkClass}>{link.title}</Link>
+                                    ) : (
+                                        <a href={link.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                                            {link.title}
+                                        </a>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                ))}
+            </div>
+        </div>
 
-    if (shouldReduceMotion) {
-        return <div className={className}>{children}</div>;
-    }
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay, duration: 0.6, ease: "easeOut" }}
-            className={className}
-        >
-            {children}
-        </motion.div>
-    );
-};
+        <div className="border-t border-shea/10">
+            <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6 lg:px-8">
+                <p className="font-mono text-[11px] text-shea/50">© {new Date().getFullYear()} {SITE.name}</p>
+                <ul className="flex items-center gap-1">
+                    <li>
+                        <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+                            className="inline-flex size-11 items-center justify-center rounded-full text-shea/70 hover:bg-shea/10 hover:text-lid">
+                            <WhatsAppIcon className="size-5" />
+                        </a>
+                    </li>
+                    {SITE.socials.map((s) => (
+                            <li key={s.key}>
+                                <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+                                    className="inline-flex size-11 items-center justify-center rounded-full text-shea/70 hover:bg-shea/10 hover:text-lid">
+                                    <SocialIcon name={s.key} className="size-5" />
+                                </a>
+                            </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    </footer>
+);
 
 export default Footer;

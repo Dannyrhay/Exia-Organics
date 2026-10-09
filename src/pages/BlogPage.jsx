@@ -1,95 +1,47 @@
-import React, { useEffect } from 'react';
-import { BlogPosts } from '@/components/ui/BlogPosts';
+import { Link } from 'react-router-dom';
+import { posts } from '@/data/blog';
+import SectionHeading from '@/components/brand/SectionHeading';
 
 const BlogPage = () => {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
-    const posts = [
-        {
-            id: 1,
-            title: "The Magic of Argan Oil: Liquid Gold for Your Hair",
-            category: "Ingredients",
-            imageUrl: "https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=2669&auto=format&fit=crop",
-            views: 2180,
-            readTime: 5,
-            rating: 5,
-        },
-        {
-            id: 2,
-            title: "Summer Hair Care Routine: Protect & Shine",
-            category: "Tips & Tricks",
-            imageUrl: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2670&auto=format&fit=crop",
-            views: 1456,
-            readTime: 4,
-            rating: 4
-        },
-        {
-            id: 3,
-            title: "Sustainability at Exia: Our Promise to the Planet",
-            category: "Sustainability",
-            imageUrl: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2669&auto=format&fit=crop",
-            views: 987,
-            readTime: 6,
-            rating: 5
-        },
-        {
-            id: 4,
-            title: "DIY Hair Masks: Spa Day at Home",
-            category: "Tutorials",
-            imageUrl: "https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=2669&auto=format&fit=crop",
-            views: 1890,
-            readTime: 7,
-            rating: 5,
-        },
-        {
-            id: 5,
-            title: "Understanding Hair Porosity",
-            category: "Education",
-            imageUrl: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=2669&auto=format&fit=crop",
-            views: 3205,
-            readTime: 8,
-            rating: 4,
-        },
-        {
-            id: 6,
-            title: "Protective Styles for Growth",
-            category: "Styles",
-            imageUrl: "https://images.unsplash.com/photo-1624898230588-468ac64b6389?q=80&w=2672&auto=format&fit=crop",
-            views: 2560,
-            readTime: 6,
-            rating: 5,
-        },
-        {
-            id: 7,
-            title: "The Ultimate Guide to Scalp Health",
-            category: "Health",
-            imageUrl: "https://images.unsplash.com/photo-1519699047748-40ba526612df?q=80&w=2670&auto=format&fit=crop",
-            views: 2100,
-            readTime: 7,
-            rating: 4,
-        },
-        {
-            id: 8,
-            title: "Aloe Vera: Nature's Soothing Gel",
-            category: "Ingredients",
-            imageUrl: "https://images.unsplash.com/photo-1601646738981-2292025359a1?q=80&w=2576&auto=format&fit=crop",
-            views: 1800,
-            readTime: 4,
-            rating: 5,
-        }
-    ];
+    const [lead, ...rest] = posts;
 
     return (
-        <div className="min-h-screen bg-white pt-10 pb-20">
-            <BlogPosts
-                title="Our Journal"
-                description="Explore our curated collection of stories, tips, and insights into the world of natural beauty and organic care."
-                backgroundLabel="JOURNAL"
-                backgroundPosition="right"
-                posts={posts}
-            />
+        <div className="pb-24 pt-12 md:pt-16">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <SectionHeading as="h1" eyebrow="Journal" title="Notes from" accent="wash day.">
+                    Ingredients, routines and honest advice for natural and textured hair.
+                </SectionHeading>
+
+                <Link to={`/blog/${lead.id}`} className="group mt-12 grid gap-6 border-b border-line pb-14 md:grid-cols-2 md:items-center md:gap-10">
+                    <div className="aspect-[4/3] overflow-hidden rounded-md bg-shea-deep">
+                        <img src={lead.imageUrl} alt="" className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                    </div>
+                    <div className="flex flex-col gap-4">
+                        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">{lead.category} · {lead.readTime} min read</p>
+                        <h2 className="font-display text-[clamp(2rem,5vw,3.2rem)] leading-[1.05] text-indigo-deep group-hover:underline group-hover:decoration-1 group-hover:underline-offset-8">
+                            {lead.title}
+                        </h2>
+                        <p className="max-w-md leading-relaxed text-ink-soft">{lead.summary}</p>
+                    </div>
+                </Link>
+
+                <div className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+                    {rest.map((post) => (
+                        <article key={post.id}>
+                            <Link to={`/blog/${post.id}`} className="group flex flex-col gap-4">
+                                <div className="aspect-[3/2] overflow-hidden rounded-md bg-shea-deep">
+                                    <img src={post.imageUrl} alt="" loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                                </div>
+                                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">{post.category} · {post.readTime} min read</p>
+                                <h2 className="font-display text-2xl leading-tight text-indigo-deep group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
+                                    {post.title}
+                                </h2>
+                                <p className="text-sm leading-relaxed text-ink-soft">{post.summary}</p>
+                            </Link>
+                        </article>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };

@@ -1,198 +1,141 @@
-"use client"
-import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
-import { Menu, X, ChevronDown } from "lucide-react"
-import { Link } from "react-router-dom"
-import logo from "../assets/logo.JPG"
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
+import { Menu, X } from 'lucide-react';
+import { Link, NavLink } from 'react-router-dom';
+import { cn } from '@/lib/utils';
+import { SITE } from '@/data/site';
+import WhatsAppButton from '@/components/brand/WhatsAppButton';
+import logo from '../assets/logo.webp';
 
 const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Products", path: "/products" },
-    {
-        name: "Blog",
-        path: "/blog",
-        type: "dropdown",
-        items: [
-            { name: "Our Journal", path: "/blog" },
-            { name: "FAQs", path: "/faqs" }
-        ]
-    },
-    { name: "Testimonials", path: "/testimonials" },
-    { name: "Contact Us", path: "/contact" }
-]
+    { name: 'Shop', path: '/products' },
+    { name: 'About', path: '/about' },
+    { name: 'Journal', path: '/blog' },
+    { name: 'Reviews', path: '/testimonials' },
+    { name: 'FAQs', path: '/faqs' },
+    { name: 'Contact', path: '/contact' },
+];
+
+export function BrandMark({ className, tone = 'dark' }) {
+    return (
+        <Link to="/" className={cn('flex items-center gap-2.5', className)}>
+            <img src={logo} alt="" width="36" height="36" className="size-9 rounded-full object-cover" />
+            <span className={cn('font-display text-xl leading-none', tone === 'light' ? 'text-shea' : 'text-indigo-deep')}>
+                Exia <em className="italic">Organics</em>
+            </span>
+            <span className="sr-only">home</span>
+        </Link>
+    );
+}
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [activeDropdown, setActiveDropdown] = useState(null)
+    const [isOpen, setIsOpen] = useState(false);
+    const reduce = useReducedMotion();
 
-    const toggleMenu = () => setIsOpen(!isOpen)
+    // Lock page scroll while the menu sheet is open.
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [isOpen]);
 
     return (
-        <div className="flex justify-center w-full py-6 px-4">
-            <div className="flex items-center justify-between px-6 py-3 bg-white rounded-full shadow-lg w-full max-w-4xl relative z-40">
-                <div className="flex items-center">
-                    <motion.div
-                        className="w-8 h-8 mr-6"
-                        initial={{ scale: 0.8 }}
-                        animate={{ scale: 1 }}
-                        whileHover={{ rotate: 10 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <Link to="/">
-                            <img src={logo} alt="Exia Organics Logo" className="w-full h-full object-cover rounded-full" />
-                        </Link>
-                    </motion.div>
-                </div>
+        <header className="sticky top-0 z-40 border-b border-line/70 bg-shea/90 backdrop-blur-md">
+            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+                <BrandMark />
 
-                {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
-                    {navLinks.map((item) => {
-                        if (item.type === "dropdown") {
-                            return (
-                                <div
-                                    key={item.name}
-                                    className="relative group"
-                                    onMouseEnter={() => setActiveDropdown(item.name)}
-                                    onMouseLeave={() => setActiveDropdown(null)}
-                                >
-                                    <button className="flex items-center text-sm text-gray-900 hover:text-gray-600 transition-colors font-medium">
-                                        {item.name}
-                                        <ChevronDown className="ml-1 w-4 h-4" />
-                                    </button>
-
-                                    <AnimatePresence>
-                                        {activeDropdown === item.name && (
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: 10 }}
-                                                transition={{ duration: 0.2 }}
-                                                className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden py-2"
-                                            >
-                                                {item.items.map((subItem) => (
-                                                    <Link
-                                                        key={subItem.name}
-                                                        to={subItem.path}
-                                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#f0eadd] hover:text-[#1e3a5f]"
-                                                    >
-                                                        {subItem.name}
-                                                    </Link>
-                                                ))}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            )
-                        }
-
-                        return (
-                            <motion.div
-                                key={item.name}
-                                whileHover={{ scale: 1.05 }}
-                            >
-                                <Link to={item.path} className="text-sm text-gray-900 hover:text-gray-600 transition-colors font-medium">
-                                    {item.name}
-                                </Link>
-                            </motion.div>
-                        )
-                    })}
+                <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
+                    {navLinks.map((item) => (
+                        <NavLink
+                            key={item.path}
+                            to={item.path}
+                            className={({ isActive }) =>
+                                cn(
+                                    'text-sm font-medium transition-colors hover:text-indigo',
+                                    isActive ? 'text-indigo underline decoration-lid decoration-2 underline-offset-8' : 'text-ink',
+                                )
+                            }
+                        >
+                            {item.name}
+                        </NavLink>
+                    ))}
                 </nav>
 
-                {/* Desktop CTA Button */}
-                <motion.div
-                    className="hidden md:block"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
-                    whileHover={{ scale: 1.05 }}
-                >
-                    <Link
-                        to="/products"
-                        className="inline-flex items-center justify-center px-5 py-2 text-sm text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
+                <div className="flex items-center gap-2">
+                    <WhatsAppButton className="hidden sm:inline-flex" variant="solid">
+                        Order
+                    </WhatsAppButton>
+                    <button
+                        type="button"
+                        className="inline-flex size-11 items-center justify-center rounded-full text-indigo-deep hover:bg-shea-deep lg:hidden"
+                        onClick={() => setIsOpen(true)}
+                        aria-label="Open menu"
+                        aria-expanded={isOpen}
+                        aria-controls="mobile-menu"
                     >
-                        Shop Now
-                    </Link>
-                </motion.div>
-
-                {/* Mobile Menu Button */}
-                <motion.button className="md:hidden flex items-center" onClick={toggleMenu} whileTap={{ scale: 0.9 }}>
-                    <Menu className="h-6 w-6 text-gray-900" />
-                </motion.button>
+                        <Menu className="size-6" />
+                    </button>
+                </div>
             </div>
 
-            {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        className="fixed inset-0 bg-white z-50 pt-24 px-6 md:hidden overflow-y-auto"
-                        initial={{ opacity: 0, x: "100%" }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: "100%" }}
-                        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                        id="mobile-menu"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Menu"
+                        className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-indigo-deep px-6 pb-10 pt-[max(1rem,env(safe-area-inset-top))] text-shea lg:hidden"
+                        initial={reduce ? { opacity: 0 } : { opacity: 0, y: '-4%' }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <motion.button
-                            className="absolute top-6 right-6 p-2"
-                            onClick={toggleMenu}
-                            whileTap={{ scale: 0.9 }}
-                        >
-                            <X className="h-6 w-6 text-gray-900" />
-                        </motion.button>
-                        <div className="flex flex-col space-y-6 pb-10">
-                            {navLinks.map((item, i) => {
-                                if (item.type === "dropdown") {
-                                    return (
-                                        <div key={item.name} className="flex flex-col gap-4">
-                                            <div className="text-base text-gray-900 font-medium font-serif opacity-50 uppercase tracking-widest text-xs mt-2">
-                                                {item.name}
-                                            </div>
-                                            {item.items.map((subItem) => (
-                                                <Link
-                                                    key={subItem.name}
-                                                    to={subItem.path}
-                                                    className="text-xl text-gray-900 font-medium pl-4 border-l-2 border-[#f0eadd]"
-                                                    onClick={toggleMenu}
-                                                >
-                                                    {subItem.name}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    )
-                                }
-                                return (
-                                    <motion.div
-                                        key={item.name}
-                                        initial={{ opacity: 0, x: 20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: i * 0.05 }}
-                                    >
-                                        <Link to={item.path} className="text-2xl text-gray-900 font-medium font-serif" onClick={toggleMenu}>
-                                            {item.name}
-                                        </Link>
-                                    </motion.div>
-                                )
-                            })}
-
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                                className="pt-6"
+                        <div className="flex h-12 items-center justify-between">
+                            <BrandMark tone="light" />
+                            <button
+                                type="button"
+                                className="inline-flex size-11 items-center justify-center rounded-full hover:bg-shea/10"
+                                onClick={() => setIsOpen(false)}
+                                aria-label="Close menu"
                             >
-                                <Link
-                                    to="/products"
-                                    className="inline-flex items-center justify-center w-full px-5 py-4 text-base text-white bg-black rounded-full hover:bg-gray-800 transition-colors "
-                                    onClick={toggleMenu}
+                                <X className="size-6" />
+                            </button>
+                        </div>
+
+                        <nav aria-label="Mobile" className="mt-10 flex flex-col">
+                            {[{ name: 'Home', path: '/' }, ...navLinks].map((item, i) => (
+                                <motion.div
+                                    key={item.path}
+                                    initial={reduce ? false : { opacity: 0, y: 12 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.05 + i * 0.04 }}
                                 >
-                                    Shop Now
-                                </Link>
-                            </motion.div>
+                                    <NavLink
+                                        to={item.path}
+                                        end={item.path === '/'}
+                                        onClick={() => setIsOpen(false)}
+                                        className={({ isActive }) =>
+                                            cn(
+                                                'flex items-baseline justify-between border-b border-shea/15 py-4 font-display text-4xl',
+                                                isActive ? 'italic text-lid' : 'text-shea',
+                                            )
+                                        }
+                                    >
+                                        {item.name}
+                                    </NavLink>
+                                </motion.div>
+                            ))}
+                        </nav>
+
+                        <div className="mt-auto flex flex-col gap-3 pt-10">
+                            <WhatsAppButton variant="light" className="min-h-13 text-base" />
+                            <p className="text-center font-mono text-xs text-shea/60">{SITE.phoneDisplay} · {SITE.hours}</p>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
-    )
-}
+        </header>
+    );
+};
 
-export default Navbar
+export default Navbar;
