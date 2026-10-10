@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
+import { runSplash } from './splash';
 
 // Home ships in the main bundle; everything else loads when visited.
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
@@ -24,6 +25,11 @@ function ScrollToTop() {
 }
 
 function App() {
+    // After the first commit the hero photo is in the DOM, so the splash can wait on it.
+    useEffect(() => {
+        runSplash();
+    }, []);
+
     return (
         <Router>
             <ScrollToTop />

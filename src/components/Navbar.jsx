@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
@@ -32,10 +33,16 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const reduce = useReducedMotion();
 
-    // Lock page scroll while the menu sheet is open.
+    // While the menu sheet is open: lock page scroll and close on Escape.
     useEffect(() => {
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-        return () => { document.body.style.overflow = ''; };
+        if (!isOpen) return undefined;
+        const onKey = (e) => e.key === 'Escape' && setIsOpen(false);
+        document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', onKey);
+        return () => {
+            document.body.style.overflow = '';
+            window.removeEventListener('keydown', onKey);
+        };
     }, [isOpen]);
 
     return (
@@ -77,6 +84,11 @@ const Navbar = () => {
                 </div>
             </div>
 
+            {/*
+              Portal to <body>: the header's backdrop-blur creates a containing block,
+              which would trap this `fixed inset-0` sheet inside the 64px header.
+            */}
+            {createPortal(
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -85,9 +97,10 @@ const Navbar = () => {
                         aria-modal="true"
                         aria-label="Menu"
                         className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-indigo-deep px-6 pb-10 pt-[max(1rem,env(safe-area-inset-top))] text-shea lg:hidden"
-                        initial={reduce ? { opacity: 0 } : { opacity: 0, y: '-4%' }}
+                        // Pixel offsets only: a '%' y forces a unit conversion that can stall mid-way.
+                        initial={reduce ? { opacity: 0 } : { opacity: 0, y: -16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
+                        exit={reduce ? { opacity: 0 } : { opacity: 0, y: -16 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     >
                         <div className="flex h-12 items-center justify-between">
@@ -133,7 +146,9 @@ const Navbar = () => {
                         </div>
                     </motion.div>
                 )}
-            </AnimatePresence>
+            </AnimatePresence>,
+            document.body,
+            )}
         </header>
     );
 };
