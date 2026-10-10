@@ -18,7 +18,7 @@ const navLinks = [
 
 export function BrandMark({ className, tone = 'dark' }) {
     return (
-        <Link to="/" className={cn('flex items-center gap-2.5', className)}>
+        <Link to="/" className={cn('flex min-h-11 items-center gap-2.5', className)}>
             <img src={logo} alt="" width="36" height="36" className="size-9 rounded-full object-cover" />
             <span className={cn('font-display text-xl leading-none', tone === 'light' ? 'text-shea' : 'text-indigo-deep')}>
                 Exia <em className="italic">Organics</em>

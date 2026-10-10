@@ -1,158 +1,17 @@
-import React, { useState } from 'react';
-import { cn } from '@/lib/utils';
+import { useState } from 'react';
 import { Check, Copy, Mail, Phone } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { SocialIcon } from '@/components/icons/SocialIcons';
+import { cn } from '@/lib/utils';
+import { SocialIcon, WhatsAppIcon } from '@/components/icons/SocialIcons';
 import { SITE, whatsappUrl } from '@/data/site';
+import SectionHeading from '@/components/brand/SectionHeading';
+import WhatsAppButton from '@/components/brand/WhatsAppButton';
 
-const APP_EMAIL = SITE.email;
-const APP_PHONE = SITE.phoneDisplay;
-
-function ContactPage() {
-    const socialLinks = [
-        { key: 'whatsapp', href: whatsappUrl(), label: 'WhatsApp' },
-        ...SITE.socials,
-    ];
-
-    return (
-        <div className="min-h-screen w-full bg-paper relative overflow-hidden">
-            <div className="mx-auto h-full max-w-6xl lg:border-x border-line">
-                <div
-                    aria-hidden
-                    className="absolute inset-0 isolate -z-10 opacity-60 contain-strict pointer-events-none"
-                >
-                    <div className="bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(30,20%,90%,0.6)_0,hsla(30,20%,95%,0.1)_50%,transparent_80%)] absolute top-0 left-0 h-[320px] w-[140px] -translate-y-[87.5px] -rotate-45 rounded-full" />
-                </div>
-
-                <div className="flex grow flex-col justify-center px-4 md:px-6 pt-12 pb-16 md:pt-16 text-center">
-                    <h1 className="text-4xl font-bold md:text-5xl font-serif text-indigo-deep">
-                        Contact Us
-                    </h1>
-                    <p className="text-ink/70 mb-5 text-base mt-4 font-sans max-w-lg mx-auto">
-                        We'd love to hear from you. Whether you have a question about our products, a partnership proposal, or just want to say hello.
-                    </p>
-                </div>
-
-                <BorderSeparator />
-
-                <div className="grid md:grid-cols-2">
-                    <Box
-                        icon={Mail}
-                        title="Email"
-                        description="We respond to all emails within 24 hours."
-                        className="md:border-r border-line"
-                    >
-                        <a
-                            href={`mailto:${APP_EMAIL}`}
-                            className="font-mono text-base font-medium tracking-wide hover:underline text-indigo"
-                        >
-                            {APP_EMAIL}
-                        </a>
-                        <CopyButton className="size-6 text-indigo" test={APP_EMAIL} />
-                    </Box>
-
-                    <Box
-                        icon={Phone}
-                        title="Phone"
-                        description="We're available Mon-Fri, 9am-5pm."
-                        className="border-b-0"
-                    >
-                        <div>
-                            <div className="flex items-center gap-x-2">
-                                <a
-                                    href={`tel:${SITE.phoneHref}`}
-                                    className="block font-mono text-base font-medium tracking-wide hover:underline text-indigo"
-                                >
-                                    {APP_PHONE}
-                                </a>
-                                <CopyButton className="size-6 text-indigo" test={APP_PHONE} />
-                            </div>
-                        </div>
-                    </Box>
-                </div>
-
-                <BorderSeparator />
-
-                <div className="relative flex h-full min-h-[320px] items-center justify-center bg-paper">
-                    <div className="relative z-1 space-y-6 p-8 text-center">
-                        <h2 className="text-center text-3xl font-bold md:text-4xl font-serif text-indigo-deep">
-                            Find us online
-                        </h2>
-                        <p className="text-ink/60">Follow our journey on social media</p>
-                        <div className="flex flex-wrap items-center justify-center gap-4">
-                            {socialLinks.map((link) => (
-                                <a
-                                    key={link.label}
-                                    href={link.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="bg-paper hover:bg-line transition-colors flex items-center gap-x-2 rounded-full border border-line px-6 py-3 shadow-sm group"
-                                >
-                                    <SocialIcon name={link.key} className="size-5 text-ink group-hover:text-indigo-deep" />
-                                    <span className="font-sans text-sm font-medium tracking-wide text-ink group-hover:text-indigo-deep">
-                                        {link.label}
-                                    </span>
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-function BorderSeparator() {
-    return <div className="h-px w-full bg-line" />;
-}
-
-function Box({
-    title,
-    description,
-    className,
-    icon: Icon,
-    children,
-}) {
-    return (
-        <div
-            className={cn(
-                'flex flex-col justify-between border-b md:border-b-0 border-line',
-                className,
-            )}
-        >
-            <div className="bg-paper flex items-center gap-x-3 border-b border-line p-4">
-                <Icon className="text-indigo-deep size-5" strokeWidth={1.5} />
-                <h2 className="font-serif text-lg font-medium tracking-wider text-indigo-deep">
-                    {title}
-                </h2>
-            </div>
-            <div className="flex items-center gap-x-2 p-8 py-12 justify-center">{children}</div>
-            <div className="border-t border-line p-4 bg-paper">
-                <p className="text-ink/60 text-sm text-center">{description}</p>
-            </div>
-        </div>
-    );
-}
-
-function CopyButtonIcon({ copied }) {
-    return (
-        <>
-            <div className={cn('transition-all', copied ? 'scale-100 opacity-100' : 'scale-0 opacity-0')}>
-                <Check className="size-3.5 stroke-leaf" aria-hidden="true" />
-            </div>
-            <div className={cn('absolute transition-all', copied ? 'scale-0 opacity-0' : 'scale-100 opacity-100')}>
-                <Copy aria-hidden="true" className="size-3.5" />
-            </div>
-        </>
-    );
-}
-
-function CopyButton({ className, variant = 'ghost', size = 'icon', test, ...props }) {
+function CopyButton({ value, label }) {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = async () => {
         try {
-            await navigator.clipboard.writeText(test);
+            await navigator.clipboard.writeText(value);
         } catch {
             return; // clipboard blocked (e.g. insecure context); the text stays selectable
         }
@@ -161,17 +20,75 @@ function CopyButton({ className, variant = 'ghost', size = 'icon', test, ...prop
     };
 
     return (
-        <Button
-            variant={variant}
-            size={size}
-            className={cn('disabled:opacity-100 hover:bg-line', className)}
+        <button
+            type="button"
             onClick={handleCopy}
-            aria-label={copied ? 'Copied' : 'Copy to clipboard'}
-            disabled={copied || props.disabled}
-            {...props}
+            aria-label={copied ? `${label} copied` : `Copy ${label}`}
+            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-indigo hover:bg-shea-deep"
         >
-            <CopyButtonIcon copied={copied} />
-        </Button>
+            {copied ? <Check className="size-4 text-leaf" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
+        </button>
+    );
+}
+
+function ContactRow({ icon: Icon, label, value, href, note }) {
+    return (
+        <li className="grid grid-cols-[auto_1fr_auto] items-center gap-x-3 border-b border-line py-6 sm:gap-x-4">
+            <Icon className="size-5 self-start text-wood sm:mt-1" strokeWidth={1.5} aria-hidden="true" />
+            <div className="min-w-0">
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">{label}</p>
+                <a href={href} className="mt-1 block [overflow-wrap:anywhere] font-display text-xl text-indigo-deep hover:underline hover:decoration-1 hover:underline-offset-4 min-[400px]:text-2xl sm:text-3xl">
+                    {value.includes('@') ? <>{value.split('@')[0]}<wbr />@{value.split('@')[1]}</> : value}
+                </a>
+                <p className="mt-1 text-sm text-ink-soft">{note}</p>
+            </div>
+            <CopyButton value={value} label={label.toLowerCase()} />
+        </li>
+    );
+}
+
+function ContactPage() {
+    const socials = [{ key: 'whatsapp', href: whatsappUrl(), label: 'WhatsApp' }, ...SITE.socials];
+
+    return (
+        <section className="pb-24 pt-12 md:pt-16">
+            <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
+                <div className="flex flex-col gap-8 lg:col-span-5">
+                    <SectionHeading as="h1" eyebrow="Contact" title="We'd love to" accent="hear from you.">
+                        Questions about a product, your hair, or a wholesale order? WhatsApp is the fastest way to reach us.
+                    </SectionHeading>
+                    <WhatsAppButton className="min-h-13 self-start px-7 text-base">Chat on WhatsApp</WhatsAppButton>
+                </div>
+
+                <div className="lg:col-span-7">
+                    <ul className="border-t border-line">
+                        <ContactRow icon={Phone} label="Phone" value={SITE.phoneDisplay} href={`tel:${SITE.phoneHref}`} note={SITE.hours} />
+                        <ContactRow icon={Mail} label="Email" value={SITE.email} href={`mailto:${SITE.email}`} note="We reply within 24 hours." />
+                    </ul>
+
+                    <div className="mt-10">
+                        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">Follow along</p>
+                        <ul className="mt-4 flex flex-wrap gap-3">
+                            {socials.map((s) => (
+                                <li key={s.key}>
+                                    <a
+                                        href={s.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={cn(
+                                            'inline-flex min-h-11 items-center gap-2 rounded-full bg-paper px-5 text-sm font-medium text-ink ring-1 ring-line transition-colors hover:ring-indigo/40',
+                                        )}
+                                    >
+                                        {s.key === 'whatsapp' ? <WhatsAppIcon className="size-4" /> : <SocialIcon name={s.key} className="size-4" />}
+                                        {s.label}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     );
 }
 

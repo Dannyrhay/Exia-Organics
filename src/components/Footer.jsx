@@ -28,7 +28,7 @@ const columns = [
     },
 ];
 
-const linkClass = 'text-sm text-shea/75 transition-colors hover:text-lid';
+const linkClass = 'inline-block py-1.5 text-sm text-shea/75 transition-colors hover:text-lid';
 
 const Footer = () => (
     <footer className="bg-indigo-deep text-shea">
@@ -38,10 +38,10 @@ const Footer = () => (
                 <p className="max-w-xs font-display text-2xl leading-snug text-shea/90">
                     Herbal care for natural crowns, <em className="italic text-lid">made in Ghana.</em>
                 </p>
-                <div className="flex flex-col gap-1 font-mono text-xs text-shea/60">
-                    <a href={`mailto:${SITE.email}`} className="hover:text-lid">{SITE.email}</a>
-                    <a href={`tel:${SITE.phoneHref}`} className="hover:text-lid">{SITE.phoneDisplay}</a>
-                    <span>{SITE.hours}</span>
+                <div className="flex flex-col items-start font-mono text-xs text-shea/60">
+                    <a href={`mailto:${SITE.email}`} className="py-1.5 hover:text-lid">{SITE.email}</a>
+                    <a href={`tel:${SITE.phoneHref}`} className="py-1.5 hover:text-lid">{SITE.phoneDisplay}</a>
+                    <span className="py-1.5">{SITE.hours}</span>
                 </div>
             </div>
 
@@ -49,7 +49,7 @@ const Footer = () => (
                 {columns.map((col) => (
                     <nav key={col.label} aria-label={col.label} className="flex flex-col gap-4">
                         <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-lid">{col.label}</h2>
-                        <ul className="flex flex-col gap-2.5">
+                        <ul className="flex flex-col gap-0.5">
                             {col.links.map((link) => (
                                 <li key={link.title}>
                                     {link.href.startsWith('/') ? (

@@ -13,7 +13,7 @@ export function BlogSection({ limit = 3 }) {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
                     <SectionHeading eyebrow="Journal" title="Notes from" accent="wash day." />
-                    <Link to="/blog" className="inline-flex items-center gap-2 self-start text-sm font-semibold text-indigo hover:underline hover:underline-offset-4 md:self-auto">
+                    <Link to="/blog" className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-indigo hover:underline hover:underline-offset-4 md:self-auto">
                         All articles <ArrowRight className="size-4" aria-hidden="true" />
                     </Link>
                 </div>

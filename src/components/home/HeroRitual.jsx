@@ -22,12 +22,12 @@ export default function HeroRitual() {
             <div className="mx-auto grid max-w-7xl gap-8 px-4 pb-16 pt-8 sm:px-6 md:pt-14 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-8 lg:pb-20 lg:pt-10">
                 {/* copy */}
                 <div className="flex flex-col gap-6 lg:col-span-5 lg:pr-4">
-                    <motion.p {...rise(0.05)} className="font-mono text-xs uppercase tracking-[0.2em] text-wood">
+                    <motion.p {...rise(0.05)} className="font-mono text-[11px] uppercase tracking-[0.14em] text-wood sm:text-xs sm:tracking-[0.2em]">
                         Handcrafted in Ghana · Est. 2020
                     </motion.p>
                     <motion.h1
                         {...rise(0.12)}
-                        className="font-display text-[clamp(2.9rem,10.5vw,5.6rem)] leading-[0.95] tracking-[-0.02em] text-indigo-deep"
+                        className="font-display text-[clamp(2.6rem,10.5vw,5rem)] leading-[0.95] lg:text-[clamp(3.6rem,5.6vw,5.6rem)] tracking-[-0.02em] text-indigo-deep"
                     >
                         Herbal care for <em className="italic text-indigo">natural crowns.</em>
                     </motion.h1>
@@ -51,7 +51,7 @@ export default function HeroRitual() {
                         initial={reduce ? false : { opacity: 0, scale: 1.03 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1.1, ease }}
-                        className="relative overflow-hidden rounded-md bg-shea-deep sm:aspect-[5/4] max-sm:aspect-square"
+                        className="relative overflow-hidden rounded-md bg-shea-deep aspect-square sm:aspect-[4/3] md:aspect-[16/10] lg:aspect-[5/4]"
                     >
                         <img
                             src={hero1600}
@@ -80,13 +80,13 @@ export default function HeroRitual() {
                         </Link>
                         <div className="flex min-w-0 flex-1 flex-col gap-2">
                             <div className="flex items-baseline justify-between gap-2">
-                                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-wood">Bestseller</p>
+                                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">Bestseller</p>
                                 <p className="font-mono text-sm text-indigo">{formatPrice(featured.price, featured.currency)}</p>
                             </div>
                             <Link to={`/product/${featured.id}`} className="font-display text-xl leading-tight text-indigo-deep hover:underline hover:underline-offset-4">
                                 {shortName(featured)}
                             </Link>
-                            <WhatsAppButton product={featured} className="min-h-9 self-start px-4 text-xs">
+                            <WhatsAppButton product={featured} className="min-h-10 self-start px-4 text-xs">
                                 Order now
                             </WhatsAppButton>
                         </div>

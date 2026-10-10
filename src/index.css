@@ -41,19 +41,6 @@
     --color-destructive-foreground: #ffffff;
     --color-ring: var(--color-indigo);
     --color-input: var(--color-line);
-
-    --animate-marquee: marquee-horizontal var(--duration, 40s) linear infinite;
-    --animate-marquee-vertical: marquee var(--duration, 40s) linear infinite;
-
-    @keyframes marquee {
-        from { transform: translateY(0); }
-        to { transform: translateY(calc(-100% - var(--gap, 1rem))); }
-    }
-
-    @keyframes marquee-horizontal {
-        from { transform: translateX(0); }
-        to { transform: translateX(calc(-100% - var(--gap, 1rem))); }
-    }
 }
 
 @layer base {
@@ -88,10 +75,3 @@
     }
 }
 
-@utility animate-marquee-vertical-reverse {
-    animation: marquee var(--duration, 40s) linear infinite reverse;
-}
-
-.marquee-root:hover .marquee-track {
-    animation-play-state: paused;
-}

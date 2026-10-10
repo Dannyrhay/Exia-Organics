@@ -13,7 +13,7 @@ export default function Bestsellers() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
                     <SectionHeading eyebrow="Most ordered" title="The everyday" accent="essentials." />
-                    <Link to="/products" className="inline-flex items-center gap-2 self-start text-sm font-semibold text-indigo hover:underline hover:underline-offset-4 md:self-auto">
+                    <Link to="/products" className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-indigo hover:underline hover:underline-offset-4 md:self-auto">
                         All {products.length} products <ArrowRight className="size-4" aria-hidden="true" />
                     </Link>
                 </div>

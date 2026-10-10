@@ -23,7 +23,7 @@ const BlogPostDetail = () => {
     return (
         <article className="pb-24 pt-10 md:pt-14">
             <header className="mx-auto max-w-4xl px-4 sm:px-6">
-                <Link to="/blog" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-ink-soft hover:text-indigo">
+                <Link to="/blog" className="inline-flex min-h-11 items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-ink-soft hover:text-indigo">
                     <ArrowLeft className="size-3.5" aria-hidden="true" /> Journal
                 </Link>
                 <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.16em] text-wood">
@@ -46,7 +46,7 @@ const BlogPostDetail = () => {
                     <p className="font-display text-2xl leading-snug">Want a routine built around <em className="italic text-lid">your</em> hair?</p>
                     <p className="text-sm text-shea/75">Message us and we'll suggest the right products.</p>
                     <WhatsAppButton variant="light" className="w-full">Ask on WhatsApp</WhatsAppButton>
-                    <Link to="/products" className="text-center text-sm text-shea/80 underline underline-offset-4 hover:text-lid">or browse the shop</Link>
+                    <Link to="/products" className="py-2 text-center text-sm text-shea/80 underline underline-offset-4 hover:text-lid">or browse the shop</Link>
                 </aside>
             </div>
 

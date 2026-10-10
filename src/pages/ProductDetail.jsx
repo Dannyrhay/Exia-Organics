@@ -26,14 +26,14 @@ export default function ProductDetail() {
                 <nav aria-label="Breadcrumb">
                     <ol className="flex flex-wrap items-center gap-1 font-mono text-[11px] uppercase tracking-wider text-ink-soft">
                         <li className="flex items-center gap-1">
-                            <Link to="/" className="hover:text-indigo">Home</Link>
+                            <Link to="/" className="inline-block py-2 hover:text-indigo">Home</Link>
                             <ChevronRight className="size-3.5" aria-hidden="true" />
                         </li>
                         <li className="flex items-center gap-1">
-                            <Link to="/products" className="hover:text-indigo">Shop</Link>
+                            <Link to="/products" className="inline-block py-2 hover:text-indigo">Shop</Link>
                             <ChevronRight className="size-3.5" aria-hidden="true" />
                         </li>
-                        <li><Link to={`/products?need=${need.id}`} className="hover:text-indigo">{need.label}</Link></li>
+                        <li><Link to={`/products?need=${need.id}`} className="inline-block py-2 hover:text-indigo">{need.label}</Link></li>
                     </ol>
                 </nav>
 

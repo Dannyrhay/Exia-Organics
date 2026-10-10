@@ -15,23 +15,23 @@ export default function Rituals() {
                     Each set pairs products that work together, so you can order a full routine in one go.
                 </SectionHeading>
 
-                <div className="mt-12 grid gap-6 md:grid-cols-3">
+                <div className="mt-12 grid gap-6 lg:grid-cols-3">
                     {sets.map((set, i) => (
-                        <Reveal key={set.id} delay={i * 0.08} className="flex flex-col overflow-hidden rounded-md bg-shea/[0.06] ring-1 ring-shea/10">
-                            <Link to={`/product/${set.id}`} className="group block aspect-[4/3] overflow-hidden bg-shea-deep">
+                        <Reveal key={set.id} delay={i * 0.08} className="flex flex-col overflow-hidden rounded-md bg-shea/[0.06] ring-1 ring-shea/10 sm:flex-row lg:flex-col">
+                            <Link to={`/product/${set.id}`} className="group relative block aspect-[4/3] shrink-0 overflow-hidden bg-shea-deep sm:aspect-auto sm:min-h-64 sm:w-2/5 lg:aspect-[4/3] lg:min-h-0 lg:w-full">
                                 <img
                                     src={set.imageUrl}
                                     alt=""
                                     loading="lazy"
-                                    className="size-full object-cover object-[50%_70%] transition-transform duration-700 group-hover:scale-[1.04]"
+                                    className="size-full object-cover object-[50%_70%] transition-transform duration-700 group-hover:scale-[1.04] sm:absolute sm:inset-0 lg:static"
                                 />
                             </Link>
                             <div className="flex flex-1 flex-col gap-4 p-5">
-                                <div className="flex items-baseline justify-between gap-3">
+                                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                                     <h3 className="font-display text-2xl">
                                         <Link to={`/product/${set.id}`} className="hover:text-lid">{shortName(set)}</Link>
                                     </h3>
-                                    <p className="font-mono text-sm text-lid">{formatPrice(set.price, set.currency)}</p>
+                                    <p className="whitespace-nowrap font-mono text-sm text-lid">{formatPrice(set.price, set.currency)}</p>
                                 </div>
                                 <p className="text-sm leading-relaxed text-shea/70">{set.description}</p>
                                 <WhatsAppButton product={set} variant="light" className="mt-auto w-full">

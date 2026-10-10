@@ -23,7 +23,7 @@ export function ProductCard({ product, className, priority = false }) {
                     decoding="async"
                     className="size-full object-cover object-[50%_74%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
-                <span className="absolute left-2.5 top-2.5 rounded-full bg-paper/90 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-indigo-deep backdrop-blur-sm">
+                <span className="absolute left-2.5 top-2.5 rounded-full bg-paper/90 px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-deep backdrop-blur-sm">
                     {needLabel[product.need]}
                 </span>
             </Link>

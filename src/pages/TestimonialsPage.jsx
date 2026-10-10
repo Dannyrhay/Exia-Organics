@@ -1,21 +1,40 @@
-import React from 'react';
-import TestimonialsShowcase from '../components/ui/TestimonialsShowcase';
 import { testimonials } from '../data/testimonials';
+import SectionHeading from '@/components/brand/SectionHeading';
+import WhatsAppBand from '@/components/home/WhatsAppBand';
 
-const TestimonialsPage = () => {
-    return (
-        <div className="min-h-screen bg-shea pt-12 pb-16 md:pt-16">
-            <div className="container mx-auto mb-12 px-4 text-center">
-                <h1 className="font-serif text-4xl font-bold text-indigo md:text-5xl">Real Stories</h1>
-                <p className="mt-4 text-lg font-medium text-wood">Community Love & Reviews</p>
-                <div className="mx-auto mt-6 h-1 w-24 rounded-full bg-wood" />
-            </div>
+// CSS columns give a masonry flow that reflows from 1 to 3 columns with no JS.
+const TestimonialsPage = () => (
+    <>
+        <section className="pb-24 pt-12 md:pt-16">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <SectionHeading as="h1" eyebrow="Reviews" title="In their" accent="own words.">
+                    What customers say after a few wash days with Exia.
+                </SectionHeading>
 
-            <div className="container mx-auto flex items-center justify-center px-4 py-6">
-                <TestimonialsShowcase testimonials={testimonials} />
+                <ul className="mt-12 gap-5 [column-fill:_balance] sm:columns-2 lg:columns-3">
+                    {testimonials.map((t) => (
+                        <li key={`${t.name}-${t.username}`} className="mb-5 break-inside-avoid">
+                            <figure className="flex flex-col gap-5 rounded-md bg-paper p-6 ring-1 ring-line">
+                                <blockquote className="font-display text-xl leading-snug text-indigo-deep">
+                                    “{t.body}”
+                                </blockquote>
+                                <figcaption className="flex items-center gap-3">
+                                    <img src={t.img} alt="" loading="lazy" className="size-10 shrink-0 rounded-full bg-shea-deep object-cover" />
+                                    <div className="min-w-0">
+                                        <p className="truncate text-sm font-semibold text-ink">{t.name}</p>
+                                        <p className="truncate font-mono text-[11px] uppercase tracking-wider text-wood">
+                                            {t.username}{t.country ? ` · ${t.country}` : ''}
+                                        </p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    ))}
+                </ul>
             </div>
-        </div>
-    );
-};
+        </section>
+        <WhatsAppBand />
+    </>
+);
 
 export default TestimonialsPage;

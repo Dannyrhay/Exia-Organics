@@ -16,7 +16,7 @@ export default function Story() {
                         Exia Organics started with that question. We pair herbal traditions with careful formulation to make haircare that is gentle
                         enough for every wash day and strong enough to show results.
                     </p>
-                    <Link to="/about" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-indigo hover:underline hover:underline-offset-4">
+                    <Link to="/about" className="mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-indigo hover:underline hover:underline-offset-4">
                         Read our story <ArrowRight className="size-4" aria-hidden="true" />
                     </Link>
                 </Reveal>
