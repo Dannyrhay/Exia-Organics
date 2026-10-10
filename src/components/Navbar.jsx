@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
@@ -6,6 +6,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { SITE } from '@/data/site';
 import WhatsAppButton from '@/components/brand/WhatsAppButton';
+import CartButton from '@/components/cart/CartButton';
+import { useOverlay } from '@/lib/useOverlay';
 import logo from '../assets/logo.webp';
 
 const navLinks = [
@@ -32,18 +34,10 @@ export function BrandMark({ className, tone = 'dark' }) {
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const reduce = useReducedMotion();
+    const closeMenu = useCallback(() => setIsOpen(false), []);
 
     // While the menu sheet is open: lock page scroll and close on Escape.
-    useEffect(() => {
-        if (!isOpen) return undefined;
-        const onKey = (e) => e.key === 'Escape' && setIsOpen(false);
-        document.body.style.overflow = 'hidden';
-        window.addEventListener('keydown', onKey);
-        return () => {
-            document.body.style.overflow = '';
-            window.removeEventListener('keydown', onKey);
-        };
-    }, [isOpen]);
+    useOverlay(isOpen, closeMenu);
 
     return (
         <header className="sticky top-0 z-40 border-b border-line/70 bg-shea/90 backdrop-blur-md">
@@ -68,9 +62,7 @@ const Navbar = () => {
                 </nav>
 
                 <div className="flex items-center gap-2">
-                    <WhatsAppButton className="hidden sm:inline-flex" variant="solid">
-                        Order
-                    </WhatsAppButton>
+                    <CartButton />
                     <button
                         type="button"
                         className="inline-flex size-11 items-center justify-center rounded-full text-indigo-deep hover:bg-shea-deep lg:hidden"
@@ -141,7 +133,7 @@ const Navbar = () => {
                         </nav>
 
                         <div className="mt-auto flex flex-col gap-3 pt-10">
-                            <WhatsAppButton variant="light" className="min-h-13 text-base" />
+                            <WhatsAppButton variant="light" className="min-h-13 text-base">Chat on WhatsApp</WhatsAppButton>
                             <p className="text-center font-mono text-xs text-shea/60">{SITE.phoneDisplay} · {SITE.hours}</p>
                         </div>
                     </motion.div>

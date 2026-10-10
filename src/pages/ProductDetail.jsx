@@ -1,16 +1,54 @@
-import { Link, useParams } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { needs, products, shortName } from '@/data/products';
-import { formatPrice, SITE } from '@/data/site';
+import { formatPrice, SITE, whatsappUrl } from '@/data/site';
 import { ProductCard } from '@/components/ui/ProductCard';
-import WhatsAppButton from '@/components/brand/WhatsAppButton';
+import { useCart } from '@/cart/cart-context';
+import AddToCartButton from '@/components/cart/AddToCartButton';
+import QuantityStepper from '@/components/cart/QuantityStepper';
 import NotFoundPage from './NotFoundPage';
 
 const orderSteps = [
-    'Tap “Order on WhatsApp”. Your message is written for you.',
-    'We confirm price, stock and delivery in the chat.',
-    'Pay as agreed and your order is on its way.',
+    'Add it to your cart and check out with your delivery details.',
+    'Send the total by Mobile Money using the order reference shown.',
+    'We confirm your payment on WhatsApp and send your order.',
 ];
+
+/** Quantity + add/buy actions. Its own component so its state sits after ProductDetail's early return. */
+function ProductPurchase({ product }) {
+    const [qty, setQty] = useState(1);
+    const { add } = useCart();
+    const navigate = useNavigate();
+
+    const buyNow = () => {
+        add(product, qty);
+        navigate('/checkout');
+    };
+
+    return (
+        <div className="flex flex-col gap-4">
+            <div className="flex flex-wrap items-center gap-3">
+                <QuantityStepper label={product.name} value={qty} onChange={setQty} />
+                <AddToCartButton product={product} qty={qty} openCart className="min-h-12 flex-1 px-6 text-base sm:flex-none" />
+            </div>
+            <button
+                type="button"
+                onClick={buyNow}
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-6 text-base font-semibold text-indigo ring-1 ring-indigo/40 hover:bg-indigo hover:text-shea sm:w-auto sm:self-start"
+            >
+                Buy now <ArrowRight className="size-4" aria-hidden="true" />
+            </button>
+            <p className="text-sm text-ink-soft">
+                Pay with Mobile Money at checkout. Questions first?{' '}
+                <a href={whatsappUrl(product)} target="_blank" rel="noopener noreferrer" className="text-indigo underline underline-offset-4">
+                    Ask about this product
+                </a>{' '}
+                or call {SITE.phoneDisplay}.
+            </p>
+        </div>
+    );
+}
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -62,12 +100,7 @@ export default function ProductDetail() {
 
                         <p className="font-mono text-2xl text-indigo-deep">{formatPrice(product.price, product.currency)}</p>
 
-                        <div className="flex flex-col gap-3">
-                            <WhatsAppButton product={product} className="min-h-13 w-full text-base sm:w-auto sm:self-start sm:px-8" />
-                            <p className="text-sm text-ink-soft">
-                                Questions first? Call <a href={`tel:${SITE.phoneHref}`} className="text-indigo underline underline-offset-4">{SITE.phoneDisplay}</a>, {SITE.hours}.
-                            </p>
-                        </div>
+                        <ProductPurchase product={product} />
 
                         <div className="border-t border-line pt-8">
                             <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-wood">About this product</h2>

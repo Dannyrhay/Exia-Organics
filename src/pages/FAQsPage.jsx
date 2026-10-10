@@ -12,7 +12,10 @@ const faqs = [
     {
         question: 'How do I place an order?',
         answer: (
-            <>Tap “Order on WhatsApp” on any product. A message is written for you; send it, and we'll confirm price, stock and delivery in the chat.</>
+            <>
+                Add products to your cart and go to checkout. Enter your delivery details, send the total by Mobile Money with the order
+                reference we show you, then type in your MoMo transaction ID. We'll confirm on WhatsApp once your payment arrives.
+            </>
         ),
     },
     {
@@ -34,7 +37,12 @@ const faqs = [
     },
     {
         question: 'How do I pay?',
-        answer: <>Payment options are confirmed in the WhatsApp chat when we confirm your order.</>,
+        answer: (
+            <>
+                By Mobile Money ({SITE.momo.networks}) to {SITE.momo.number}, account name {SITE.momo.accountName}. Use your order reference as the
+                payment note so we can match it. We will never ask for your MoMo PIN.
+            </>
+        ),
     },
     {
         question: 'Something is wrong with my order. What now?',

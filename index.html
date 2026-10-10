@@ -95,6 +95,25 @@
       </div>
       <div class="progress" aria-hidden="true"></div>
     </div>
+    <!--
+      Netlify Forms registration (never shown). The checkout posts these same
+      fields with fetch; Netlify then emails each order to Exia.
+    -->
+    <form name="order" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input name="bot-field" />
+      <input name="subject" />
+      <input name="reference" />
+      <input name="customer_name" />
+      <input name="customer_phone" />
+      <input name="delivery_area" />
+      <input name="delivery_address" />
+      <textarea name="items"></textarea>
+      <input name="total" />
+      <input name="momo_transaction_id" />
+      <input name="momo_sender" />
+      <textarea name="note"></textarea>
+      <textarea name="summary"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

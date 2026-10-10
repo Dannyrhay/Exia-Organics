@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { needs, shortName } from '@/data/products';
 import { formatPrice } from '@/data/site';
-import WhatsAppButton from '@/components/brand/WhatsAppButton';
+import AddToCartButton from '@/components/cart/AddToCartButton';
 
 const needLabel = Object.fromEntries(needs.map((n) => [n.id, n.label]));
 const sizeLabel = (p) => p.size ?? (p.need === 'sets' ? 'Set' : '');
@@ -40,9 +40,7 @@ export function ProductCard({ product, className, priority = false }) {
                 </div>
             </div>
 
-            <WhatsAppButton product={product} variant="outline" className="min-h-10 w-full text-xs">
-                Order
-            </WhatsAppButton>
+            <AddToCartButton product={product} variant="outline" className="min-h-10 w-full px-3 text-xs" />
         </article>
     );
 }

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { products, shortName } from '@/data/products';
 import { formatPrice } from '@/data/site';
 import SectionHeading from '@/components/brand/SectionHeading';
-import WhatsAppButton from '@/components/brand/WhatsAppButton';
+import AddToCartButton from '@/components/cart/AddToCartButton';
 import Reveal from '@/components/brand/Reveal';
 
 const sets = products.filter((p) => p.need === 'sets');
@@ -34,9 +34,9 @@ export default function Rituals() {
                                     <p className="whitespace-nowrap font-mono text-sm text-lid">{formatPrice(set.price, set.currency)}</p>
                                 </div>
                                 <p className="text-sm leading-relaxed text-shea/70">{set.description}</p>
-                                <WhatsAppButton product={set} variant="light" className="mt-auto w-full">
-                                    Order this set
-                                </WhatsAppButton>
+                                <AddToCartButton product={set} variant="light" className="mt-auto w-full">
+                                    Add set to cart
+                                </AddToCartButton>
                             </div>
                         </Reveal>
                     ))}

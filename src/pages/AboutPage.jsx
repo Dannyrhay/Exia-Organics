@@ -19,7 +19,7 @@ const AboutPage = () => (
                         </p>
                         <p>
                             Every product is handcrafted in Ghana for natural and textured hair, from the anti-dandruff herbal shampoo to the growth
-                            butter in its wood-grain jar. We sell directly over WhatsApp, so you can talk to us before, during and after your order.
+                            butter in its wood-grain jar. You order here, pay by Mobile Money, and can reach us on WhatsApp before, during and after your order.
                         </p>
                     </div>
                     <Link to="/products" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-indigo px-6 text-sm font-semibold text-shea hover:bg-indigo-deep">

@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import { runSplash } from './splash';
+import CartProvider from './cart/CartProvider';
+import CartDrawer from './components/cart/CartDrawer';
 
 // Home ships in the main bundle; everything else loads when visited.
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
@@ -15,6 +17,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const TestimonialsPage = lazy(() => import('./pages/TestimonialsPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
 
 function ScrollToTop() {
     const { pathname } = useLocation();
@@ -32,6 +35,7 @@ function App() {
 
     return (
         <Router>
+            <CartProvider>
             <ScrollToTop />
             <div className="flex min-h-screen flex-col overflow-x-clip bg-shea">
                 <a
@@ -53,12 +57,15 @@ function App() {
                             <Route path="/testimonials" element={<TestimonialsPage />} />
                             <Route path="/faqs" element={<FAQsPage />} />
                             <Route path="/contact" element={<ContactPage />} />
+                            <Route path="/checkout" element={<CheckoutPage />} />
                             <Route path="*" element={<NotFoundPage />} />
                         </Routes>
                     </Suspense>
                 </main>
                 <Footer />
             </div>
+            <CartDrawer />
+            </CartProvider>
         </Router>
     );
 }

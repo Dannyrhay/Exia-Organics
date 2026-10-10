@@ -1,35 +1,10 @@
-import { useState } from 'react';
-import { Check, Copy, Mail, Phone } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SocialIcon, WhatsAppIcon } from '@/components/icons/SocialIcons';
 import { SITE, whatsappUrl } from '@/data/site';
 import SectionHeading from '@/components/brand/SectionHeading';
 import WhatsAppButton from '@/components/brand/WhatsAppButton';
-
-function CopyButton({ value, label }) {
-    const [copied, setCopied] = useState(false);
-
-    const handleCopy = async () => {
-        try {
-            await navigator.clipboard.writeText(value);
-        } catch {
-            return; // clipboard blocked (e.g. insecure context); the text stays selectable
-        }
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
-    };
-
-    return (
-        <button
-            type="button"
-            onClick={handleCopy}
-            aria-label={copied ? `${label} copied` : `Copy ${label}`}
-            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-indigo hover:bg-shea-deep"
-        >
-            {copied ? <Check className="size-4 text-leaf" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
-        </button>
-    );
-}
+import CopyButton from '@/components/ui/CopyButton';
 
 function ContactRow({ icon: Icon, label, value, href, note }) {
     return (

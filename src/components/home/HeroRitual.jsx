@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { products, shortName } from '@/data/products';
 import { formatPrice } from '@/data/site';
 import WhatsAppButton from '@/components/brand/WhatsAppButton';
+import AddToCartButton from '@/components/cart/AddToCartButton';
 import hero800 from '@/assets/hero-lineup-800.webp';
 import hero1600 from '@/assets/hero-lineup-1600.webp';
 
@@ -32,7 +33,7 @@ export default function HeroRitual() {
                         Herbal care for <em className="italic text-indigo">natural crowns.</em>
                     </motion.h1>
                     <motion.p {...rise(0.24)} className="max-w-md text-base leading-relaxed text-ink-soft md:text-lg">
-                        Shampoos, butters and oils for natural and textured hair. Pick what your hair needs and order it in a single WhatsApp message.
+                        Shampoos, butters and oils for natural and textured hair. Add what your hair needs to your cart and pay with Mobile Money.
                     </motion.p>
                     <motion.div {...rise(0.34)} className="flex flex-wrap items-center gap-3">
                         <Link
@@ -41,7 +42,7 @@ export default function HeroRitual() {
                         >
                             Shop the collection <ArrowRight className="size-4" aria-hidden="true" />
                         </Link>
-                        <WhatsAppButton variant="outline" className="min-h-12" />
+                        <WhatsAppButton variant="outline" className="min-h-12">Ask us on WhatsApp</WhatsAppButton>
                     </motion.div>
                 </div>
 
@@ -86,9 +87,7 @@ export default function HeroRitual() {
                             <Link to={`/product/${featured.id}`} className="font-display text-xl leading-tight text-indigo-deep hover:underline hover:underline-offset-4">
                                 {shortName(featured)}
                             </Link>
-                            <WhatsAppButton product={featured} className="min-h-10 self-start px-4 text-xs">
-                                Order now
-                            </WhatsAppButton>
+                            <AddToCartButton product={featured} className="min-h-10 self-start px-4 text-xs" />
                         </div>
                     </motion.aside>
                 </div>
