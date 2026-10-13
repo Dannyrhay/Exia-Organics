@@ -30,7 +30,7 @@ export function BlogSection({ limit = 3 }) {
                                         className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                                     />
                                 </div>
-                                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">
+                                <p className="eyebrow text-wood">
                                     {post.category} · {post.readTime} min read
                                 </p>
                                 <h3 className="font-display text-2xl leading-tight text-indigo-deep group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">

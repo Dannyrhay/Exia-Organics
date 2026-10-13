@@ -11,7 +11,7 @@ function ContactRow({ icon: Icon, label, value, href, note }) {
         <li className="grid grid-cols-[auto_1fr_auto] items-center gap-x-3 border-b border-line py-6 sm:gap-x-4">
             <Icon className="size-5 self-start text-wood sm:mt-1" strokeWidth={1.5} aria-hidden="true" />
             <div className="min-w-0">
-                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">{label}</p>
+                <p className="eyebrow text-wood">{label}</p>
                 <a href={href} className="mt-1 block [overflow-wrap:anywhere] font-display text-xl text-indigo-deep hover:underline hover:decoration-1 hover:underline-offset-4 min-[400px]:text-2xl sm:text-3xl">
                     {value.includes('@') ? <>{value.split('@')[0]}<wbr />@{value.split('@')[1]}</> : value}
                 </a>
@@ -42,7 +42,7 @@ function ContactPage() {
                     </ul>
 
                     <div className="mt-10">
-                        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">Follow along</p>
+                        <p className="eyebrow text-wood">Follow along</p>
                         <ul className="mt-4 flex flex-wrap gap-3">
                             {socials.map((s) => (
                                 <li key={s.key}>

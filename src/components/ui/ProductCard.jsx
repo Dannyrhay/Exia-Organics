@@ -23,7 +23,7 @@ export function ProductCard({ product, className, priority = false }) {
                     decoding="async"
                     className="size-full object-cover object-[50%_74%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
-                <span className="absolute left-2.5 top-2.5 rounded-full bg-paper/90 px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-indigo-deep backdrop-blur-sm">
+                <span className="absolute left-2.5 top-2.5 rounded-full bg-paper/90 px-2.5 py-1 eyebrow text-indigo-deep backdrop-blur-sm">
                     {needLabel[product.need]}
                 </span>
             </Link>
@@ -35,7 +35,7 @@ export function ProductCard({ product, className, priority = false }) {
                     </Link>
                 </h3>
                 <div className="flex items-baseline justify-between gap-2 font-mono">
-                    <span className="text-[11px] uppercase tracking-wider text-ink-soft">{sizeLabel(product)}</span>
+                    <span className="text-xs uppercase tracking-wider text-ink-soft">{sizeLabel(product)}</span>
                     <span className="whitespace-nowrap text-sm text-indigo">{formatPrice(product.price, product.currency)}</span>
                 </div>
             </div>

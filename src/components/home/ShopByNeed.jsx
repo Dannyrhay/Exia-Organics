@@ -43,7 +43,7 @@ export default function ShopByNeed() {
                                 </div>
                                 <div className="flex items-baseline justify-between gap-3">
                                     <p className="text-sm text-ink-soft">{t.blurb}</p>
-                                    <p className="whitespace-nowrap font-mono text-[11px] uppercase tracking-wider text-wood">
+                                    <p className="whitespace-nowrap font-mono text-xs uppercase tracking-wider text-wood">
                                         {t.count} {t.count === 1 ? 'item' : 'items'}
                                     </p>
                                 </div>

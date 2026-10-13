@@ -22,7 +22,7 @@ const TestimonialsPage = () => (
                                     <img src={t.img} alt="" loading="lazy" className="size-10 shrink-0 rounded-full bg-shea-deep object-cover" />
                                     <div className="min-w-0">
                                         <p className="truncate text-sm font-semibold text-ink">{t.name}</p>
-                                        <p className="truncate font-mono text-[11px] uppercase tracking-wider text-wood">
+                                        <p className="truncate font-mono text-xs uppercase tracking-wider text-wood">
                                             {t.username}{t.country ? ` · ${t.country}` : ''}
                                         </p>
                                     </div>

@@ -17,7 +17,7 @@ const BlogPage = () => {
                         <img src={lead.imageUrl} alt="" className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
                     </div>
                     <div className="flex flex-col gap-4">
-                        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">{lead.category} · {lead.readTime} min read</p>
+                        <p className="eyebrow text-wood">{lead.category} · {lead.readTime} min read</p>
                         <h2 className="font-display text-[clamp(2rem,5vw,3.2rem)] leading-[1.05] text-indigo-deep group-hover:underline group-hover:decoration-1 group-hover:underline-offset-8">
                             {lead.title}
                         </h2>
@@ -32,7 +32,7 @@ const BlogPage = () => {
                                 <div className="aspect-[3/2] overflow-hidden rounded-md bg-shea-deep">
                                     <img src={post.imageUrl} alt="" loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                                 </div>
-                                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">{post.category} · {post.readTime} min read</p>
+                                <p className="eyebrow text-wood">{post.category} · {post.readTime} min read</p>
                                 <h2 className="font-display text-2xl leading-tight text-indigo-deep group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
                                     {post.title}
                                 </h2>

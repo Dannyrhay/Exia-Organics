@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 
 /**
- * Mono eyebrow + Bodoni heading. Pass `accent` for the italic second phrase,
+ * Bold sans eyebrow + Fraunces heading. Pass `accent` for the italic second phrase,
  * e.g. <SectionHeading eyebrow="Shop" title="Start with" accent="your hair." />
  */
 export default function SectionHeading({ eyebrow, title, accent, children, align = 'left', tone = 'dark', as: Tag = 'h2', className }) {
@@ -9,7 +9,7 @@ export default function SectionHeading({ eyebrow, title, accent, children, align
     return (
         <div className={cn('flex max-w-2xl flex-col gap-4', align === 'center' && 'mx-auto items-center text-center', className)}>
             {eyebrow && (
-                <p className={cn('font-mono text-xs uppercase tracking-[0.18em]', light ? 'text-lid' : 'text-wood')}>
+                <p className={cn('eyebrow', light ? 'text-lid' : 'text-wood')}>
                     {eyebrow}
                 </p>
             )}

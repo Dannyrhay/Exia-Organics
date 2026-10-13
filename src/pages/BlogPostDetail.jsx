@@ -23,10 +23,10 @@ const BlogPostDetail = () => {
     return (
         <article className="pb-24 pt-10 md:pt-14">
             <header className="mx-auto max-w-4xl px-4 sm:px-6">
-                <Link to="/blog" className="inline-flex min-h-11 items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-ink-soft hover:text-indigo">
+                <Link to="/blog" className="inline-flex min-h-11 items-center gap-2 font-mono text-xs uppercase tracking-wider text-ink-soft hover:text-indigo">
                     <ArrowLeft className="size-3.5" aria-hidden="true" /> Journal
                 </Link>
-                <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.16em] text-wood">
+                <p className="mt-8 eyebrow text-wood">
                     {post.category} · {post.date} · {post.readTime} min read
                 </p>
                 <h1 className="mt-4 font-display text-[clamp(2.4rem,7vw,4.4rem)] leading-[1.02] tracking-[-0.01em] text-indigo-deep">
@@ -51,7 +51,7 @@ const BlogPostDetail = () => {
             </div>
 
             <div className="mx-auto mt-20 max-w-6xl border-t border-line px-4 pt-10 sm:px-6">
-                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">Read next</p>
+                <p className="eyebrow text-wood">Read next</p>
                 <Link to={`/blog/${next.id}`} className="mt-3 block font-display text-3xl text-indigo-deep hover:underline hover:decoration-1 hover:underline-offset-8">
                     {next.title}
                 </Link>

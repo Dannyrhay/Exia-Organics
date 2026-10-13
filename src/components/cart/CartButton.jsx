@@ -14,7 +14,7 @@ export default function CartButton() {
         >
             <ShoppingBag className="size-6" aria-hidden="true" />
             {count > 0 && (
-                <span className="absolute right-0.5 top-0.5 inline-flex min-w-5 items-center justify-center rounded-full bg-wood px-1 font-mono text-[11px] leading-5 text-shea">
+                <span className="absolute right-0.5 top-0.5 inline-flex min-w-5 items-center justify-center rounded-full bg-wood px-1 font-mono text-xs leading-5 text-shea">
                     {count}
                 </span>
             )}

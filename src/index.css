@@ -6,8 +6,9 @@
  * wood from the tables the products are shot on. Use these names, not raw hex.
  */
 @theme {
-    --font-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
-    --font-serif: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+    /* Fraunces: sturdy strokes and a tall x-height stay legible for older eyes, with real italics for accents. */
+    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
     --font-sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-mono: "DM Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
 
@@ -18,7 +19,7 @@
     --color-indigo: #241d6e;
     --color-indigo-deep: #16123f;
     --color-ink: #1f1a3d;
-    --color-ink-soft: #5b5470;
+    --color-ink-soft: #4a4361;
     --color-lid: #d9a85a;
     --color-wood: #9b4f2d;
     --color-leaf: #2f6a3e;
@@ -60,6 +61,12 @@
         text-wrap: balance;
     }
 
+    /* Headings default to a confident semibold; an explicit font-* utility still wins. */
+    .font-display {
+        font-weight: 600;
+        font-optical-sizing: auto;
+    }
+
     :focus-visible {
         outline: 2px solid var(--color-indigo);
         outline-offset: 3px;
@@ -75,3 +82,16 @@
     }
 }
 
+/* Section label above a heading: bold sans, readable size, gentle tracking. Colour comes from a text-* class. */
+@utility eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    @media (width >= 40rem) {
+        font-size: 0.875rem;
+    }
+}

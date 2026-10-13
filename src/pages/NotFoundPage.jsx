@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 export default function NotFoundPage({ title = "This page doesn't exist." }) {
     return (
         <section className="mx-auto flex min-h-[65vh] max-w-3xl flex-col items-start justify-center gap-6 px-4 py-20 sm:px-6">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-wood">404</p>
+            <p className="eyebrow text-wood">404</p>
             <h1 className="font-display text-[clamp(2.4rem,7vw,4rem)] leading-[1.02] text-indigo-deep">
                 {title} <em className="italic text-indigo">Let's get you back.</em>
             </h1>

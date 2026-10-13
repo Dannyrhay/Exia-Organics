@@ -41,7 +41,7 @@ export default function ProductsPage() {
                                 )}
                             >
                                 {f.label}
-                                <span className={cn('font-mono text-[11px]', isActive ? 'text-lid' : 'text-ink-soft')}>{count}</span>
+                                <span className={cn('font-mono text-xs', isActive ? 'text-lid' : 'text-ink-soft')}>{count}</span>
                             </button>
                         );
                     })}

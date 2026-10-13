@@ -8,7 +8,7 @@ export default function Story() {
         <section className="py-20 md:py-32">
             <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
                 <Reveal className="lg:col-span-7">
-                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-wood">Our story</p>
+                    <p className="eyebrow text-wood">Our story</p>
                     <blockquote className="mt-6 font-display text-[clamp(2rem,5.4vw,3.4rem)] leading-[1.08] tracking-[-0.01em] text-indigo-deep">
                         “Why should we choose between <em className="italic text-indigo">nature</em> and results?”
                     </blockquote>

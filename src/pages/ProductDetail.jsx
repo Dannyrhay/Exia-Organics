@@ -62,7 +62,7 @@ export default function ProductDetail() {
         <div className="pb-24 pt-8 md:pt-12">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <nav aria-label="Breadcrumb">
-                    <ol className="flex flex-wrap items-center gap-1 font-mono text-[11px] uppercase tracking-wider text-ink-soft">
+                    <ol className="flex flex-wrap items-center gap-1 font-mono text-xs uppercase tracking-wider text-ink-soft">
                         <li className="flex items-center gap-1">
                             <Link to="/" className="inline-block py-2 hover:text-indigo">Home</Link>
                             <ChevronRight className="size-3.5" aria-hidden="true" />
@@ -89,7 +89,7 @@ export default function ProductDetail() {
 
                     <div className="flex flex-col gap-8 lg:col-span-6 lg:pt-4">
                         <div className="flex flex-col gap-4">
-                            <p className="font-mono text-xs uppercase tracking-[0.18em] text-wood">
+                            <p className="eyebrow text-wood">
                                 {need.label}{product.size ? ` · ${product.size}` : ''}
                             </p>
                             <h1 className="font-display text-[clamp(2.4rem,7vw,4rem)] leading-[1] tracking-[-0.01em] text-indigo-deep">
@@ -103,7 +103,7 @@ export default function ProductDetail() {
                         <ProductPurchase product={product} />
 
                         <div className="border-t border-line pt-8">
-                            <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-wood">About this product</h2>
+                            <h2 className="eyebrow text-wood">About this product</h2>
                             <p className="mt-4 max-w-prose text-base leading-relaxed text-ink md:text-lg">{product.description}</p>
                             <ul className="mt-5 flex flex-wrap gap-2">
                                 {product.tags.map((t) => (

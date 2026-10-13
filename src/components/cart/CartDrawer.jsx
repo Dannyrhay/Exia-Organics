@@ -81,7 +81,7 @@ export default function CartDrawer() {
                                                         <Link to={`/product/${product.id}`} onClick={close} className="font-display text-lg leading-tight text-indigo-deep hover:underline hover:underline-offset-4">
                                                             {shortName(product)}
                                                         </Link>
-                                                        <p className="font-mono text-[11px] uppercase tracking-wider text-ink-soft">
+                                                        <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">
                                                             {product.size ?? 'Set'} · {formatPrice(product.price)}
                                                         </p>
                                                     </div>

@@ -48,7 +48,7 @@ const Footer = () => (
             <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
                 {columns.map((col) => (
                     <nav key={col.label} aria-label={col.label} className="flex flex-col gap-4">
-                        <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-lid">{col.label}</h2>
+                        <h2 className="eyebrow text-lid">{col.label}</h2>
                         <ul className="flex flex-col gap-0.5">
                             {col.links.map((link) => (
                                 <li key={link.title}>
@@ -69,7 +69,7 @@ const Footer = () => (
 
         <div className="border-t border-shea/10">
             <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6 lg:px-8">
-                <p className="font-mono text-[11px] text-shea/50">© {new Date().getFullYear()} {SITE.name}</p>
+                <p className="font-mono text-xs text-shea/50">© {new Date().getFullYear()} {SITE.name}</p>
                 <ul className="flex items-center gap-1">
                     <li>
                         <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"

@@ -23,7 +23,7 @@ export default function HeroRitual() {
             <div className="mx-auto grid max-w-7xl gap-8 px-4 pb-16 pt-8 sm:px-6 md:pt-14 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-8 lg:pb-20 lg:pt-10">
                 {/* copy */}
                 <div className="flex flex-col gap-6 lg:col-span-5 lg:pr-4">
-                    <motion.p {...rise(0.05)} className="font-mono text-[11px] uppercase tracking-[0.14em] text-wood sm:text-xs sm:tracking-[0.2em]">
+                    <motion.p {...rise(0.05)} className="eyebrow text-wood sm:text-xs sm:tracking-[0.2em]">
                         Handcrafted in Ghana · Est. 2020
                     </motion.p>
                     <motion.h1
@@ -81,7 +81,7 @@ export default function HeroRitual() {
                         </Link>
                         <div className="flex min-w-0 flex-1 flex-col gap-2">
                             <div className="flex items-baseline justify-between gap-2">
-                                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-wood">Bestseller</p>
+                                <p className="eyebrow text-wood">Bestseller</p>
                                 <p className="font-mono text-sm text-indigo">{formatPrice(featured.price, featured.currency)}</p>
                             </div>
                             <Link to={`/product/${featured.id}`} className="font-display text-xl leading-tight text-indigo-deep hover:underline hover:underline-offset-4">

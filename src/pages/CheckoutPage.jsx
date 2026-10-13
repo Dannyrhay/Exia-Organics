@@ -73,7 +73,7 @@ function OrderSummary({ lines, subtotal, deliveryFee, total }) {
                         <img src={product.imageUrl} alt="" className="size-14 shrink-0 rounded-sm bg-shea-deep object-cover object-[50%_72%]" />
                         <div className="min-w-0 flex-1">
                             <p className="truncate text-sm font-medium text-ink">{shortName(product)}</p>
-                            <p className="font-mono text-[11px] uppercase tracking-wider text-ink-soft">
+                            <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">
                                 {qty} × {formatPrice(product.price)}{product.size ? ` · ${product.size}` : ''}
                             </p>
                         </div>
@@ -109,7 +109,7 @@ function OrderPlaced({ order, emailed }) {
     return (
         <section className="mx-auto flex max-w-2xl flex-col gap-8 px-4 pb-24 pt-12 sm:px-6 md:pt-16">
             <div className="flex flex-col gap-4">
-                <p className="font-mono text-xs uppercase tracking-[0.18em] text-wood">Order {order.reference}</p>
+                <p className="eyebrow text-wood">Order {order.reference}</p>
                 <h1 ref={headingRef} tabIndex={-1} className="font-display text-[clamp(2.4rem,7vw,4rem)] leading-[1.02] text-indigo-deep focus:outline-none">
                     {emailed ? 'Order received.' : 'Almost done.'} <em className="italic text-indigo">{emailed ? 'Thank you.' : 'One more tap.'}</em>
                 </h1>
@@ -283,14 +283,14 @@ export default function CheckoutPage() {
                             <div className="flex flex-col gap-5 rounded-md bg-indigo-deep p-6 text-shea">
                                 <div className="flex flex-wrap items-end justify-between gap-4">
                                     <div>
-                                        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-lid">Amount</p>
+                                        <p className="eyebrow text-lid">Amount</p>
                                         <p className="font-mono text-3xl">{formatPrice(total)}</p>
                                     </div>
-                                    <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-shea/60">{SITE.momo.networks}</p>
+                                    <p className="eyebrow text-shea/60">{SITE.momo.networks}</p>
                                 </div>
                                 <dl className="grid grid-cols-1 gap-4 border-t border-shea/15 pt-5 sm:grid-cols-2">
                                     <div>
-                                        <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-lid">Send to</dt>
+                                        <dt className="eyebrow text-lid">Send to</dt>
                                         <dd className="flex items-center gap-1">
                                             <span className="font-mono text-xl">{SITE.momo.number}</span>
                                             <CopyButton value={momoDigits} label="MoMo number" className="text-shea hover:bg-shea/10" />
@@ -298,7 +298,7 @@ export default function CheckoutPage() {
                                         <dd className="text-sm text-shea/70">{SITE.momo.accountName}</dd>
                                     </div>
                                     <div>
-                                        <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-lid">Reference</dt>
+                                        <dt className="eyebrow text-lid">Reference</dt>
                                         <dd className="flex items-center gap-1">
                                             <span className="font-mono text-xl tracking-wider">{reference}</span>
                                             <CopyButton value={reference} label="order reference" className="text-shea hover:bg-shea/10" />
