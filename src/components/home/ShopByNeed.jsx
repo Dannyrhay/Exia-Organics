@@ -4,23 +4,21 @@ import { needs, products } from '@/data/products';
 import SectionHeading from '@/components/brand/SectionHeading';
 import Reveal from '@/components/brand/Reveal';
 
-// Which product photo stands in for each concern.
-const coverFor = { scalp: 1, growth: 5, moisture: 9, repair: 7 };
-
 const tiles = needs
     .filter((n) => n.id !== 'sets')
     .map((n) => ({
         ...n,
-        cover: products.find((p) => p.id === coverFor[n.id]),
+        cover: products.find((p) => p.need === n.id && p.imageUrl),
         count: products.filter((p) => p.need === n.id).length,
-    }));
+    }))
+    .filter((t) => t.cover);
 
 export default function ShopByNeed() {
     return (
         <section className="border-y border-line bg-paper py-20 md:py-28">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <SectionHeading eyebrow="Shop by concern" title="Start with" accent="what your hair needs.">
-                    Four concerns, twelve products. Tap the one that sounds like you.
+                    {products.length} products, sorted by what they do. Tap the one that sounds like you.
                 </SectionHeading>
 
                 <ul className="-mx-4 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4 lg:gap-6">
@@ -32,7 +30,7 @@ export default function ShopByNeed() {
                                         src={t.cover.imageUrl}
                                         alt=""
                                         loading="lazy"
-                                        className="size-full object-cover object-[50%_80%] transition-transform duration-700 group-hover:scale-[1.05]"
+                                        className="size-full object-cover object-[50%_66%] transition-transform duration-700 group-hover:scale-[1.05]"
                                     />
                                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-indigo-deep/85 via-indigo-deep/40 to-transparent p-4 pt-16">
                                         <h3 className="flex items-center justify-between font-display text-3xl text-shea">

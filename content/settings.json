@@ -1,0 +1,27 @@
+{
+  "phoneDisplay": "+233 59 160 4923",
+  "whatsappNumber": "233591604923",
+  "email": "exiaorganics@gmail.com",
+  "hours": "Mon–Fri, 9am–5pm",
+  "momo": {
+    "number": "059 160 4923",
+    "accountName": "Exia Organics",
+    "networks": "MTN MoMo"
+  },
+  "deliveryNote": "Delivery fee is confirmed on WhatsApp after you order.",
+  "deliveryZones": [],
+  "socials": [
+    {
+      "platform": "facebook",
+      "url": "https://facebook.com"
+    },
+    {
+      "platform": "tiktok",
+      "url": "https://tiktok.com"
+    },
+    {
+      "platform": "snapchat",
+      "url": "https://snapchat.com"
+    }
+  ]
+}

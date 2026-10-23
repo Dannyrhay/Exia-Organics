@@ -1,0 +1,255 @@
+# Exia Organics admin dashboard (Sveltia CMS) — https://exiaorganics.com/admin
+#
+# Every "Publish" commits the change to GitHub (main). Netlify then rebuilds the
+# site and it is live in about 1–2 minutes. Sign-in uses GitHub via Netlify's
+# OAuth provider (Netlify → Project configuration → Security → OAuth).
+
+backend:
+  name: github
+  repo: Dannyrhay/Exia-Organics
+  branch: main
+  commit_messages:
+    create: 'content: add {{collection}} "{{slug}}"'
+    update: 'content: update {{collection}} "{{slug}}"'
+    delete: 'content: remove {{collection}} "{{slug}}"'
+    uploadMedia: 'content: upload "{{path}}"'
+    deleteMedia: 'content: delete "{{path}}"'
+
+site_url: https://exiaorganics.com
+display_url: https://exiaorganics.com
+
+media_folder: /public/uploads
+public_folder: /uploads
+
+# Phone photos are converted to WebP and shrunk on upload, so the site stays fast.
+media_libraries:
+  default:
+    config:
+      max_file_size: 20000000
+      transformations:
+        raster_image:
+          format: webp
+          quality: 80
+          width: 1600
+          height: 1600
+
+# File names become web addresses: "Hair Growth Butter" → /product/hair-growth-butter
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: products
+    label: Products
+    label_singular: Product
+    description: Everything in the shop. Untick "In stock" to show a product as sold out without deleting it.
+    folder: content/products
+    format: json
+    create: true
+    delete: true
+    identifier_field: name
+    slug:
+      template: '{{name}}'
+      editable: false
+    media_folder: /public/uploads/products
+    public_folder: /uploads/products
+    summary: '{{name}} — GHS {{price}}'
+    sortable_fields: [order, name, price]
+    fields:
+      - label: Product name
+        name: name
+        widget: string
+        hint: Include the size if there is one, e.g. "Hair Repair Oil (60ml)". The web address is made from the name when the product is first created and never changes after.
+      - label: Price (GHS)
+        name: price
+        widget: number
+        value_type: int
+        min: 0
+      - label: Photos
+        name: images
+        widget: image
+        multiple: true
+        min: 1
+        max: 6
+        hint: The first photo is the main one in the shop. Photos straight from your phone are fine — they are resized automatically.
+      - label: Concern
+        name: need
+        widget: select
+        hint: Which shop filter this product appears under.
+        options:
+          - { label: Scalp care, value: scalp }
+          - { label: Growth, value: growth }
+          - { label: Moisture, value: moisture }
+          - { label: Repair, value: repair }
+          - { label: Sets / bundles, value: sets }
+      - label: Size
+        name: size
+        widget: string
+        required: false
+        hint: e.g. 250ml. Leave empty for jars and sets.
+      - label: Short tagline
+        name: tagline
+        widget: string
+        hint: A few words shown under the name, e.g. "Soothes itchy scalp".
+      - label: Description
+        name: description
+        widget: text
+        hint: One or two sentences. This also appears in Google results.
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        hint: Short words like "Herbal" or "Bundle". Press Enter after each one.
+      - label: In stock
+        name: inStock
+        widget: boolean
+        default: true
+      - label: Bestseller
+        name: bestseller
+        widget: boolean
+        default: false
+        hint: Up to four bestsellers appear in "The everyday essentials" on the home page.
+      - label: Feature on the home page
+        name: featured
+        widget: boolean
+        default: false
+        hint: Shown in the card over the main photo on the home page. Tick only one product.
+      - label: Display order
+        name: order
+        widget: number
+        value_type: int
+        default: 100
+        hint: Lower numbers appear first in the shop.
+      - { name: legacyId, widget: hidden, default: null }
+
+  - name: journal
+    label: Journal & tutorials
+    label_singular: Post
+    description: Articles and how-to tutorials. Add a YouTube or TikTok link to turn a post into a video tutorial.
+    folder: content/journal
+    format: json
+    create: true
+    delete: true
+    identifier_field: title
+    slug:
+      template: '{{title}}'
+      editable: false
+    media_folder: /public/uploads/journal
+    public_folder: /uploads/journal
+    summary: '{{title}} ({{category}})'
+    sortable_fields: [date, title]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - label: Summary
+        name: summary
+        widget: text
+        hint: One or two sentences shown on the journal cards and in Google results.
+      - label: Category
+        name: category
+        widget: select
+        options: [Ingredients, Tips & Tricks, Tutorials, Education, Styles, Health, Sustainability, News]
+      - label: Cover photo
+        name: cover
+        widget: image
+      - label: Date
+        name: date
+        widget: datetime
+        type: date
+        hint: Newest posts appear first.
+      - label: Video link (optional)
+        name: video
+        widget: string
+        required: false
+        hint: Paste a YouTube link to play it on the page, or a TikTok/Instagram link to show a "Watch the video" button.
+      - label: Article
+        name: body
+        widget: richtext
+      - { name: legacyId, widget: hidden, default: null }
+
+  - name: site
+    label: Site
+    description: Contact details, payment, delivery, FAQs and reviews.
+    files:
+      - name: settings
+        label: Contact, payment & delivery
+        file: content/settings.json
+        fields:
+          - label: Phone number (as shown)
+            name: phoneDisplay
+            widget: string
+            hint: e.g. +233 59 160 4923
+          - label: WhatsApp number
+            name: whatsappNumber
+            widget: string
+            hint: Country code and number, digits only, e.g. 233591604923. Every "Chat on WhatsApp" button and order message goes here.
+          - { label: Email, name: email, widget: string }
+          - label: Opening hours
+            name: hours
+            widget: string
+            hint: e.g. Mon–Fri, 9am–5pm
+          - label: Mobile Money (shown at checkout)
+            name: momo
+            widget: object
+            collapsed: false
+            fields:
+              - { label: MoMo number, name: number, widget: string, hint: 'As customers should type it, e.g. 059 160 4923' }
+              - { label: Account name, name: accountName, widget: string, hint: 'Exactly as it appears when someone sends money, so customers can check it.' }
+              - { label: Networks accepted, name: networks, widget: string, hint: 'e.g. MTN MoMo, Telecel Cash' }
+          - label: Delivery note
+            name: deliveryNote
+            widget: string
+            hint: Shown at checkout while the list of delivery areas below is empty.
+          - label: Delivery areas and fees
+            name: deliveryZones
+            widget: list
+            required: false
+            summary: '{{fields.label}} — GHS {{fields.fee}}'
+            hint: Leave empty to agree delivery fees on WhatsApp. Add areas to let customers pick one at checkout and pay the fee upfront.
+            fields:
+              - { label: Area, name: label, widget: string, hint: 'e.g. Accra, Kumasi, Other regions' }
+              - { label: Fee (GHS), name: fee, widget: number, value_type: int, min: 0 }
+          - label: Social media
+            name: socials
+            widget: list
+            required: false
+            summary: '{{fields.platform}}'
+            fields:
+              - label: Platform
+                name: platform
+                widget: select
+                options:
+                  - { label: Facebook, value: facebook }
+                  - { label: TikTok, value: tiktok }
+                  - { label: Snapchat, value: snapchat }
+                  - { label: Instagram, value: instagram }
+                  - { label: YouTube, value: youtube }
+                  - { label: X (Twitter), value: x }
+              - { label: Profile link, name: url, widget: string, hint: 'The full link to your profile, e.g. https://www.tiktok.com/@exiaorganics' }
+
+      - name: faqs
+        label: FAQs
+        file: content/faqs.json
+        fields:
+          - label: Questions
+            name: items
+            widget: list
+            summary: '{{fields.question}}'
+            hint: 'Answers can use {momoNumber}, {momoName}, {momoNetworks}, {phone} and {hours} — they fill in automatically from "Contact, payment & delivery".'
+            fields:
+              - { label: Question, name: question, widget: string }
+              - { label: Answer, name: answer, widget: richtext }
+
+      - name: reviews
+        label: Reviews
+        file: content/reviews.json
+        fields:
+          - label: Reviews
+            name: items
+            widget: list
+            summary: '{{fields.name}}'
+            hint: Only add real reviews from real customers, with their permission.
+            fields:
+              - { label: Customer name, name: name, widget: string }
+              - { label: Detail, name: detail, widget: string, required: false, hint: 'e.g. "Accra · Verified buyer"' }
+              - { label: Review, name: quote, widget: text }
+              - { label: Photo (optional), name: photo, widget: image, required: false, media_folder: /public/uploads/reviews, public_folder: /uploads/reviews }

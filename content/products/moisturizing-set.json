@@ -1,0 +1,21 @@
+{
+  "name": "Moisturizing Set",
+  "tagline": "Complete hydration system",
+  "price": 350,
+  "size": "",
+  "need": "sets",
+  "description": "A curated set of moisturizing products to keep your hair hydrated and healthy.",
+  "images": [
+    "/uploads/products/moisturizing-set-1.webp",
+    "/uploads/products/moisturizing-set-2.webp"
+  ],
+  "tags": [
+    "Bundle",
+    "Hydration"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": false,
+  "order": 11,
+  "legacyId": 11
+}

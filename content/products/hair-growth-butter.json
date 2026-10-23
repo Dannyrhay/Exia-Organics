@@ -1,0 +1,21 @@
+{
+  "name": "Hair Growth Butter",
+  "tagline": "Nourishes & stimulates",
+  "price": 60,
+  "size": "",
+  "need": "growth",
+  "description": "A rich butter blend designed to nourish the scalp and stimulate healthy hair growth.",
+  "images": [
+    "/uploads/products/hair-growth-butter-1.webp",
+    "/uploads/products/hair-growth-butter-2.webp"
+  ],
+  "tags": [
+    "Growth",
+    "Nourishing"
+  ],
+  "inStock": true,
+  "featured": true,
+  "bestseller": true,
+  "order": 5,
+  "legacyId": 5
+}

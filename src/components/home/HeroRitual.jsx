@@ -58,7 +58,7 @@ export default function HeroRitual() {
                             sizes="(min-width: 1024px) 58vw, 100vw"
                             alt="The Exia Organics range lined up on a wooden table: repair oil, growth butter, leave-in conditioner, moisturizing shampoo, conditioner and herbal shampoo."
                             fetchPriority="high"
-                            className="size-full object-cover object-[50%_88%]"
+                            className="size-full object-cover object-[50%_100%] lg:object-[50%_90%]"
                         />
                         <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-indigo-deep/25 to-transparent" />
                     </motion.div>
@@ -74,7 +74,7 @@ export default function HeroRitual() {
                             <img
                                 src={featured.imageUrl}
                                 alt=""
-                                className="size-20 rounded-sm object-cover object-[50%_70%] sm:size-24"
+                                className="size-20 rounded-sm object-cover object-[50%_64%] sm:size-24"
                             />
                         </Link>
                         <div className="flex min-w-0 flex-1 flex-col gap-2">

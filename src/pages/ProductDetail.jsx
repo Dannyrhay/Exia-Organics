@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { ArrowRight, ChevronRight } from 'lucide-react';
-import { needs, products, shortName } from '@/data/products';
+import { cn } from '@/lib/utils';
+import { getProduct, needs, products, shortName } from '@/data/products';
 import { formatPrice, SITE, whatsappUrl } from '@/data/site';
 import { ProductCard } from '@/components/ui/ProductCard';
 import { useCart } from '@/cart/cart-context';
@@ -28,6 +29,21 @@ function ProductPurchase({ product }) {
         navigate('/checkout');
     };
 
+    if (!product.inStock) {
+        return (
+            <div className="flex flex-col gap-3">
+                <AddToCartButton product={product} className="min-h-12 self-start px-8 text-base" />
+                <p className="text-sm text-ink-soft">
+                    This one is sold out for now.{' '}
+                    <a href={whatsappUrl(product)} target="_blank" rel="noopener noreferrer" className="text-indigo underline underline-offset-4">
+                        Ask when it's back
+                    </a>
+                    .
+                </p>
+            </div>
+        );
+    }
+
     return (
         <div className="flex flex-col gap-4">
             <div className="flex flex-wrap items-center gap-3">
@@ -52,9 +68,44 @@ function ProductPurchase({ product }) {
     );
 }
 
+/** Main photo plus thumbnails when the product has more than one photo. */
+function ProductGallery({ product }) {
+    const [active, setActive] = useState(0);
+    const images = product.images.length ? product.images : [product.imageUrl];
+    const current = images[Math.min(active, images.length - 1)];
+
+    return (
+        <div className="flex flex-col gap-3 lg:sticky lg:top-24">
+            <div className="overflow-hidden rounded-md bg-shea-deep">
+                <img src={current} alt={product.name} fetchPriority="high" className="aspect-[4/5] w-full object-cover object-[50%_62%]" />
+            </div>
+            {images.length > 1 && (
+                <ul className="flex gap-3" aria-label="More photos">
+                    {images.map((src, i) => (
+                        <li key={src}>
+                            <button
+                                type="button"
+                                onClick={() => setActive(i)}
+                                aria-label={`Show photo ${i + 1} of ${images.length}`}
+                                aria-pressed={i === active}
+                                className={cn(
+                                    'block size-20 overflow-hidden rounded-sm bg-shea-deep ring-2 ring-offset-2 ring-offset-shea transition sm:size-24',
+                                    i === active ? 'ring-indigo' : 'ring-transparent hover:ring-line',
+                                )}
+                            >
+                                <img src={src} alt="" loading="lazy" className="size-full object-cover object-[50%_62%]" />
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+}
+
 export default function ProductDetail() {
     const { id } = useParams();
-    const product = products.find((p) => p.id === Number(id));
+    const product = getProduct(id);
     useSeo(
         product
             ? {
@@ -66,8 +117,10 @@ export default function ProductDetail() {
             : { title: 'Product not found', noindex: true },
     );
     if (!product) return <NotFoundPage title="We couldn't find that product." />;
+    // Old numeric links (/product/5) move to the readable address.
+    if (id !== product.slug) return <Navigate to={`/product/${product.slug}`} replace />;
 
-    const need = needs.find((n) => n.id === product.need);
+    const need = needs.find((n) => n.id === product.need) ?? { id: 'all', label: 'Shop' };
     const related = products.filter((p) => p.need === product.need && p.id !== product.id).slice(0, 4);
 
     return (
@@ -79,8 +132,8 @@ export default function ProductDetail() {
                         '@type': 'Product',
                         name: product.name,
                         description: product.description,
-                        image: absoluteUrl(product.imageUrl),
-                        sku: `EXIA-${product.id}`,
+                        image: product.images.map(absoluteUrl),
+                        sku: `EXIA-${product.legacyId ?? product.slug}`,
                         category: need.label,
                         brand: { '@type': 'Brand', name: 'Exia Organics' },
                         offers: {
@@ -88,7 +141,7 @@ export default function ProductDetail() {
                             url: `${siteOrigin()}/product/${product.id}`,
                             price: product.price,
                             priceCurrency: product.currency,
-                            availability: 'https://schema.org/InStock',
+                            availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
                             itemCondition: 'https://schema.org/NewCondition',
                             seller: { '@type': 'Organization', name: 'Exia Organics' },
                         },
@@ -118,14 +171,7 @@ export default function ProductDetail() {
 
                 <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:gap-14">
                     <div className="lg:col-span-6">
-                        <div className="overflow-hidden rounded-md bg-shea-deep lg:sticky lg:top-24">
-                            <img
-                                src={product.imageUrl}
-                                alt={product.name}
-                                fetchPriority="high"
-                                className="aspect-[4/5] w-full object-cover object-[50%_70%]"
-                            />
-                        </div>
+                        <ProductGallery key={product.slug} product={product} />
                     </div>
 
                     <div className="flex flex-col gap-8 lg:col-span-6 lg:pt-4">

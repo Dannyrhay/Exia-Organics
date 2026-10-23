@@ -1,0 +1,20 @@
+{
+  "name": "Anti-Dandruff Herbal Shampoo (250ml)",
+  "tagline": "Soothes itchy scalp",
+  "price": 60,
+  "size": "250ml",
+  "need": "scalp",
+  "description": "Our Anti-Dandruff Herbal Shampoo is specially formulated to soothe itchy scalps and eliminate dandruff flakes using natural herbal extracts.",
+  "images": [
+    "/uploads/products/anti-dandruff-herbal-shampoo-250ml-1.webp"
+  ],
+  "tags": [
+    "Anti-Dandruff",
+    "Herbal"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": true,
+  "order": 1,
+  "legacyId": 1
+}

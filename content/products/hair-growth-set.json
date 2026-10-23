@@ -1,0 +1,21 @@
+{
+  "name": "Hair Growth Set",
+  "tagline": "Ultimate growth collection",
+  "price": 190,
+  "size": "",
+  "need": "sets",
+  "description": "The ultimate collection of products working together to maximize hair growth and retention.",
+  "images": [
+    "/uploads/products/hair-growth-set-1.webp",
+    "/uploads/products/hair-growth-set-2.webp"
+  ],
+  "tags": [
+    "Bundle",
+    "Growth"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": false,
+  "order": 6,
+  "legacyId": 6
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Anti-Dandruff Herbal Shampoo (500ml)",
+  "tagline": "Large family size",
+  "price": 80,
+  "size": "500ml",
+  "need": "scalp",
+  "description": "The same effective anti-dandruff formula in a larger 500ml bottle for long-lasting care.",
+  "images": [
+    "/uploads/products/anti-dandruff-herbal-shampoo-500ml-1.webp",
+    "/uploads/products/anti-dandruff-herbal-shampoo-500ml-2.webp"
+  ],
+  "tags": [
+    "Value Size",
+    "Herbal"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": false,
+  "order": 2,
+  "legacyId": 2
+}

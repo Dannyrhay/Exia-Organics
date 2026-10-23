@@ -1,0 +1,20 @@
+{
+  "name": "Deep Conditioner (250ml)",
+  "tagline": "Intensive moisture repair",
+  "price": 70,
+  "size": "250ml",
+  "need": "moisture",
+  "description": "Restore hydration and softness to dry, damaged hair with our intensive Deep Conditioner.",
+  "images": [
+    "/uploads/products/deep-conditioner-250ml-1.webp"
+  ],
+  "tags": [
+    "Conditioning",
+    "Repair"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": false,
+  "order": 4,
+  "legacyId": 4
+}

@@ -4,8 +4,8 @@ import { promises } from '@/data/site';
 import { useSeo } from '@/lib/seo';
 import SectionHeading from '@/components/brand/SectionHeading';
 import WhatsAppBand from '@/components/home/WhatsAppBand';
-import hero800 from '@/assets/hero-lineup-800.webp';
-import hero1600 from '@/assets/hero-lineup-1600.webp';
+import about800 from '@/assets/about-lineup-800.webp';
+import about1600 from '@/assets/about-lineup-1600.webp';
 
 const AboutPage = () => {
     useSeo({
@@ -34,8 +34,8 @@ const AboutPage = () => {
                 </div>
                 <div className="lg:col-span-6">
                     <img
-                        src={hero1600}
-                        srcSet={`${hero800} 800w, ${hero1600} 1600w`}
+                        src={about1600}
+                        srcSet={`${about800} 800w, ${about1600} 1600w`}
                         sizes="(min-width: 1024px) 50vw, 100vw"
                         alt="The full Exia Organics range on a wooden table."
                         className="aspect-[4/5] w-full rounded-md bg-shea-deep object-cover object-[50%_88%]"

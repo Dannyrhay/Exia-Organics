@@ -5,7 +5,9 @@ import { ProductCard } from '@/components/ui/ProductCard';
 import SectionHeading from '@/components/brand/SectionHeading';
 import Reveal from '@/components/brand/Reveal';
 
-const picks = [5, 1, 9, 7].map((id) => products.find((p) => p.id === id));
+// Ticked as "Bestseller" in the dashboard; falls back to the first four products.
+const flagged = products.filter((p) => p.bestseller);
+const picks = (flagged.length ? flagged : products).slice(0, 4);
 
 export default function Bestsellers() {
     return (

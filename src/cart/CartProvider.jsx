@@ -13,8 +13,8 @@ function loadItems() {
         if (!Array.isArray(saved)) return [];
         // Drop anything that no longer exists in the catalogue.
         return saved
-            .map((i) => ({ id: Number(i.id), qty: clampQty(i.qty) }))
-            .filter((i) => i.qty > 0 && products.some((p) => p.id === i.id));
+            .map((i) => ({ id: String(i.id), qty: clampQty(i.qty) }))
+            .filter((i) => i.qty > 0 && products.some((p) => p.id === i.id && p.inStock));
     } catch {
         return [];
     }

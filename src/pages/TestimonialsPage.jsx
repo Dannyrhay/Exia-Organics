@@ -1,7 +1,10 @@
-import { testimonials } from '../data/testimonials';
+import reviewData from '/content/reviews.json';
 import SectionHeading from '@/components/brand/SectionHeading';
 import WhatsAppBand from '@/components/home/WhatsAppBand';
 import { useSeo } from '@/lib/seo';
+
+// Reviews are edited under "Site → Reviews" in the dashboard (/admin).
+const reviews = (reviewData.items ?? []).filter((r) => r.name && r.quote);
 
 // CSS columns give a masonry flow that reflows from 1 to 3 columns with no JS.
 const TestimonialsPage = () => {
@@ -15,19 +18,23 @@ const TestimonialsPage = () => {
                 </SectionHeading>
 
                 <ul className="mt-12 gap-5 [column-fill:_balance] sm:columns-2 lg:columns-3">
-                    {testimonials.map((t) => (
-                        <li key={`${t.name}-${t.username}`} className="mb-5 break-inside-avoid">
+                    {reviews.map((t) => (
+                        <li key={`${t.name}-${t.quote.slice(0, 24)}`} className="mb-5 break-inside-avoid">
                             <figure className="flex flex-col gap-5 rounded-md bg-paper p-6 ring-1 ring-line">
                                 <blockquote className="font-display text-xl leading-snug text-indigo-deep">
-                                    “{t.body}”
+                                    “{t.quote}”
                                 </blockquote>
                                 <figcaption className="flex items-center gap-3">
-                                    <img src={t.img} alt="" loading="lazy" className="size-10 shrink-0 rounded-full bg-shea-deep object-cover" />
+                                    {t.photo ? (
+                                        <img src={t.photo} alt="" loading="lazy" className="size-10 shrink-0 rounded-full bg-shea-deep object-cover" />
+                                    ) : (
+                                        <span aria-hidden="true" className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-indigo font-display text-lg text-shea">
+                                            {t.name[0]}
+                                        </span>
+                                    )}
                                     <div className="min-w-0">
                                         <p className="truncate text-sm font-semibold text-ink">{t.name}</p>
-                                        <p className="truncate font-mono text-xs uppercase tracking-wider text-wood">
-                                            {t.username}{t.country ? ` · ${t.country}` : ''}
-                                        </p>
+                                        {t.detail && <p className="truncate font-mono text-xs uppercase tracking-wider text-wood">{t.detail}</p>}
                                     </div>
                                 </figcaption>
                             </figure>

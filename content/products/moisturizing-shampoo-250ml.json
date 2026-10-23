@@ -1,0 +1,20 @@
+{
+  "name": "Moisturizing Shampoo (250ml)",
+  "tagline": "Hydrates while cleaning",
+  "price": 45,
+  "size": "250ml",
+  "need": "moisture",
+  "description": "Infused with moisturizing ingredients to hydrate dry hair while cleansing.",
+  "images": [
+    "/uploads/products/moisturizing-shampoo-250ml-1.webp"
+  ],
+  "tags": [
+    "Moisturizing",
+    "Cleanse"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": false,
+  "order": 12,
+  "legacyId": 12
+}

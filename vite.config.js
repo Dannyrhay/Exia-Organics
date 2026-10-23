@@ -10,9 +10,9 @@ const SITE_URL = (process.env.SITE_URL || process.env.URL || "").replace(/\/$/, 
 // Exposed to index.html as %VITE_SITE_URL% and to the app as import.meta.env.VITE_SITE_URL.
 process.env.VITE_SITE_URL = SITE_URL
 
-/** Pull numeric ids out of a data file without importing it (it imports images). */
-const idsIn = (file) =>
-  [...fs.readFileSync(path.resolve(__dirname, file), "utf8").matchAll(/^\s{4,8}id:\s*(\d+),/gm)].map((m) => m[1])
+/** File names (slugs) in a content folder, e.g. content/products/hair-growth-butter.json. */
+const slugsIn = (dir) =>
+  fs.readdirSync(path.resolve(__dirname, dir)).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, ""))
 
 /** Emits robots.txt and, when the site URL is known, sitemap.xml at build time. */
 function seoFiles() {
@@ -20,13 +20,13 @@ function seoFiles() {
     name: "exia-seo-files",
     apply: "build",
     generateBundle() {
-      const robots = ["User-agent: *", "Allow: /", "Disallow: /checkout", ""]
+      const robots = ["User-agent: *", "Allow: /", "Disallow: /checkout", "Disallow: /admin/", ""]
       if (SITE_URL) {
         const today = new Date().toISOString().slice(0, 10)
         const paths = [
           "/", "/products", "/about", "/blog", "/testimonials", "/faqs", "/contact",
-          ...idsIn("src/data/products.js").map((id) => `/product/${id}`),
-          ...idsIn("src/data/blog.jsx").map((id) => `/blog/${id}`),
+          ...slugsIn("content/products").map((slug) => `/product/${slug}`),
+          ...slugsIn("content/journal").map((slug) => `/blog/${slug}`),
         ]
         const urls = paths
           .map((p) => `  <url><loc>${SITE_URL}${p}</loc><lastmod>${today}</lastmod></url>`)

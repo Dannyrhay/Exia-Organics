@@ -1,0 +1,21 @@
+{
+  "name": "Anti-Dandruff Set",
+  "tagline": "Complete scalp care",
+  "price": 350,
+  "size": "",
+  "need": "sets",
+  "description": "A complete set designed to tackle dandruff and restore scalp health effectively.",
+  "images": [
+    "/uploads/products/anti-dandruff-set-1.webp",
+    "/uploads/products/anti-dandruff-set-2.webp"
+  ],
+  "tags": [
+    "Bundle",
+    "Scalp Care"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": false,
+  "order": 3,
+  "legacyId": 3
+}

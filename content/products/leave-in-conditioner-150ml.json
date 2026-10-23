@@ -1,0 +1,20 @@
+{
+  "name": "Leave-In Conditioner (150ml)",
+  "tagline": "Daily moisture & detangling",
+  "price": 40,
+  "size": "150ml",
+  "need": "moisture",
+  "description": "Lightweight leave-in conditioner that detangles, moisturizes, and protects hair throughout the day.",
+  "images": [
+    "/uploads/products/leave-in-conditioner-150ml-1.webp"
+  ],
+  "tags": [
+    "Daily Care",
+    "Moisture"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": true,
+  "order": 9,
+  "legacyId": 9
+}

@@ -1,62 +1,25 @@
 import { useId, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { SITE } from '@/data/site';
+import faqData from '/content/faqs.json';
+import { fillPlaceholders } from '@/data/site';
+import Markdown from '@/components/ui/Markdown';
 import SectionHeading from '@/components/brand/SectionHeading';
 import WhatsAppBand from '@/components/home/WhatsAppBand';
 import JsonLd from '@/components/seo/JsonLd';
 import { useSeo } from '@/lib/seo';
 
-// TODO(Danny): confirm delivery areas, payment methods and the returns policy.
-const faqs = [
-    {
-        question: 'How do I place an order?',
-        plain: 'Add products to your cart and go to checkout. Enter your delivery details, send the total by Mobile Money with the order reference shown, then enter your MoMo transaction ID. We confirm on WhatsApp once your payment arrives.',
-        answer: (
-            <>
-                Add products to your cart and go to checkout. Enter your delivery details, send the total by Mobile Money with the order
-                reference we show you, then type in your MoMo transaction ID. We'll confirm on WhatsApp once your payment arrives.
-            </>
-        ),
-    },
-    {
-        question: 'Do you deliver?',
-        plain: "Yes. Send your location on WhatsApp and we'll confirm the delivery fee and timing before you pay.",
-        answer: <>Yes. Send your location on WhatsApp and we'll confirm the delivery fee and timing before you pay.</>,
-    },
-    {
-        question: 'Which product is right for my hair?',
-        plain: "Start with the concern that sounds most like you in the shop (scalp care, growth, moisture or repair), or message us and we'll suggest a routine.",
-        answer: (
-            <>
-                Start with the concern that sounds most like you in the <Link to="/products" className="text-indigo underline underline-offset-4">shop</Link>{' '}
-                (scalp care, growth, moisture or repair), or message us and we'll suggest a routine.
-            </>
-        ),
-    },
-    {
-        question: "What's in your products?",
-        plain: 'Our formulas are built around herbal extracts and natural butters, and are free from parabens, sulfates and synthetic fragrances.',
-        answer: <>Our formulas are built around herbal extracts and natural butters, and are free from parabens, sulfates and synthetic fragrances.</>,
-    },
-    {
-        question: 'How do I pay?',
-        plain: `By Mobile Money (${SITE.momo.networks}) to ${SITE.momo.number}, account name ${SITE.momo.accountName}. Use your order reference as the payment note. We will never ask for your MoMo PIN.`,
-        answer: (
-            <>
-                By Mobile Money ({SITE.momo.networks}) to {SITE.momo.number}, account name {SITE.momo.accountName}. Use your order reference as the
-                payment note so we can match it. We will never ask for your MoMo PIN.
-            </>
-        ),
-    },
-    {
-        question: 'Something is wrong with my order. What now?',
-        plain: `Message us on WhatsApp or call ${SITE.phoneDisplay} (${SITE.hours}) and we'll put it right.`,
-        answer: <>Message us on WhatsApp or call {SITE.phoneDisplay} ({SITE.hours}) and we'll put it right.</>,
-    },
-];
+// Questions and answers are edited under "Site → FAQs" in the dashboard (/admin).
+// Answers are Markdown and may use {momoNumber}, {momoName}, {momoNetworks}, {phone}, {hours}.
+const faqs = (faqData.items ?? [])
+    .filter((f) => f.question && f.answer)
+    .map((f) => {
+        const answer = fillPlaceholders(f.answer);
+        // Plain text for search engines: drop Markdown links/emphasis, keep the words.
+        const plain = answer.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`#>]/g, '').trim();
+        return { question: f.question, answer, plain };
+    });
 
 function FaqItem({ faq, open, onToggle }) {
     const id = useId();
@@ -85,7 +48,7 @@ function FaqItem({ faq, open, onToggle }) {
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                     >
-                        <p className="max-w-prose pb-6 leading-relaxed text-ink-soft">{faq.answer}</p>
+                        <Markdown prose={false} className="max-w-prose pb-6 leading-relaxed text-ink-soft [&_a]:text-indigo [&_a]:underline [&_a]:underline-offset-4 [&_p+p]:mt-3">{faq.answer}</Markdown>
                     </motion.div>
                 )}
             </AnimatePresence>

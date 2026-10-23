@@ -1,0 +1,21 @@
+{
+  "name": "Hair Repair Oil (100ml)",
+  "tagline": "Double the repair",
+  "price": 85,
+  "size": "100ml",
+  "need": "repair",
+  "description": "Our effective Hair Repair Oil in a larger size for continuous treatment.",
+  "images": [
+    "/uploads/products/hair-repair-oil-100ml-1.webp",
+    "/uploads/products/hair-repair-oil-100ml-2.webp"
+  ],
+  "tags": [
+    "Value Size",
+    "Repair"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": false,
+  "order": 8,
+  "legacyId": 8
+}

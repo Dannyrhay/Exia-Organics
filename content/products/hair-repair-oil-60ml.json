@@ -1,0 +1,21 @@
+{
+  "name": "Hair Repair Oil (60ml)",
+  "tagline": "Fixes split ends",
+  "price": 60,
+  "size": "60ml",
+  "need": "repair",
+  "description": "A concentrated oil aimed at repairing split ends and adding shine to dull hair.",
+  "images": [
+    "/uploads/products/hair-repair-oil-60ml-1.webp",
+    "/uploads/products/hair-repair-oil-60ml-2.webp"
+  ],
+  "tags": [
+    "Repair",
+    "Oil"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": true,
+  "order": 7,
+  "legacyId": 7
+}

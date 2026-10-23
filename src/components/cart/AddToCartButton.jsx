@@ -20,6 +20,14 @@ export default function AddToCartButton({ product, qty = 1, variant = 'solid', o
 
     useEffect(() => () => clearTimeout(timer.current), []);
 
+    if (!product.inStock) {
+        return (
+            <button type="button" disabled className={cn('inline-flex min-h-11 cursor-not-allowed items-center justify-center rounded-full bg-shea-deep px-5 text-sm font-semibold text-ink-soft', className)}>
+                Sold out
+            </button>
+        );
+    }
+
     const onClick = () => {
         add(product, qty);
         if (openCart) open();

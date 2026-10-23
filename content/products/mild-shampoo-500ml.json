@@ -1,0 +1,20 @@
+{
+  "name": "Mild Shampoo (500ml)",
+  "tagline": "Gentle daily cleanse",
+  "price": 70,
+  "size": "500ml",
+  "need": "moisture",
+  "description": "A gentle shampoo perfect for frequent use, cleaning hair without stripping natural oils.",
+  "images": [
+    "/uploads/products/mild-shampoo-500ml-1.webp"
+  ],
+  "tags": [
+    "Gentle",
+    "Daily Use"
+  ],
+  "inStock": true,
+  "featured": false,
+  "bestseller": false,
+  "order": 10,
+  "legacyId": 10
+}

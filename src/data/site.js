@@ -1,34 +1,47 @@
-// Single source of truth for brand contact details.
-// Every page that shows a phone number, email or social link reads from here.
+// Brand contact details, MoMo and delivery settings. The values live in
+// content/settings.json and are edited under "Site" in the admin dashboard (/admin).
+import settings from '/content/settings.json';
+
+const SOCIAL_LABELS = { facebook: 'Facebook', tiktok: 'TikTok', snapchat: 'Snapchat', instagram: 'Instagram', youtube: 'YouTube', x: 'X' };
+const digits = (s = '') => String(s).replace(/\D/g, '');
+const slugify = (s = '') => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 export const SITE = {
     name: 'Exia Organics',
-    email: 'exiaorganics@gmail.com',
-    // Display format and the digits-only format WhatsApp's wa.me links need.
-    phoneDisplay: '+233 59 160 4923',
-    phoneHref: '+233591604923',
-    whatsappNumber: '233591604923',
-    hours: 'Mon–Fri, 9am–5pm',
-    // TODO(handles): replace with the real profile URLs once confirmed.
-    socials: [
-        { label: 'Facebook', href: 'https://facebook.com', key: 'facebook' },
-        { label: 'TikTok', href: 'https://tiktok.com', key: 'tiktok' },
-        { label: 'Snapchat', href: 'https://snapchat.com', key: 'snapchat' },
-    ],
+    email: settings.email,
+    // Display format, plus the forms tel: links and WhatsApp's wa.me links need.
+    phoneDisplay: settings.phoneDisplay,
+    phoneHref: `+${digits(settings.phoneDisplay)}`,
+    whatsappNumber: digits(settings.whatsappNumber),
+    hours: settings.hours,
+    socials: (settings.socials ?? [])
+        .filter((s) => s.url)
+        .map((s) => ({ key: s.platform, label: SOCIAL_LABELS[s.platform] ?? s.platform, href: s.url })),
 
     // Where customers send Mobile Money at checkout.
-    // TODO(confirm): number, registered account name and accepted networks.
-    momo: {
-        number: '059 160 4923',
-        accountName: 'Exia Organics',
-        networks: 'MTN MoMo',
-    },
+    momo: settings.momo,
 
-    // TODO(confirm): fixed delivery zones, e.g. [{ id: 'accra', label: 'Accra', fee: 30 }].
-    // While this is empty, customers type their area and the fee is agreed on WhatsApp.
-    deliveryZones: [],
-    deliveryNote: 'Delivery fee is confirmed on WhatsApp after you order.',
+    // Fixed delivery zones with fees. While the list is empty, customers type their
+    // area at checkout and the fee is agreed on WhatsApp.
+    deliveryZones: (settings.deliveryZones ?? [])
+        .filter((z) => z.label)
+        .map((z) => ({ id: slugify(z.label), label: z.label, fee: Number(z.fee) || 0 })),
+    deliveryNote: settings.deliveryNote,
 };
+
+/** Fills {momoNumber}-style placeholders in admin-written text with the current settings. */
+export const fillPlaceholders = (text = '') =>
+    text.replace(/\{(\w+)\}/g, (match, key) => {
+        const values = {
+            momoNumber: SITE.momo.number,
+            momoName: SITE.momo.accountName,
+            momoNetworks: SITE.momo.networks,
+            phone: SITE.phoneDisplay,
+            hours: SITE.hours,
+            email: SITE.email,
+        };
+        return values[key] ?? match;
+    });
 
 export const formatPrice = (amount, currency = 'GHS') =>
     `${currency} ${Number(amount).toLocaleString('en-GH')}`;

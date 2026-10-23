@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "question": "How do I place an order?",
+      "answer": "Add products to your cart and go to checkout. Enter your delivery details, send the total by Mobile Money with the order reference we show you, then type in your MoMo transaction ID. We'll confirm on WhatsApp once your payment arrives."
+    },
+    {
+      "question": "Do you deliver?",
+      "answer": "Yes. Send your location on WhatsApp and we'll confirm the delivery fee and timing before you pay."
+    },
+    {
+      "question": "Which product is right for my hair?",
+      "answer": "Start with the concern that sounds most like you in the [shop](/products) (scalp care, growth, moisture or repair), or message us and we'll suggest a routine."
+    },
+    {
+      "question": "What's in your products?",
+      "answer": "Our formulas are built around herbal extracts and natural butters, and are free from parabens, sulfates and synthetic fragrances."
+    },
+    {
+      "question": "How do I pay?",
+      "answer": "By Mobile Money ({momoNetworks}) to {momoNumber}, account name {momoName}. Use your order reference as the payment note so we can match it. We will never ask for your MoMo PIN."
+    },
+    {
+      "question": "Something is wrong with my order. What now?",
+      "answer": "Message us on WhatsApp or call {phone} ({hours}) and we'll put it right."
+    }
+  ]
+}

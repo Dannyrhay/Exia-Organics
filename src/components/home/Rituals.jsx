@@ -23,7 +23,7 @@ export default function Rituals() {
                                     src={set.imageUrl}
                                     alt=""
                                     loading="lazy"
-                                    className="size-full object-cover object-[50%_70%] transition-transform duration-700 group-hover:scale-[1.04] sm:absolute sm:inset-0 lg:static"
+                                    className="size-full object-cover object-[50%_66%] transition-transform duration-700 group-hover:scale-[1.04] sm:absolute sm:inset-0 lg:static"
                                 />
                             </Link>
                             <div className="flex flex-1 flex-col gap-4 p-5">

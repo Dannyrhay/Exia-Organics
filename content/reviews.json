@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "name": "Sarah Jenkins",
+      "detail": "Verified Buyer · 🇺🇸 USA",
+      "quote": "I've tried countless organic brands, but Exia is in a league of its own. The Shampoo revitalized my hair in just two weeks!",
+      "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop"
+    },
+    {
+      "name": "Michael Chen",
+      "detail": "Skincare Enthusiast · 🇨🇦 Canada",
+      "quote": "The Face Oil is liquid gold. It absorbs perfectly and leaves my skin glowing without feeling greasy. Highly recommended!",
+      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
+    },
+    {
+      "name": "Emily Rodriguez",
+      "detail": "Eco Blogger · 🇲🇽 Mexico",
+      "quote": "Finally, a brand that actually cares about sustainability. The packaging is beautiful and eco-friendly. Love it!",
+      "photo": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop"
+    },
+    {
+      "name": "David Kim",
+      "detail": "Verified Buyer · 🇰🇷 South Korea",
+      "quote": "Sensitive skin savior! The Aloe Gel calmed my redness overnight. I'm swapping all my products to Exia.",
+      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop"
+    },
+    {
+      "name": "Lisa Thompson",
+      "detail": "Wellness Coach · 🇬🇧 UK",
+      "quote": "The aroma of the Lavender Oil is so pure and relaxing. It's now an essential part of my bedtime routine.",
+      "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
+    },
+    {
+      "name": "James Wilson",
+      "detail": "Parent · 🇦🇺 Australia",
+      "quote": "My hair has never felt softer. The ingredients list is so clean, I feel safe using it on my whole family.",
+      "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop"
+    },
+    {
+      "name": "Anna Petrova",
+      "detail": "Verified Buyer · 🇩🇪 Germany",
+      "quote": "Incredible value for the quality. It feels like a high-end spa treatment every time I use the body scrub.",
+      "photo": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=200&auto=format&fit=crop"
+    },
+    {
+      "name": "Jessica Lee",
+      "detail": "Beauty Vlogger · 🇺🇸 USA",
+      "quote": "Watch my full routine using the Exia collection. The transformation is real!",
+      "photo": "https://images.unsplash.com/photo-1629425733761-caae3b5f2e50?q=80&w=200&auto=format&fit=crop"
+    },
+    {
+      "name": "Ryan Carter",
+      "detail": "Content Creator · 🇳🇬 Nigeria",
+      "quote": "I documented my 30-day journey with Exia Organics. See the results for yourself!",
+      "photo": "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=200&auto=format&fit=crop"
+    },
+    {
+      "name": "Sophie Clark",
+      "detail": "Influencer · 🇫🇷 France",
+      "quote": "Unboxing the new Summer Bundle! You won't believe the scent of this Mist.",
+      "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
+    }
+  ]
+}

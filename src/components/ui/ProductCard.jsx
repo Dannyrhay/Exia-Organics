@@ -21,11 +21,14 @@ export function ProductCard({ product, className, priority = false }) {
                     alt={product.name}
                     loading={priority ? 'eager' : 'lazy'}
                     decoding="async"
-                    className="size-full object-cover object-[50%_74%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    className="size-full object-cover object-[50%_62%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
                 <span className="absolute left-2.5 top-2.5 rounded-full bg-paper/90 px-2.5 py-1 eyebrow text-indigo-deep backdrop-blur-sm">
                     {needLabel[product.need]}
                 </span>
+                {!product.inStock && (
+                    <span className="absolute right-2.5 top-2.5 rounded-full bg-indigo-deep px-2.5 py-1 eyebrow text-shea">Sold out</span>
+                )}
             </Link>
 
             <div className="flex flex-col gap-1.5">
