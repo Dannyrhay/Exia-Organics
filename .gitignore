@@ -28,3 +28,6 @@ dist-ssr
 .playwright-mcp/
 .firecrawl/
 .fallow/
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
