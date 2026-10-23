@@ -3,6 +3,8 @@ import { ArrowLeft } from 'lucide-react';
 import { getPost, posts } from '@/data/blog';
 import WhatsAppButton from '@/components/brand/WhatsAppButton';
 import NotFoundPage from './NotFoundPage';
+import JsonLd from '@/components/seo/JsonLd';
+import { absoluteUrl, breadcrumbSchema, siteOrigin, useSeo } from '@/lib/seo';
 
 // No typography plugin: style the post body's plain tags here.
 const prose = [
@@ -16,12 +18,29 @@ const prose = [
 const BlogPostDetail = () => {
     const { id } = useParams();
     const post = getPost(id);
+    useSeo(post ? { title: post.title, description: post.summary, image: post.imageUrl, type: 'article' } : { title: 'Article not found', noindex: true });
     if (!post) return <NotFoundPage title="We couldn't find that article." />;
 
     const next = posts[(posts.indexOf(post) + 1) % posts.length];
 
     return (
         <article className="pb-24 pt-10 md:pt-14">
+            <JsonLd
+                data={[
+                    {
+                        '@context': 'https://schema.org',
+                        '@type': 'BlogPosting',
+                        headline: post.title,
+                        description: post.summary,
+                        image: absoluteUrl(post.imageUrl),
+                        datePublished: new Date(post.date).toISOString().slice(0, 10),
+                        author: { '@type': 'Organization', name: 'Exia Organics', url: siteOrigin() },
+                        publisher: { '@type': 'Organization', name: 'Exia Organics', logo: { '@type': 'ImageObject', url: absoluteUrl('/apple-touch-icon.png') } },
+                        mainEntityOfPage: `${siteOrigin()}/blog/${post.id}`,
+                    },
+                    breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Journal', path: '/blog' }, { name: post.title, path: `/blog/${post.id}` }]),
+                ]}
+            />
             <header className="mx-auto max-w-4xl px-4 sm:px-6">
                 <Link to="/blog" className="inline-flex min-h-11 items-center gap-2 font-mono text-xs uppercase tracking-wider text-ink-soft hover:text-indigo">
                     <ArrowLeft className="size-3.5" aria-hidden="true" /> Journal

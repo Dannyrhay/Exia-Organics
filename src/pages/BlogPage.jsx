@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { posts } from '@/data/blog';
 import SectionHeading from '@/components/brand/SectionHeading';
+import { useSeo } from '@/lib/seo';
 
 const BlogPage = () => {
+    useSeo({ title: 'Journal: natural hair tips', description: 'Ingredients, wash-day routines, porosity, protective styles and scalp care: honest advice for natural and textured hair.' });
     const [lead, ...rest] = posts;
 
     return (

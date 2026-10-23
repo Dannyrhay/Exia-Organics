@@ -5,6 +5,7 @@ import { SITE, whatsappUrl } from '@/data/site';
 import SectionHeading from '@/components/brand/SectionHeading';
 import WhatsAppButton from '@/components/brand/WhatsAppButton';
 import CopyButton from '@/components/ui/CopyButton';
+import { useSeo } from '@/lib/seo';
 
 function ContactRow({ icon: Icon, label, value, href, note }) {
     return (
@@ -23,6 +24,7 @@ function ContactRow({ icon: Icon, label, value, href, note }) {
 }
 
 function ContactPage() {
+    useSeo({ title: 'Contact us', description: `Call ${SITE.phoneDisplay}, email ${SITE.email} or chat on WhatsApp with Exia Organics. ${SITE.hours}.` });
     const socials = [{ key: 'whatsapp', href: whatsappUrl(), label: 'WhatsApp' }, ...SITE.socials];
 
     return (

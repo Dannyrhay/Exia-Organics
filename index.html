@@ -4,17 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Exia Organics · Natural haircare from Ghana</title>
-    <meta name="description" content="Herbal shampoos, conditioners, growth butter and repair oils made in Ghana for natural and textured hair. Order directly on WhatsApp." />
+    <!--
+      Defaults for the home page and for crawlers / link previews that don't run JS
+      (WhatsApp, Facebook). Each page updates these via useSeo() in src/lib/seo.js.
+      %VITE_SITE_URL% is filled in at build time (Netlify's URL), see vite.config.js.
+    -->
+    <meta name="description" content="Herbal shampoos, conditioners, growth butter and repair oils handcrafted in Ghana for natural and textured hair. Order online and pay with Mobile Money." />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#241d6e" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Exia Organics" />
+    <meta property="og:locale" content="en_GH" />
     <meta property="og:title" content="Exia Organics · Natural haircare from Ghana" />
-    <meta property="og:description" content="Herbal shampoos, growth butter and repair oils for natural hair. Order on WhatsApp." />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:description" content="Herbal shampoos, growth butter and repair oils for natural hair, handcrafted in Ghana. Pay with Mobile Money." />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Exia Organics range of herbal haircare on a wooden table" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Exia Organics · Natural haircare from Ghana" />
+    <meta name="twitter:description" content="Herbal shampoos, growth butter and repair oils for natural hair, handcrafted in Ghana." />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

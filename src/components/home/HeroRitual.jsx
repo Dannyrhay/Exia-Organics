@@ -3,7 +3,6 @@ import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { products, shortName } from '@/data/products';
 import { formatPrice } from '@/data/site';
-import WhatsAppButton from '@/components/brand/WhatsAppButton';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import hero800 from '@/assets/hero-lineup-800.webp';
 import hero1600 from '@/assets/hero-lineup-1600.webp';
@@ -42,7 +41,6 @@ export default function HeroRitual() {
                         >
                             Shop the collection <ArrowRight className="size-4" aria-hidden="true" />
                         </Link>
-                        <WhatsAppButton variant="outline" className="min-h-12">Ask us on WhatsApp</WhatsAppButton>
                     </motion.div>
                 </div>
 

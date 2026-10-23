@@ -8,6 +8,8 @@ import { useCart } from '@/cart/cart-context';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import QuantityStepper from '@/components/cart/QuantityStepper';
 import NotFoundPage from './NotFoundPage';
+import JsonLd from '@/components/seo/JsonLd';
+import { absoluteUrl, breadcrumbSchema, siteOrigin, useSeo } from '@/lib/seo';
 
 const orderSteps = [
     'Add it to your cart and check out with your delivery details.',
@@ -53,6 +55,16 @@ function ProductPurchase({ product }) {
 export default function ProductDetail() {
     const { id } = useParams();
     const product = products.find((p) => p.id === Number(id));
+    useSeo(
+        product
+            ? {
+                  title: `${product.name}, ${formatPrice(product.price, product.currency)}`,
+                  description: `${product.description} Handcrafted in Ghana. Order online and pay with Mobile Money.`,
+                  image: product.imageUrl,
+                  type: 'product',
+              }
+            : { title: 'Product not found', noindex: true },
+    );
     if (!product) return <NotFoundPage title="We couldn't find that product." />;
 
     const need = needs.find((n) => n.id === product.need);
@@ -60,6 +72,35 @@ export default function ProductDetail() {
 
     return (
         <div className="pb-24 pt-8 md:pt-12">
+            <JsonLd
+                data={[
+                    {
+                        '@context': 'https://schema.org',
+                        '@type': 'Product',
+                        name: product.name,
+                        description: product.description,
+                        image: absoluteUrl(product.imageUrl),
+                        sku: `EXIA-${product.id}`,
+                        category: need.label,
+                        brand: { '@type': 'Brand', name: 'Exia Organics' },
+                        offers: {
+                            '@type': 'Offer',
+                            url: `${siteOrigin()}/product/${product.id}`,
+                            price: product.price,
+                            priceCurrency: product.currency,
+                            availability: 'https://schema.org/InStock',
+                            itemCondition: 'https://schema.org/NewCondition',
+                            seller: { '@type': 'Organization', name: 'Exia Organics' },
+                        },
+                    },
+                    breadcrumbSchema([
+                        { name: 'Home', path: '/' },
+                        { name: 'Shop', path: '/products' },
+                        { name: need.label, path: `/products?need=${need.id}` },
+                        { name: product.name, path: `/product/${product.id}` },
+                    ]),
+                ]}
+            />
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <nav aria-label="Breadcrumb">
                     <ol className="flex flex-wrap items-center gap-1 font-mono text-xs uppercase tracking-wider text-ink-soft">

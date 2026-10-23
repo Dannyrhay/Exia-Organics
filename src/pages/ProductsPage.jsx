@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { needs, products } from '@/data/products';
 import { ProductCard } from '@/components/ui/ProductCard';
 import SectionHeading from '@/components/brand/SectionHeading';
+import { useSeo } from '@/lib/seo';
 
 const filters = [{ id: 'all', label: 'All' }, ...needs];
 
@@ -11,6 +12,12 @@ export default function ProductsPage() {
     const active = filters.some((f) => f.id === params.get('need')) ? params.get('need') : 'all';
     const shown = active === 'all' ? products : products.filter((p) => p.need === active);
     const activeNeed = needs.find((n) => n.id === active);
+
+    useSeo(
+        activeNeed
+            ? { title: `${activeNeed.label}: natural haircare`, description: `Exia Organics products for ${activeNeed.blurb.toLowerCase()}. Handcrafted in Ghana, paid with Mobile Money.` }
+            : { title: 'Shop natural haircare', description: 'Shop all 12 Exia Organics products: herbal shampoos, conditioners, growth butter, repair oils and sets for natural and textured hair. Prices in GHS.' },
+    );
 
     const select = (id) => setParams(id === 'all' ? {} : { need: id }, { replace: true });
 

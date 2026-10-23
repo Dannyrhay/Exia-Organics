@@ -1,9 +1,12 @@
 import { testimonials } from '../data/testimonials';
 import SectionHeading from '@/components/brand/SectionHeading';
 import WhatsAppBand from '@/components/home/WhatsAppBand';
+import { useSeo } from '@/lib/seo';
 
 // CSS columns give a masonry flow that reflows from 1 to 3 columns with no JS.
-const TestimonialsPage = () => (
+const TestimonialsPage = () => {
+    useSeo({ title: 'Customer reviews', description: 'What customers say about Exia Organics herbal shampoos, conditioners, growth butter and repair oils.' });
+    return (
     <>
         <section className="pb-24 pt-12 md:pt-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -35,6 +38,7 @@ const TestimonialsPage = () => (
         </section>
         <WhatsAppBand />
     </>
-);
+    );
+};
 
 export default TestimonialsPage;

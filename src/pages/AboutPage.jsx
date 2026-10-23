@@ -1,12 +1,18 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { promises } from '@/data/site';
+import { useSeo } from '@/lib/seo';
 import SectionHeading from '@/components/brand/SectionHeading';
 import WhatsAppBand from '@/components/home/WhatsAppBand';
 import hero800 from '@/assets/hero-lineup-800.webp';
 import hero1600 from '@/assets/hero-lineup-1600.webp';
 
-const AboutPage = () => (
+const AboutPage = () => {
+    useSeo({
+        title: 'Our story',
+        description: 'Exia Organics makes herbal haircare by hand in Ghana for natural and textured hair, rooted in nature and grounded in care since 2020.',
+    });
+    return (
     <>
         <section className="pb-20 pt-12 md:pt-16">
             <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:px-8">
@@ -54,6 +60,7 @@ const AboutPage = () => (
 
         <WhatsAppBand />
     </>
-);
+    );
+};
 
 export default AboutPage;

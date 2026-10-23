@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useSeo } from '@/lib/seo';
 
 export default function NotFoundPage({ title = "This page doesn't exist." }) {
+    useSeo({ title: 'Page not found', noindex: true });
     return (
         <section className="mx-auto flex min-h-[65vh] max-w-3xl flex-col items-start justify-center gap-6 px-4 py-20 sm:px-6">
             <p className="eyebrow text-wood">404</p>

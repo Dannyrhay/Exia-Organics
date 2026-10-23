@@ -6,11 +6,14 @@ import { cn } from '@/lib/utils';
 import { SITE } from '@/data/site';
 import SectionHeading from '@/components/brand/SectionHeading';
 import WhatsAppBand from '@/components/home/WhatsAppBand';
+import JsonLd from '@/components/seo/JsonLd';
+import { useSeo } from '@/lib/seo';
 
 // TODO(Danny): confirm delivery areas, payment methods and the returns policy.
 const faqs = [
     {
         question: 'How do I place an order?',
+        plain: 'Add products to your cart and go to checkout. Enter your delivery details, send the total by Mobile Money with the order reference shown, then enter your MoMo transaction ID. We confirm on WhatsApp once your payment arrives.',
         answer: (
             <>
                 Add products to your cart and go to checkout. Enter your delivery details, send the total by Mobile Money with the order
@@ -20,10 +23,12 @@ const faqs = [
     },
     {
         question: 'Do you deliver?',
+        plain: "Yes. Send your location on WhatsApp and we'll confirm the delivery fee and timing before you pay.",
         answer: <>Yes. Send your location on WhatsApp and we'll confirm the delivery fee and timing before you pay.</>,
     },
     {
         question: 'Which product is right for my hair?',
+        plain: "Start with the concern that sounds most like you in the shop (scalp care, growth, moisture or repair), or message us and we'll suggest a routine.",
         answer: (
             <>
                 Start with the concern that sounds most like you in the <Link to="/products" className="text-indigo underline underline-offset-4">shop</Link>{' '}
@@ -33,10 +38,12 @@ const faqs = [
     },
     {
         question: "What's in your products?",
+        plain: 'Our formulas are built around herbal extracts and natural butters, and are free from parabens, sulfates and synthetic fragrances.',
         answer: <>Our formulas are built around herbal extracts and natural butters, and are free from parabens, sulfates and synthetic fragrances.</>,
     },
     {
         question: 'How do I pay?',
+        plain: `By Mobile Money (${SITE.momo.networks}) to ${SITE.momo.number}, account name ${SITE.momo.accountName}. Use your order reference as the payment note. We will never ask for your MoMo PIN.`,
         answer: (
             <>
                 By Mobile Money ({SITE.momo.networks}) to {SITE.momo.number}, account name {SITE.momo.accountName}. Use your order reference as the
@@ -46,6 +53,7 @@ const faqs = [
     },
     {
         question: 'Something is wrong with my order. What now?',
+        plain: `Message us on WhatsApp or call ${SITE.phoneDisplay} (${SITE.hours}) and we'll put it right.`,
         answer: <>Message us on WhatsApp or call {SITE.phoneDisplay} ({SITE.hours}) and we'll put it right.</>,
     },
 ];
@@ -87,9 +95,17 @@ function FaqItem({ faq, open, onToggle }) {
 
 const FAQsPage = () => {
     const [openIndex, setOpenIndex] = useState(0);
+    useSeo({ title: 'FAQs: ordering, delivery and payment', description: 'How to order from Exia Organics, delivery, Mobile Money payment, ingredients and which product suits your hair.' });
 
     return (
         <>
+            <JsonLd
+                data={{
+                    '@context': 'https://schema.org',
+                    '@type': 'FAQPage',
+                    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.plain } })),
+                }}
+            />
             <section className="pb-24 pt-12 md:pt-16">
                 <div className="mx-auto max-w-3xl px-4 sm:px-6">
                     <SectionHeading as="h1" eyebrow="FAQs" title="Questions," accent="answered." />

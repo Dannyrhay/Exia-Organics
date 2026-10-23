@@ -18,7 +18,7 @@ export function ProductCard({ product, className, priority = false }) {
             >
                 <img
                     src={product.imageUrl}
-                    alt=""
+                    alt={product.name}
                     loading={priority ? 'eager' : 'lazy'}
                     decoding="async"
                     className="size-full object-cover object-[50%_74%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"

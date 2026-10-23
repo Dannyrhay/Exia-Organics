@@ -16,6 +16,7 @@ import { formatPrice, SITE, whatsappTextUrl } from '@/data/site';
 import SectionHeading from '@/components/brand/SectionHeading';
 import CopyButton from '@/components/ui/CopyButton';
 import { WhatsAppIcon } from '@/components/icons/SocialIcons';
+import { useSeo } from '@/lib/seo';
 
 const EMPTY_FORM = { name: '', phone: '', zone: '', area: '', address: '', note: '', transactionId: '', senderName: '' };
 
@@ -168,6 +169,7 @@ export default function CheckoutPage() {
     const [placed, setPlaced] = useState(null); // { order, emailed }
     const [reference] = useState(getOrderReference);
     const formRef = useRef(null);
+    useSeo({ title: 'Checkout', noindex: true });
 
     const zone = zones.find((z) => z.id === form.zone);
     const deliveryFee = hasZones ? (zone?.fee ?? 0) : null;
