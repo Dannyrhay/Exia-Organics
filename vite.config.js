@@ -45,8 +45,22 @@ function seoFiles() {
   }
 }
 
+/** In dev, serve the admin at /admin like Netlify does (instead of the SPA fallback). */
+function adminInDev() {
+  return {
+    name: "exia-admin-dev",
+    apply: "serve",
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        if (req.url === "/admin" || req.url === "/admin/") req.url = "/admin/index.html"
+        next()
+      })
+    },
+  }
+}
+
 export default defineConfig({
-  plugins: [react(), tailwindcss(), seoFiles()],
+  plugins: [react(), tailwindcss(), seoFiles(), adminInDev()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
