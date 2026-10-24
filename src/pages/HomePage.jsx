@@ -1,4 +1,5 @@
 import HeroRitual from '../components/home/HeroRitual';
+import PromoBanner from '../components/promo/PromoBanner';
 import ShopByNeed from '../components/home/ShopByNeed';
 import Bestsellers from '../components/home/Bestsellers';
 import Rituals from '../components/home/Rituals';
@@ -14,6 +15,7 @@ const HomePage = () => {
     <>
         <JsonLd data={organizationSchema()} />
         <HeroRitual />
+        <PromoBanner />
         <ShopByNeed />
         <Bestsellers />
         <Rituals />

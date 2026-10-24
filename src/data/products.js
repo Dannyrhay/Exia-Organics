@@ -11,6 +11,8 @@ export const needs = [
     { id: 'sets', label: 'Sets', blurb: 'Complete routines, bundled' },
 ];
 
+import { hasPassed } from '@/lib/schedule';
+
 const files = import.meta.glob('/content/products/*.json', { eager: true, import: 'default' });
 
 export const products = Object.entries(files)
@@ -18,6 +20,14 @@ export const products = Object.entries(files)
         // The file name is the product's permanent web address: /product/<slug>.
         const slug = path.split('/').pop().replace(/\.json$/, '');
         const images = (data.images ?? []).filter(Boolean);
+
+        // A sale applies when a sale price below the regular price is set and its end
+        // date (if any) hasn't passed. `price` is then what customers pay everywhere —
+        // cart, checkout and the order message — and `compareAtPrice` is the crossed-out one.
+        const regular = Number(data.price) || 0;
+        const sale = Number(data.salePrice) || 0;
+        const onSale = sale > 0 && sale < regular && !hasPassed(data.saleEnds);
+
         return {
             ...data,
             id: slug,
@@ -25,7 +35,9 @@ export const products = Object.entries(files)
             images,
             imageUrl: images[0] ?? '',
             size: data.size || null,
-            price: Number(data.price) || 0,
+            price: onSale ? sale : regular,
+            compareAtPrice: onSale ? regular : null,
+            onSale,
             currency: 'GHS',
             tags: (data.tags ?? []).map((label) => ({ label })),
             inStock: data.inStock !== false,

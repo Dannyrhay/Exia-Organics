@@ -75,7 +75,7 @@ function OrderSummary({ lines, subtotal, deliveryFee, total }) {
                         <div className="min-w-0 flex-1">
                             <p className="truncate text-sm font-medium text-ink">{shortName(product)}</p>
                             <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">
-                                {qty} × {formatPrice(product.price)}{product.size ? ` · ${product.size}` : ''}
+                                {qty} × {formatPrice(product.price)}{product.onSale ? ' (sale)' : ''}{product.size ? ` · ${product.size}` : ''}
                             </p>
                         </div>
                         <p className="whitespace-nowrap font-mono text-sm text-indigo">{formatPrice(lineTotal)}</p>

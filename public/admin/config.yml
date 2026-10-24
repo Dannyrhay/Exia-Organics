@@ -65,6 +65,18 @@ collections:
         widget: number
         value_type: int
         min: 0
+      - label: Sale price (GHS)
+        name: salePrice
+        widget: number
+        value_type: int
+        required: false
+        min: 0
+        hint: Optional. When set and lower than the price, the shop shows this price with the regular one crossed out, and the cart charges it.
+      - label: Sale ends
+        name: saleEnds
+        widget: datetime
+        required: false
+        hint: Optional. The sale price switches off by itself at this time.
       - label: Photos
         name: images
         widget: image
@@ -165,6 +177,90 @@ collections:
         name: body
         widget: richtext
       - { name: legacyId, widget: hidden, default: null }
+
+  - name: promotions
+    label: Promotions
+    description: Sales and campaigns. Switch a promotion on, set optional start and end dates, and Publish. It appears and disappears by itself. For sale prices, open a product and set its sale price.
+    files:
+      - name: promotions
+        label: Banners & popup
+        file: content/promotions.json
+        media_folder: /public/uploads/promos
+        public_folder: /uploads/promos
+        fields:
+          - label: Announcement strip (top of every page)
+            name: announcement
+            widget: object
+            collapsed: false
+            fields:
+              - { label: Show it, name: enabled, widget: boolean, default: false }
+              - { label: Message, name: message, widget: string, hint: 'Short and specific, e.g. "20% off all sets until Sunday"' }
+              - { label: Link text, name: linkText, widget: string, required: false, hint: 'e.g. Shop now' }
+              - { label: Link, name: linkUrl, widget: string, required: false, hint: 'A page on the site like /products or /product/hair-growth-set, or a full web address' }
+              - label: Colour
+                name: style
+                widget: select
+                default: indigo
+                options:
+                  - { label: Indigo, value: indigo }
+                  - { label: Gold, value: gold }
+                  - { label: Green, value: leaf }
+                  - { label: Wood brown, value: wood }
+              - label: Start showing
+                name: start
+                widget: datetime
+                required: false
+                hint: Optional. Leave empty to start as soon as it's switched on.
+              - label: Stop showing
+                name: end
+                widget: datetime
+                required: false
+                hint: Optional. It disappears by itself at this time.
+          - label: Home page banner (below the main photo)
+            name: banner
+            widget: object
+            collapsed: false
+            fields:
+              - { label: Show it, name: enabled, widget: boolean, default: false }
+              - { label: Small label, name: eyebrow, widget: string, required: false, hint: 'e.g. Limited time, Black Friday' }
+              - { label: Headline, name: headline, widget: string }
+              - { label: Text, name: text, widget: text, required: false }
+              - { label: Photo, name: image, widget: image, required: false }
+              - { label: Button text, name: buttonText, widget: string, required: false }
+              - { label: Button link, name: buttonUrl, widget: string, required: false, hint: 'e.g. /products or /product/hair-growth-set' }
+              - { label: Show countdown, name: countdown, widget: boolean, default: true, hint: 'Counts down to "Stop showing" below. Needs a stop date.' }
+              - label: Start showing
+                name: start
+                widget: datetime
+                required: false
+                hint: Optional. Leave empty to start as soon as it's switched on.
+              - label: Stop showing
+                name: end
+                widget: datetime
+                required: false
+                hint: Optional. It disappears by itself at this time.
+          - label: Popup (shows once per visitor)
+            name: popup
+            widget: object
+            collapsed: false
+            fields:
+              - { label: Show it, name: enabled, widget: boolean, default: false }
+              - { label: Headline, name: headline, widget: string }
+              - { label: Text, name: text, widget: text, required: false }
+              - { label: Photo, name: image, widget: image, required: false }
+              - { label: Button text, name: buttonText, widget: string, required: false }
+              - { label: Button link, name: buttonUrl, widget: string, required: false }
+              - { label: Seconds before it appears, name: delaySeconds, widget: number, value_type: int, default: 4, min: 0, max: 60 }
+              - label: Start showing
+                name: start
+                widget: datetime
+                required: false
+                hint: Optional. Leave empty to start as soon as it's switched on.
+              - label: Stop showing
+                name: end
+                widget: datetime
+                required: false
+                hint: Optional. It disappears by itself at this time.
 
   - name: site
     label: Site

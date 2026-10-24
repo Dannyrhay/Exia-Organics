@@ -7,6 +7,7 @@ import { formatPrice, SITE, whatsappUrl } from '@/data/site';
 import { ProductCard } from '@/components/ui/ProductCard';
 import { useCart } from '@/cart/cart-context';
 import AddToCartButton from '@/components/cart/AddToCartButton';
+import Price from '@/components/ui/Price';
 import QuantityStepper from '@/components/cart/QuantityStepper';
 import NotFoundPage from './NotFoundPage';
 import JsonLd from '@/components/seo/JsonLd';
@@ -185,7 +186,14 @@ export default function ProductDetail() {
                             <p className="font-display text-xl italic text-indigo">{product.tagline}</p>
                         </div>
 
-                        <p className="font-mono text-2xl text-indigo-deep">{formatPrice(product.price, product.currency)}</p>
+                        <div className="flex flex-wrap items-center gap-3">
+                            <Price product={product} className="font-mono text-2xl text-indigo-deep" />
+                            {product.onSale && (
+                                <span className="rounded-full bg-wood px-3 py-1 eyebrow text-shea">
+                                    Save {formatPrice(product.compareAtPrice - product.price, product.currency)}
+                                </span>
+                            )}
+                        </div>
 
                         <ProductPurchase product={product} />
 

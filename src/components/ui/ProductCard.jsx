@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { needs, shortName } from '@/data/products';
 import { formatPrice } from '@/data/site';
 import AddToCartButton from '@/components/cart/AddToCartButton';
+import Price from '@/components/ui/Price';
 
 const needLabel = Object.fromEntries(needs.map((n) => [n.id, n.label]));
 const sizeLabel = (p) => p.size ?? (p.need === 'sets' ? 'Set' : '');
@@ -14,7 +15,7 @@ export function ProductCard({ product, className, priority = false }) {
             <Link
                 to={href}
                 className="relative block aspect-[4/5] overflow-hidden rounded-md bg-shea-deep"
-                aria-label={`${product.name}, ${formatPrice(product.price, product.currency)}`}
+                aria-label={`${product.name}, ${product.onSale ? `on sale for ${formatPrice(product.price, product.currency)}, was ${formatPrice(product.compareAtPrice, product.currency)}` : formatPrice(product.price, product.currency)}`}
             >
                 <img
                     src={product.imageUrl}
@@ -26,6 +27,9 @@ export function ProductCard({ product, className, priority = false }) {
                 <span className="absolute left-2.5 top-2.5 rounded-full bg-paper/90 px-2.5 py-1 eyebrow text-indigo-deep backdrop-blur-sm">
                     {needLabel[product.need]}
                 </span>
+                {product.onSale && product.inStock && (
+                    <span className="absolute right-2.5 top-2.5 rounded-full bg-wood px-2.5 py-1 eyebrow text-shea">Sale</span>
+                )}
                 {!product.inStock && (
                     <span className="absolute right-2.5 top-2.5 rounded-full bg-indigo-deep px-2.5 py-1 eyebrow text-shea">Sold out</span>
                 )}
@@ -39,7 +43,7 @@ export function ProductCard({ product, className, priority = false }) {
                 </h3>
                 <div className="flex items-baseline justify-between gap-2 font-mono">
                     <span className="text-xs uppercase tracking-wider text-ink-soft">{sizeLabel(product)}</span>
-                    <span className="whitespace-nowrap text-sm text-indigo">{formatPrice(product.price, product.currency)}</span>
+                    <Price product={product} className="text-sm text-indigo" />
                 </div>
             </div>
 

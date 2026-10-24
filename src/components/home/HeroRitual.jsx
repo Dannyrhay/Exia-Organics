@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { products, shortName } from '@/data/products';
-import { formatPrice } from '@/data/site';
 import AddToCartButton from '@/components/cart/AddToCartButton';
+import Price from '@/components/ui/Price';
 import hero800 from '@/assets/hero-lineup-800.webp';
 import hero1600 from '@/assets/hero-lineup-1600.webp';
 
@@ -80,7 +80,7 @@ export default function HeroRitual() {
                         <div className="flex min-w-0 flex-1 flex-col gap-2">
                             <div className="flex items-baseline justify-between gap-2">
                                 <p className="eyebrow text-wood">Bestseller</p>
-                                <p className="font-mono text-sm text-indigo">{formatPrice(featured.price, featured.currency)}</p>
+                                <Price product={featured} className="font-mono text-sm text-indigo" />
                             </div>
                             <Link to={`/product/${featured.id}`} className="font-display text-xl leading-tight text-indigo-deep hover:underline hover:underline-offset-4">
                                 {shortName(featured)}

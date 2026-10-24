@@ -82,7 +82,7 @@ export default function CartDrawer() {
                                                             {shortName(product)}
                                                         </Link>
                                                         <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">
-                                                            {product.size ?? 'Set'} · {formatPrice(product.price)}
+                                                            {product.size ?? 'Set'} · {formatPrice(product.price)}{product.onSale ? ' · Sale' : ''}
                                                         </p>
                                                     </div>
                                                     <p className="whitespace-nowrap font-mono text-sm text-indigo">{formatPrice(lineTotal)}</p>

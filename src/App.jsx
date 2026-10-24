@@ -6,6 +6,8 @@ import HomePage from './pages/HomePage';
 import { runSplash } from './splash';
 import CartProvider from './cart/CartProvider';
 import CartDrawer from './components/cart/CartDrawer';
+import AnnouncementBar from './components/promo/AnnouncementBar';
+import PromoPopup from './components/promo/PromoPopup';
 
 // Home ships in the main bundle; everything else loads when visited.
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
@@ -44,6 +46,7 @@ function App() {
                 >
                     Skip to content
                 </a>
+                <AnnouncementBar />
                 <Navbar />
                 <main id="main" className="flex-grow">
                     <Suspense fallback={<div className="min-h-[60vh]" aria-busy="true" />}>
@@ -65,6 +68,7 @@ function App() {
                 <Footer />
             </div>
             <CartDrawer />
+            <PromoPopup />
             </CartProvider>
         </Router>
     );

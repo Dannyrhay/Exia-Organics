@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { products, shortName } from '@/data/products';
-import { formatPrice } from '@/data/site';
 import SectionHeading from '@/components/brand/SectionHeading';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import Reveal from '@/components/brand/Reveal';
+import Price from '@/components/ui/Price';
 
 const sets = products.filter((p) => p.need === 'sets');
 
@@ -31,7 +31,7 @@ export default function Rituals() {
                                     <h3 className="font-display text-2xl">
                                         <Link to={`/product/${set.id}`} className="hover:text-lid">{shortName(set)}</Link>
                                     </h3>
-                                    <p className="whitespace-nowrap font-mono text-sm text-lid">{formatPrice(set.price, set.currency)}</p>
+                                    <Price product={set} className="font-mono text-sm text-lid" saleClassName="text-lid" />
                                 </div>
                                 <p className="text-sm leading-relaxed text-shea/70">{set.description}</p>
                                 <AddToCartButton product={set} variant="light" className="mt-auto w-full">
