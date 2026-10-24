@@ -350,6 +350,13 @@ export default function CheckoutPage() {
                                     <>Place order · {formatPrice(total)}</>
                                 )}
                             </button>
+                            {/* New tab, so reading them doesn't throw away what's been typed here. */}
+                            <p className="text-sm text-ink-soft">
+                                By placing your order you agree to our{' '}
+                                <a href="/terms" target="_blank" rel="noopener" className="text-indigo underline underline-offset-4">terms &amp; conditions</a>{' '}
+                                and{' '}
+                                <a href="/privacy" target="_blank" rel="noopener" className="text-indigo underline underline-offset-4">privacy policy</a>.
+                            </p>
                         </Step>
                     </form>
 

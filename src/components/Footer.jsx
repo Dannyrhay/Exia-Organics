@@ -22,8 +22,8 @@ const columns = [
     {
         label: 'Legal',
         links: [
-            { title: 'Privacy policy', href: 'https://www.termsfeed.com/live/60c05952-43e8-4527-9671-1873f70a2e78' },
-            { title: 'Terms of service', href: 'https://www.termsfeed.com/live/2292d25e-373a-4125-95ce-594ce6f112f3' },
+            { title: 'Privacy policy', href: '/privacy' },
+            { title: 'Terms & conditions', href: '/terms' },
         ],
     },
 ];

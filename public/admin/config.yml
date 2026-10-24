@@ -349,3 +349,25 @@ collections:
               - { label: Detail, name: detail, widget: string, required: false, hint: 'e.g. "Accra · Verified buyer"' }
               - { label: Review, name: quote, widget: text }
               - { label: Photo (optional), name: photo, widget: image, required: false, media_folder: /public/uploads/reviews, public_folder: /uploads/reviews }
+
+      - name: privacy
+        label: Privacy policy
+        file: content/legal/privacy.json
+        fields: &legal_fields
+          - { label: Page title, name: title, widget: string }
+          - { label: Search summary, name: summary, widget: text, hint: 'One or two sentences shown in Google results.' }
+          - label: Last updated
+            name: updated
+            widget: datetime
+            time_format: false
+            format: YYYY-MM-DD
+            hint: Change this whenever you edit the wording below.
+          - label: Wording
+            name: body
+            widget: markdown
+            hint: '{email}, {phone}, {hours}, {momoNumber}, {momoName} and {momoNetworks} fill in automatically from "Contact, payment & delivery".'
+
+      - name: terms
+        label: Terms & conditions
+        file: content/legal/terms.json
+        fields: *legal_fields

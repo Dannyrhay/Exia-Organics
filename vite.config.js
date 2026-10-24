@@ -24,7 +24,7 @@ function seoFiles() {
       if (SITE_URL) {
         const today = new Date().toISOString().slice(0, 10)
         const paths = [
-          "/", "/products", "/about", "/blog", "/testimonials", "/faqs", "/contact",
+          "/", "/products", "/about", "/blog", "/testimonials", "/faqs", "/contact", "/privacy", "/terms",
           ...slugsIn("content/products").map((slug) => `/product/${slug}`),
           ...slugsIn("content/journal").map((slug) => `/blog/${slug}`),
         ]

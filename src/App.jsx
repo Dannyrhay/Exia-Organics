@@ -20,6 +20,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const TestimonialsPage = lazy(() => import('./pages/TestimonialsPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+const LegalPage = lazy(() => import('./pages/LegalPage'));
 
 function ScrollToTop() {
     const { pathname } = useLocation();
@@ -61,6 +62,8 @@ function App() {
                             <Route path="/faqs" element={<FAQsPage />} />
                             <Route path="/contact" element={<ContactPage />} />
                             <Route path="/checkout" element={<CheckoutPage />} />
+                            <Route path="/privacy" element={<LegalPage key="privacy" doc="privacy" />} />
+                            <Route path="/terms" element={<LegalPage key="terms" doc="terms" />} />
                             <Route path="*" element={<NotFoundPage />} />
                         </Routes>
                     </Suspense>
