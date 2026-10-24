@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -12,6 +12,7 @@ import QuantityStepper from '@/components/cart/QuantityStepper';
 import NotFoundPage from './NotFoundPage';
 import JsonLd from '@/components/seo/JsonLd';
 import { absoluteUrl, breadcrumbSchema, siteOrigin, useSeo } from '@/lib/seo';
+import { track } from '@/lib/pixel';
 
 const orderSteps = [
     'Add it to your cart and check out with your delivery details.',
@@ -117,6 +118,9 @@ export default function ProductDetail() {
               }
             : { title: 'Product not found', noindex: true },
     );
+    useEffect(() => {
+        if (product) track('ViewContent', { content_type: 'product', content_ids: [product.id], content_name: product.name, value: product.price, currency: 'GHS' });
+    }, [product]);
     if (!product) return <NotFoundPage title="We couldn't find that product." />;
     // Old numeric links (/product/5) move to the readable address.
     if (id !== product.slug) return <Navigate to={`/product/${product.slug}`} replace />;

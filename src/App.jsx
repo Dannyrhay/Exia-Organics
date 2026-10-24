@@ -8,6 +8,8 @@ import CartProvider from './cart/CartProvider';
 import CartDrawer from './components/cart/CartDrawer';
 import AnnouncementBar from './components/promo/AnnouncementBar';
 import PromoPopup from './components/promo/PromoPopup';
+import Tracking from './components/Tracking';
+import { initPixel } from './lib/pixel';
 
 // Home ships in the main bundle; everything else loads when visited.
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
@@ -34,6 +36,7 @@ function App() {
     // After the first commit the hero photo is in the DOM, so the splash can wait on it.
     useEffect(() => {
         runSplash();
+        initPixel();
     }, []);
 
     return (
@@ -72,6 +75,7 @@ function App() {
             </div>
             <CartDrawer />
             <PromoPopup />
+            <Tracking />
             </CartProvider>
         </Router>
     );

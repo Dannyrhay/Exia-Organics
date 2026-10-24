@@ -17,6 +17,7 @@ import SectionHeading from '@/components/brand/SectionHeading';
 import CopyButton from '@/components/ui/CopyButton';
 import { WhatsAppIcon } from '@/components/icons/SocialIcons';
 import { useSeo } from '@/lib/seo';
+import { cartParams, track } from '@/lib/pixel';
 
 const EMPTY_FORM = { name: '', phone: '', zone: '', area: '', address: '', note: '', transactionId: '', senderName: '' };
 
@@ -176,6 +177,12 @@ export default function CheckoutPage() {
     const total = subtotal + (deliveryFee ?? 0);
     const momoDigits = useMemo(() => SITE.momo.number.replace(/\s/g, ''), []);
 
+    // Once per visit to checkout, with whatever was in the cart on arrival.
+    useEffect(() => {
+        if (lines.length > 0) track('InitiateCheckout', cartParams(lines, subtotal));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     if (placed) return <OrderPlaced order={placed.order} emailed={placed.emailed} />;
 
     if (lines.length === 0) {
@@ -234,6 +241,8 @@ export default function CheckoutPage() {
 
         setStatus('submitting');
         const emailed = await submitOrder(order);
+        // Counted when the order is placed; the MoMo payment is checked by hand afterwards.
+        track('Purchase', cartParams(lines, total));
         clear();
         resetOrderReference();
         setPlaced({ order, emailed });

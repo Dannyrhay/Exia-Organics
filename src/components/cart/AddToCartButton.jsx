@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Check, ShoppingBag } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/cart/cart-context';
+import { track } from '@/lib/pixel';
 
 const variants = {
     solid: 'bg-indigo text-shea hover:bg-indigo-deep',
@@ -30,6 +31,7 @@ export default function AddToCartButton({ product, qty = 1, variant = 'solid', o
 
     const onClick = () => {
         add(product, qty);
+        track('AddToCart', { content_type: 'product', content_ids: [product.id], content_name: product.name, value: product.price * qty, currency: 'GHS' });
         if (openCart) open();
         setAdded(true);
         clearTimeout(timer.current);

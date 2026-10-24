@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { SITE, whatsappUrl } from '@/data/site';
 import { needs } from '@/data/products';
+import { pixelEnabled, setConsent } from '@/lib/pixel';
 import { SocialIcon, WhatsAppIcon } from '@/components/icons/SocialIcons';
 import { BrandMark } from './Navbar';
 
@@ -24,6 +25,8 @@ const columns = [
         links: [
             { title: 'Privacy policy', href: '/privacy' },
             { title: 'Terms & conditions', href: '/terms' },
+            // Re-opens the cookie banner so visitors can change their mind.
+            ...(pixelEnabled ? [{ title: 'Cookie settings', onClick: () => setConsent(null) }] : []),
         ],
     },
 ];
@@ -52,7 +55,9 @@ const Footer = () => (
                         <ul className="flex flex-col gap-0.5">
                             {col.links.map((link) => (
                                 <li key={link.title}>
-                                    {link.href.startsWith('/') ? (
+                                    {link.onClick ? (
+                                        <button type="button" onClick={link.onClick} className={linkClass}>{link.title}</button>
+                                    ) : link.href.startsWith('/') ? (
                                         <Link to={link.href} className={linkClass}>{link.title}</Link>
                                     ) : (
                                         <a href={link.href} target="_blank" rel="noopener noreferrer" className={linkClass}>

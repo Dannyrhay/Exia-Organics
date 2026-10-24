@@ -321,6 +321,11 @@ collections:
                   - { label: YouTube, value: youtube }
                   - { label: X (Twitter), value: x }
               - { label: Profile link, name: url, widget: string, hint: 'The full link to your profile, e.g. https://www.tiktok.com/@exiaorganics' }
+          - label: Meta (Facebook) Pixel ID
+            name: metaPixelId
+            widget: string
+            required: false
+            hint: 'Optional, for measuring Facebook and Instagram ads. The number only (about 15 digits), from Meta Events Manager → Data sources. Visitors are asked before it switches on. Leave empty to turn it off.'
 
       - name: faqs
         label: FAQs
