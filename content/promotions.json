@@ -1,12 +1,12 @@
 {
   "announcement": {
-    "enabled": false,
+    "enabled": true,
     "message": "Free delivery in Accra on orders over GHS 300",
     "linkText": "Shop now",
     "linkUrl": "/products",
     "style": "indigo",
-    "start": "",
-    "end": ""
+    "start": "2026-10-24T02:46:00.000Z",
+    "end": "2026-12-31T00:00:00"
   },
   "banner": {
     "enabled": false,
