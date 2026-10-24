@@ -27,11 +27,11 @@ export function ProductCard({ product, className, priority = false }) {
                 <span className="absolute left-2.5 top-2.5 rounded-full bg-paper/90 px-2.5 py-1 eyebrow text-indigo-deep backdrop-blur-sm">
                     {needLabel[product.need]}
                 </span>
-                {product.onSale && product.inStock && (
-                    <span className="absolute right-2.5 top-2.5 rounded-full bg-wood px-2.5 py-1 eyebrow text-shea">Sale</span>
-                )}
-                {!product.inStock && (
-                    <span className="absolute right-2.5 top-2.5 rounded-full bg-indigo-deep px-2.5 py-1 eyebrow text-shea">Sold out</span>
+                {(product.onSale || !product.inStock) && (
+                    <span className="absolute right-2.5 top-2.5 flex flex-col items-end gap-1.5">
+                        {product.onSale && <span className="rounded-full bg-wood px-2.5 py-1 eyebrow text-shea">Sale</span>}
+                        {!product.inStock && <span className="rounded-full bg-indigo-deep px-2.5 py-1 eyebrow text-shea">Sold out</span>}
+                    </span>
                 )}
             </Link>
 
