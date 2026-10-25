@@ -178,6 +178,59 @@ collections:
         widget: richtext
       - { name: legacyId, widget: hidden, default: null }
 
+  - name: about
+    label: About us
+    description: Your story, photo and promises, on the About page and the home page.
+    files:
+      - name: about
+        label: About page & home teaser
+        file: content/about.json
+        media_folder: /public/uploads/about
+        public_folder: /uploads/about
+        fields:
+          - label: Small heading above the title
+            name: eyebrow
+            widget: string
+            hint: e.g. Our story · Est. 2020
+          - { label: Title, name: title, widget: string, hint: 'First part of the big heading, e.g. "Rooted in nature,"' }
+          - { label: Title (second line, in italics), name: accent, widget: string, required: false, hint: 'e.g. "grounded in care."' }
+          - label: Your story
+            name: body
+            widget: richtext
+            hint: 'Leave a blank line between paragraphs. {phone}, {email} and {hours} fill in automatically.'
+          - label: Photo
+            name: photo
+            widget: image
+            required: false
+            hint: Optional. A tall (portrait) photo works best. Leave empty to keep the current photo of the full range.
+          - { label: Photo description, name: photoAlt, widget: string, hint: 'What the photo shows, for blind visitors and Google, e.g. "The full Exia Organics range on a wooden table."' }
+          - label: Google description
+            name: seoDescription
+            widget: text
+            hint: One or two sentences shown under the page in Google results.
+          - label: Promises heading
+            name: promisesTitle
+            widget: string
+            hint: 'e.g. "Four things we". If you add or remove a promise, update the number here.'
+          - { label: Promises heading (in italics), name: promisesAccent, widget: string, required: false, hint: "e.g. \"won't compromise on.\"" }
+          - label: Promises
+            name: promises
+            widget: list
+            summary: '{{fields.title}}'
+            hint: Shown on the About page and the home page. Four fits the layout best. Only promise what is true for every product.
+            fields:
+              - { label: Promise, name: title, widget: string, hint: 'Short, e.g. "Cruelty-free"' }
+              - { label: Explanation, name: body, widget: text }
+          - label: Home page teaser
+            name: home
+            widget: object
+            collapsed: false
+            hint: The "Our story" section on the home page, which links to the About page.
+            fields:
+              - { label: Quote, name: quote, widget: string, hint: 'Without quotation marks. They are added for you.' }
+              - { label: Word to put in italics, name: highlight, widget: string, required: false, hint: 'Must appear in the quote exactly as typed, e.g. "nature". Leave empty for none.' }
+              - { label: Text under the quote, name: text, widget: text }
+
   - name: promotions
     label: Promotions
     description: Sales and campaigns. Switch a promotion on, set optional start and end dates, and Publish. It appears and disappears by itself. For sale prices, open a product and set its sale price.

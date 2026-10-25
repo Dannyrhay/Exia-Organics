@@ -59,11 +59,3 @@ export function buildOrderMessage(product) {
 export const whatsappTextUrl = (text) => `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(text)}`;
 
 export const whatsappUrl = (product) => whatsappTextUrl(buildOrderMessage(product));
-
-// Brand promises, as already stated across the site. Keep this list honest.
-export const promises = [
-    { title: 'Herbal formulas', body: 'Plant extracts and butters do the work. Every product is built around them.' },
-    { title: 'Nothing harsh', body: 'No parabens, sulfates or synthetic fragrances, so hair keeps its natural oils.' },
-    { title: 'Cruelty-free', body: 'Nothing we make is ever tested on animals.' },
-    { title: 'Made in Ghana', body: 'Handcrafted at home, for the hair and climate we know best.' },
-];
