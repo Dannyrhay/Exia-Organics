@@ -1,6 +1,6 @@
 {
   "announcement": {
-    "enabled": true,
+    "enabled": false,
     "message": "Free delivery in Accra on orders over GHS 300",
     "linkText": "Shop now",
     "linkUrl": "/products",
@@ -9,19 +9,19 @@
     "end": "2026-12-31T00:00:00"
   },
   "banner": {
-    "enabled": true,
+    "enabled": false,
     "eyebrow": "Limited time",
     "headline": "The Growth Ritual, 20% off",
     "text": "Butter, repair oil and herbal shampoo, bundled for length and strength. While stocks last.",
     "image": "/uploads/products/hair-growth-set-1.webp",
     "buttonText": "Shop the set",
     "buttonUrl": "/product/hair-growth-set",
-    "countdown": true,
+    "countdown": false,
     "start": "",
     "end": ""
   },
   "popup": {
-    "enabled": true,
+    "enabled": false,
     "headline": "A little something for you",
     "text": "Our first sale of the season is on. Treat your crown before it ends.",
     "image": "/uploads/promos/636B2E55-388D-4A11-93F7-1242601DFCCA.webp",
