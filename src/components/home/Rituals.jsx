@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom';
-import { products, shortName } from '@/data/products';
+import { isBundle, products, SHOP_TEXT, shortName } from '@/data/products';
 import SectionHeading from '@/components/brand/SectionHeading';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import Reveal from '@/components/brand/Reveal';
 import Price from '@/components/ui/Price';
 
-const sets = products.filter((p) => p.need === 'sets');
+// Products in the category ticked "This is the sets / bundles category" in the dashboard.
+const sets = products.filter(isBundle);
+const text = SHOP_TEXT.home.sets ?? {};
 
 export default function Rituals() {
+    if (sets.length === 0) return null;
     return (
         <section className="bg-indigo-deep py-20 text-shea md:py-28">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <SectionHeading tone="light" eyebrow="Sets" title="Whole routines," accent="bundled.">
-                    Each set pairs products that work together, so you can order a full routine in one go.
+                <SectionHeading tone="light" eyebrow={text.eyebrow} title={text.title} accent={text.accent}>
+                    {text.text}
                 </SectionHeading>
 
                 <div className="mt-12 grid gap-6 lg:grid-cols-3">

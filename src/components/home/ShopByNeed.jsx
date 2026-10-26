@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
-import { needs, products } from '@/data/products';
+import { needs, products, SHOP_TEXT, withCount } from '@/data/products';
 import SectionHeading from '@/components/brand/SectionHeading';
 import Reveal from '@/components/brand/Reveal';
 
+const text = SHOP_TEXT.home.categories ?? {};
+// One tile per category with at least one photographed product; sets have their own section.
 const tiles = needs
-    .filter((n) => n.id !== 'sets')
+    .filter((n) => !n.bundle)
     .map((n) => ({
         ...n,
         cover: products.find((p) => p.need === n.id && p.imageUrl),
@@ -14,11 +16,12 @@ const tiles = needs
     .filter((t) => t.cover);
 
 export default function ShopByNeed() {
+    if (tiles.length === 0) return null;
     return (
         <section className="border-y border-line bg-paper py-20 md:py-28">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <SectionHeading eyebrow="Shop by concern" title="Start with" accent="what your hair needs.">
-                    {products.length} products, sorted by what they do. Tap the one that sounds like you.
+                <SectionHeading eyebrow={text.eyebrow} title={text.title} accent={text.accent}>
+                    {withCount(text.text)}
                 </SectionHeading>
 
                 <ul className="-mx-4 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4 lg:gap-6">

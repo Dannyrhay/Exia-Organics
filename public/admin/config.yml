@@ -84,16 +84,16 @@ collections:
         min: 1
         max: 6
         hint: The first photo is the main one in the shop. Photos straight from your phone are fine — they are resized automatically.
-      - label: Concern
+      - label: Category
         name: need
-        widget: select
-        hint: Which shop filter this product appears under.
-        options:
-          - { label: Scalp care, value: scalp }
-          - { label: Growth, value: growth }
-          - { label: Moisture, value: moisture }
-          - { label: Repair, value: repair }
-          - { label: Sets / bundles, value: sets }
+        widget: relation
+        collection: shop
+        file: shop
+        value_field: categories.*.id
+        display_fields: [categories.*.label]
+        search_fields: [categories.*.label]
+        dropdown_threshold: 8
+        hint: Which shop filter this product appears under. Add or rename categories under "Shop settings".
       - label: Size
         name: size
         widget: string
@@ -133,6 +133,74 @@ collections:
         default: 100
         hint: Lower numbers appear first in the shop.
       - { name: legacyId, widget: hidden, default: null }
+
+  - name: shop
+    label: Shop settings
+    description: Shop categories, and the headings and intro text on the shop page and the home page's shop sections.
+    files:
+      - name: shop
+        label: Categories & wording
+        file: content/shop.json
+        fields:
+          - label: Categories
+            name: categories
+            widget: list
+            summary: '{{fields.label}}'
+            hint: The filters at the top of the shop, in this order. Each product picks one of these. A category with no products is still listed in the shop, so remove it if it's no longer used.
+            fields:
+              - { label: Name, name: label, widget: string, hint: 'As customers see it, e.g. "Scalp care"' }
+              - label: Short code
+                name: id
+                widget: string
+                pattern: ['^[a-z0-9-]+$', 'Lowercase letters, numbers and dashes only, e.g. hair-loss']
+                hint: 'Used in the web address (/products?need=scalp). Set it once for a new category and never change it, or products in it will lose their category.'
+              - { label: Description, name: blurb, widget: string, required: false, hint: 'Who it is for, e.g. "Itchy, flaky or irritated scalp"' }
+              - label: This is the sets / bundles category
+                name: bundle
+                widget: boolean
+                default: false
+                required: false
+                hint: Products in this category appear in the dark "Sets" section on the home page instead of the category tiles, and show "Set" when they have no size.
+          - label: Shop page
+            name: shopPage
+            widget: object
+            collapsed: true
+            fields:
+              - &eyebrow_field { label: Small heading, name: eyebrow, widget: string, required: false }
+              - &title_field { label: Title, name: title, widget: string }
+              - &accent_field { label: Title (in italics), name: accent, widget: string, required: false }
+              - { label: Intro text, name: intro, widget: text, hint: 'Shown under the title when "All" is selected. {count} fills in the number of products.' }
+              - { label: Google description, name: seoDescription, widget: text, hint: 'Shown in Google results for the shop. {count} fills in the number of products.' }
+          - label: Home page sections
+            name: home
+            widget: object
+            collapsed: true
+            fields:
+              - label: Shop by category
+                name: categories
+                widget: object
+                fields:
+                  - *eyebrow_field
+                  - *title_field
+                  - *accent_field
+                  - { label: Text, name: text, widget: text, required: false, hint: '{count} fills in the number of products.' }
+              - label: Bestsellers
+                name: bestsellers
+                widget: object
+                hint: Shows the products ticked "Bestseller" (up to four).
+                fields:
+                  - *eyebrow_field
+                  - *title_field
+                  - *accent_field
+              - label: Sets
+                name: sets
+                widget: object
+                hint: Shows the products in the sets / bundles category. Hidden when there are none.
+                fields:
+                  - *eyebrow_field
+                  - *title_field
+                  - *accent_field
+                  - { label: Text, name: text, widget: text, required: false }
 
   - name: journal
     label: Journal & tutorials
@@ -193,7 +261,7 @@ collections:
             widget: string
             hint: e.g. Our story · Est. 2020
           - { label: Title, name: title, widget: string, hint: 'First part of the big heading, e.g. "Rooted in nature,"' }
-          - { label: Title (second line, in italics), name: accent, widget: string, required: false, hint: 'e.g. "grounded in care."' }
+          - { label: 'Title (second line, in italics)', name: accent, widget: string, required: false, hint: 'e.g. "grounded in care."' }
           - label: Your story
             name: body
             widget: richtext

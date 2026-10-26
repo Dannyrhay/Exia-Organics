@@ -1,17 +1,19 @@
 // Products are edited in the admin dashboard (/admin) and stored one file each in
 // content/products/*.json. This module turns those files into the shape the site uses.
 
-// Shop filters, in display order. `id` matches each product's `need`.
-// Keep in sync with the "need" options in public/admin/config.yml.
-export const needs = [
-    { id: 'scalp', label: 'Scalp care', blurb: 'Itchy, flaky or irritated scalp' },
-    { id: 'growth', label: 'Growth', blurb: 'Length, thickness and retention' },
-    { id: 'moisture', label: 'Moisture', blurb: 'Dry, thirsty, hard-to-detangle hair' },
-    { id: 'repair', label: 'Repair', blurb: 'Split ends, breakage and dullness' },
-    { id: 'sets', label: 'Sets', blurb: 'Complete routines, bundled' },
-];
-
 import { hasPassed } from '@/lib/schedule';
+import shop from '/content/shop.json';
+
+// Shop categories ("concerns"), in display order, edited under "Shop → Categories & wording"
+// in the dashboard. `id` matches each product's `need`. `bundle` marks the sets category:
+// its products appear in the home page's Sets section instead of the category tiles.
+export const needs = (shop.categories ?? []).filter((c) => c.id && c.label);
+
+/** Headings and intro text for the shop page and the home page's shop sections. */
+export const SHOP_TEXT = { shopPage: shop.shopPage ?? {}, home: shop.home ?? {} };
+
+const bundleIds = new Set(needs.filter((n) => n.bundle).map((n) => n.id));
+export const isBundle = (product) => bundleIds.has(product.need);
 
 const files = import.meta.glob('/content/products/*.json', { eager: true, import: 'default' });
 
@@ -44,6 +46,9 @@ export const products = Object.entries(files)
         };
     })
     .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || a.name.localeCompare(b.name));
+
+/** Fills {count} in dashboard-written text with the number of products in the shop. */
+export const withCount = (text = '') => text.replaceAll('{count}', String(products.length));
 
 /** Finds a product by its slug, or by the numeric id it had before the dashboard existed. */
 export const getProduct = (key) =>

@@ -1,11 +1,12 @@
 import { useSearchParams } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { needs, products } from '@/data/products';
+import { needs, products, SHOP_TEXT, withCount } from '@/data/products';
 import { ProductCard } from '@/components/ui/ProductCard';
 import SectionHeading from '@/components/brand/SectionHeading';
 import { useSeo } from '@/lib/seo';
 
 const filters = [{ id: 'all', label: 'All' }, ...needs];
+const text = SHOP_TEXT.shopPage;
 
 export default function ProductsPage() {
     const [params, setParams] = useSearchParams();
@@ -15,8 +16,13 @@ export default function ProductsPage() {
 
     useSeo(
         activeNeed
-            ? { title: `${activeNeed.label}: natural haircare`, description: `Exia Organics products for ${activeNeed.blurb.toLowerCase()}. Handcrafted in Ghana, paid with Mobile Money.` }
-            : { title: 'Shop natural haircare', description: 'Shop all 12 Exia Organics products: herbal shampoos, conditioners, growth butter, repair oils and sets for natural and textured hair. Prices in GHS.' },
+            ? {
+                  title: `${activeNeed.label}: natural haircare`,
+                  description: activeNeed.blurb
+                      ? `Exia Organics products for ${activeNeed.blurb.toLowerCase()}. Handcrafted in Ghana, paid with Mobile Money.`
+                      : `${activeNeed.label} from Exia Organics. Handcrafted in Ghana, paid with Mobile Money.`,
+              }
+            : { title: 'Shop natural haircare', description: withCount(text.seoDescription) || undefined },
     );
 
     const select = (id) => setParams(id === 'all' ? {} : { need: id }, { replace: true });
@@ -24,8 +30,8 @@ export default function ProductsPage() {
     return (
         <div className="pb-24 pt-12 md:pt-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <SectionHeading as="h1" eyebrow="Shop" title="The" accent="collection.">
-                    {activeNeed ? activeNeed.blurb + '.' : 'Herbal haircare for natural and textured hair. Every order goes through WhatsApp.'}
+                <SectionHeading as="h1" eyebrow={text.eyebrow} title={text.title} accent={text.accent}>
+                    {activeNeed?.blurb ? activeNeed.blurb + '.' : withCount(text.intro)}
                 </SectionHeading>
 
                 <div

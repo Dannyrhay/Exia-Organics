@@ -1,0 +1,35 @@
+{
+  "categories": [
+    { "id": "scalp", "label": "Scalp care", "blurb": "Itchy, flaky or irritated scalp", "bundle": false },
+    { "id": "growth", "label": "Growth", "blurb": "Length, thickness and retention", "bundle": false },
+    { "id": "moisture", "label": "Moisture", "blurb": "Dry, thirsty, hard-to-detangle hair", "bundle": false },
+    { "id": "repair", "label": "Repair", "blurb": "Split ends, breakage and dullness", "bundle": false },
+    { "id": "sets", "label": "Sets", "blurb": "Complete routines, bundled", "bundle": true }
+  ],
+  "shopPage": {
+    "eyebrow": "Shop",
+    "title": "The",
+    "accent": "collection.",
+    "intro": "Herbal haircare for natural and textured hair. Add what you need to your cart and pay with Mobile Money.",
+    "seoDescription": "Shop all {count} Exia Organics products: herbal shampoos, conditioners, growth butter, repair oils and sets for natural and textured hair. Prices in GHS."
+  },
+  "home": {
+    "categories": {
+      "eyebrow": "Shop by concern",
+      "title": "Start with",
+      "accent": "what your hair needs.",
+      "text": "{count} products, sorted by what they do. Tap the one that sounds like you."
+    },
+    "bestsellers": {
+      "eyebrow": "Most ordered",
+      "title": "The everyday",
+      "accent": "essentials."
+    },
+    "sets": {
+      "eyebrow": "Sets",
+      "title": "Whole routines,",
+      "accent": "bundled.",
+      "text": "Each set pairs products that work together, so you can order a full routine in one go."
+    }
+  }
+}

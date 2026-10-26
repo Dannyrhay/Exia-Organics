@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { products } from '@/data/products';
+import { products, SHOP_TEXT } from '@/data/products';
 import { ProductCard } from '@/components/ui/ProductCard';
 import SectionHeading from '@/components/brand/SectionHeading';
 import Reveal from '@/components/brand/Reveal';
@@ -8,13 +8,14 @@ import Reveal from '@/components/brand/Reveal';
 // Ticked as "Bestseller" in the dashboard; falls back to the first four products.
 const flagged = products.filter((p) => p.bestseller);
 const picks = (flagged.length ? flagged : products).slice(0, 4);
+const text = SHOP_TEXT.home.bestsellers ?? {};
 
 export default function Bestsellers() {
     return (
         <section className="py-20 md:py-28">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-                    <SectionHeading eyebrow="Most ordered" title="The everyday" accent="essentials." />
+                    <SectionHeading eyebrow={text.eyebrow} title={text.title} accent={text.accent} />
                     <Link to="/products" className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-indigo hover:underline hover:underline-offset-4 md:self-auto">
                         All {products.length} products <ArrowRight className="size-4" aria-hidden="true" />
                     </Link>

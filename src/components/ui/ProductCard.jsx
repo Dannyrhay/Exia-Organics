@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { needs, shortName } from '@/data/products';
+import { isBundle, needs, shortName } from '@/data/products';
 import { formatPrice } from '@/data/site';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import Price from '@/components/ui/Price';
 
 const needLabel = Object.fromEntries(needs.map((n) => [n.id, n.label]));
-const sizeLabel = (p) => p.size ?? (p.need === 'sets' ? 'Set' : '');
+const sizeLabel = (p) => p.size ?? (isBundle(p) ? 'Set' : '');
 
 export function ProductCard({ product, className, priority = false }) {
     const href = `/product/${product.id}`;
@@ -24,9 +24,11 @@ export function ProductCard({ product, className, priority = false }) {
                     decoding="async"
                     className="size-full object-cover object-[50%_62%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
-                <span className="absolute left-2.5 top-2.5 rounded-full bg-paper/90 px-2.5 py-1 eyebrow text-indigo-deep backdrop-blur-sm">
-                    {needLabel[product.need]}
-                </span>
+                {needLabel[product.need] && (
+                    <span className="absolute left-2.5 top-2.5 rounded-full bg-paper/90 px-2.5 py-1 eyebrow text-indigo-deep backdrop-blur-sm">
+                        {needLabel[product.need]}
+                    </span>
+                )}
                 {(product.onSale || !product.inStock) && (
                     <span className="absolute right-2.5 top-2.5 flex flex-col items-end gap-1.5">
                         {product.onSale && <span className="rounded-full bg-wood px-2.5 py-1 eyebrow text-shea">Sale</span>}
